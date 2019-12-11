@@ -1,1 +1,19 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-item nav-link" [routerLinkActive]="['active']" routerLink="/product" translate>Questions</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-item nav-link" [routerLinkActive]="['active']" routerLink="/shelf" translate>Users</a>
+    </li>
+  </ul>
+  <div class="row">
+    <button (click)="changeLang('pt')">PT</button>
+    <button (click)="changeLang('en')">EN</button>
+  </div>
+  <span class="navbar-text mx-3">
+    {{name}}
+  </span>
+  <button class="btn btn-outline-dark" (click)="logout()" translate>Logout</button>
+</nav>
