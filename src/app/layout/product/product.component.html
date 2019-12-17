@@ -6,6 +6,11 @@
                 <fa-icon [icon]="iconNew"></fa-icon>
         </button>
 </h2>
-
-<app-tables [header]='["id","iva","pvp","discount"]' [data$]='products$' [theme]='"table-bordered"'
-        (clickedRow)='clickRow($event)'></app-tables>
+<ngx-datatable
+class="material"
+[columnMode]="'force'"
+[rows]="rows"
+[columns]="columns">
+</ngx-datatable>
+<!-- <app-tables [header]='["id","iva","pvp","discount"]' [data$]='products$' [theme]='"table-bordered"'
+        (clickedRow)='clickRow($event)'></app-tables> -->
