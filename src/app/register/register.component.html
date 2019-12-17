@@ -1,0 +1,37 @@
+<div class="login-wrapper">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form">
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input mdbInput class="form-control w-100 mt-4" id="Username" placeholder="Username">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input mdbInput class="form-control w-100 mt-4" id="email" placeholder="Email">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input mdbInput class="form-control w-100 mt-4" placeholder="Password">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <label class="mt-4">Choose role:</label>
+          <select mdbInput class="form-control w-100">
+            <option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+            </option>
+          </select>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <button type="button" class="btn btn-outline-info w-100 mt-4">Register</button>
+
+    </form>
+  </mat-card>
+</div>
+<router-outlet></router-outlet>

@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="login-wrapper" >
+  
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+    
+    <form class="example-form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input mdbInput class="form-control w-100 mt-4" id="email" name="email" type="email" [(ngModel)]="account.email" placeholder="email" />
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+          <input mdbInput class="form-control w-100 mt-2" name="password" type="password" [(ngModel)]="account.password" placeholder="password" />
+        </mat-form-field>
+      </mat-card-content>
+      <button type="button" class="btn btn-outline-info w-100 mt-4" (click)="login()"> Log in </button>
+    </form>
+  </mat-card>
+  
+</div>
+
