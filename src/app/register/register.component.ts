@@ -5,16 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-
 export class RegisterComponent implements OnInit {
 
-  Roles: any = ['Admin', 'Author', 'Reader'];
-
-  constructor()
-  { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  
 }
