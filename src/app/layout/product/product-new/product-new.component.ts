@@ -2,7 +2,8 @@ import { Component, EventEmitter } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap';
 
-import { Product } from 'src/app/core';
+import { Product } from 'src/app/core/models/product';
+
 
 @Component({
   selector: 'app-product-new',
