@@ -17,6 +17,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+
 .app-header {
   text-align: justify;
   box-shadow: 0 3px 5px -1px rgba(28, 2, 145, 0.603);
@@ -39,9 +40,9 @@ body {
 
 .box {
    
-  top: 20%;
+  top: 5%;
   margin: 0;
-  position: absolute;
+  position: relative;
   left: 40%;
   
   opacity: 85%;
@@ -88,9 +89,9 @@ body {
 }
 
 .login-wrapper mat-card-header mat-card-title {
-  font-size: 30px;
+  font-size: 20px;
   margin: 0;
-  
+  width: 100%;
 }
 
 .login-wrapper .mat-card {
