@@ -1,4 +1,4 @@
 export class Attribute {
     id?: number;
-    type : String;
+    type : string;
 }

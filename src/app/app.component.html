@@ -1,11 +1,19 @@
 <!-- Toolbar -->
-  <mat-toolbar color="primary" class="app-header">
+<mat-toolbar color="primary" class="app-header">
+  <div>
+    <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" class="positronx rounded float-left">
+  </div>
+  <div class="btn-group">
+    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="question">Questions</button>
+    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="account">Accounts</button>
+  </div>
     <div>
-      <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" class="positronx rounded float-left">
+      <span class="navbar-text mx-3">
+        {{name}}
+      </span>
+      <button class="btn text-ligth font-weight-bold btn-secondary btn-outline-ligth" routerLink="login" (click)="logout()">Logout</button>
     </div>
-      <div>
-        <button mat-button mat-raised-button routerLink="login" routerLinkActive="active">Log in</button>
-        <button mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</button>
-      </div>
-  </mat-toolbar>
+</mat-toolbar>
+
 <router-outlet></router-outlet>
+

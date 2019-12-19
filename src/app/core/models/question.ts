@@ -1,6 +1,6 @@
 export class Question {
     id?: number;
-    question : String;
-    answer : String;
-    attributes : String;
+    question : string;
+    answer : string;
+    attributes : string;
 }
