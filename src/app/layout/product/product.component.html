@@ -1,14 +1,11 @@
-<h2 translate>Questions
-       
-        <button type="button" class="btn btn-primary mt-2" (click)="openCreateModal()">
+<h2 translate>New Question
+        <button type="button" class="btn btn-primary right" (click)="updateProducts()" translate>
+                Update Products
+        </button>
+        <button type="button" class="btn btn-primary" (click)="openCreateModal()">
                 <fa-icon [icon]="iconNew"></fa-icon>
         </button>
 </h2>
-<ngx-datatable
-class="material"
-[columnMode]="'force'"
-[rows]="rows"
-[columns]="columns">
-</ngx-datatable>
-<!-- <app-tables [header]='["id","iva","pvp","discount"]' [data$]='products$' [theme]='"table-bordered"'
-        (clickedRow)='clickRow($event)'></app-tables> -->
+
+<app-tables [header]='["id","iva","pvp","discount"]' [data$]='products$' [theme]='"table-bordered"'
+        (clickedRow)='clickRow($event)'></app-tables>

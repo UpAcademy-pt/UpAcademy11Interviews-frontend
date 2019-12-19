@@ -9,7 +9,7 @@ import { Question } from '../models/question';
   providedIn: 'root'
 })
 
-export class QuestionApiService {
+export class UserApiService {
     private apiUrl = 'http://localhost:8080/projectInterview/api/question/';
 
   constructor(

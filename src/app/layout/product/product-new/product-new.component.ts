@@ -2,8 +2,7 @@ import { Component, EventEmitter } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap';
 
-import { Product } from 'src/app/core/models/product';
-
+import { Product } from 'src/app/core';
 
 @Component({
   selector: 'app-product-new',
@@ -17,9 +16,9 @@ export class ProductNewComponent {
   constructor(
     public bsModalRef: BsModalRef
   ) {
-    this.product.text = 0;
-    this.product.value = 0;
-   
+    this.product.iva = 23;
+    this.product.pvp = 12;
+    this.product.discount = 0;
   }
 
   triggerEvent() {

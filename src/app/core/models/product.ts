@@ -1,7 +1,7 @@
 export class Product {
     'id'?: number;
-    'text': number;
-    'value': number;
+    'iva': number;
+    'pvp': number;
     'discount': number;
     constructor(data?: any) {
         Object.assign(this, data);
