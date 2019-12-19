@@ -17,6 +17,7 @@ import { ProductDetailComponent } from './product/product-detail/product-detail.
 import { ProductNewComponent } from './product/product-new/product-new.component';
 import { ShelfComponent } from './shelf/shelf.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ProductDetailComponent,
     ProductNewComponent,
     ShelfComponent,
-    LayoutComponent
+    LayoutComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FormsModule,
     NgxDatatableModule,
     FontAwesomeModule,
+    SidebarModule,
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],

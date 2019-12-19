@@ -34,8 +34,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     private router: Router,
     private modalService: BsModalService
   ) {
-    this.products$ = this.dataService.products$;
-    this.subscriptionProducts = this.products$.subscribe((a) => console.log('products$ on ProductComponent', JSON.stringify(a)));
+    
   }
 
   ngOnInit() { }
