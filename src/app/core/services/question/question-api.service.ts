@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Question } from '../..';
 
-import { Question } from '../models/question';
+
 
 
 
@@ -9,7 +10,7 @@ import { Question } from '../models/question';
   providedIn: 'root'
 })
 
-export class UserApiService {
+export class QuestionApiService {
     private apiUrl = 'http://localhost:8080/projectInterview/api/question/';
 
   constructor(

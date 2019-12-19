@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
 import { MainComponent } from './main/main.component';
-import { ProductComponent } from './product/product.component';
-import { ShelfComponent } from './shelf/shelf.component';
-import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { QuestionComponent } from './question/question.component';
+import { AccountComponent } from './account/account.component';
+import { QuestionDetailComponent } from './question/question-detail/question-detail.component';
 
 const routes: Routes = [
   {
@@ -15,13 +15,13 @@ const routes: Routes = [
         path: '', component: MainComponent
       },
       {
-        path: 'product', component: ProductComponent
+        path: 'question', component: QuestionComponent
       },
       {
-        path: 'product/:id', component: ProductDetailComponent
+        path: 'question/:id', component: QuestionDetailComponent
       },
       {
-        path: 'shelf', component: ShelfComponent
+        path: 'account', component: AccountComponent
       },
     ]
   }

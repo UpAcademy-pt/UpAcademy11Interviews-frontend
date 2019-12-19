@@ -9,7 +9,7 @@ import { AttributeValue } from '../models/attribute-value';
   providedIn: 'root'
 })
 
-export class UserApiService {
+export class AttributeValueApiService {
     private apiUrl = 'http://localhost:8080/projectInterview/api/attributevalue/';
 
   constructor(

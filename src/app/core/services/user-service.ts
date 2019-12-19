@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from '../models/user';
+import { Account } from '../models/account';
 
 
 
@@ -20,7 +20,7 @@ export class UserApiService {
     return this.http.get(this.apiUrl);
   }
 
-  public create(user: User) {
+  public create(user: Account) {
     return this.http.post(this.apiUrl, user);
   }
 
@@ -28,7 +28,7 @@ export class UserApiService {
     return this.http.get(this.apiUrl + id);
   }
 
-  public update(user: User) {
+  public update(user: Account) {
     return this.http.put(this.apiUrl, user);
   }
 

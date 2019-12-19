@@ -43,6 +43,6 @@ export class MainComponent implements OnInit {
   }
 
   updateProducts() {
-    this.dataService.updateProducts();
+    this.dataService.updateQuestions();
   }
 }

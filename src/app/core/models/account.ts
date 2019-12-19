@@ -1,9 +1,7 @@
 export class Account {
-    'id'?: number;
-    'name': string;
-    'email': string;
-    'password': string;
-    constructor(data?: any) {
-        Object.assign(this, data);
-    }
+    id?: Number;
+    name : String;
+    email : String;
+    password : String;
+    role : String;
 }

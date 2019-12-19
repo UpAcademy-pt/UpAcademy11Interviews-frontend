@@ -1,5 +1,6 @@
 export class Question {
-    id?: Number;
+    id?: number;
     question : String;
+    answer : String;
     attributes : String;
 }
