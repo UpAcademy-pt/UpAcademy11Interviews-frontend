@@ -1,5 +1,5 @@
 export class AttributeValue {
-    id?: Number;
+    id?: number;
     value : String;
     attribute : String;
 }

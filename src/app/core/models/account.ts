@@ -1,5 +1,5 @@
 export class Account {
-    id?: Number;
+    id?: number;
     name : String;
     email : String;
     password : String;
