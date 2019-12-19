@@ -6,8 +6,10 @@ import { DataService, Product, ProductApiService } from 'src/app/core';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss']
+  styleUrls: ['./product-detail.component.scss'],
+  
 })
+
 export class ProductDetailComponent implements OnInit {
   public product: Product;
   public msg: string;
@@ -23,7 +25,7 @@ export class ProductDetailComponent implements OnInit {
         this.product = this.dataService.getProductById(Number(params.id));
       });
   }
-
+  
   ngOnInit() { }
 
   update() {
