@@ -13,7 +13,7 @@ export class UserApiService {
     private apiUrl = 'http://localhost:8080/projectInterview/api/user/';
 
   constructor(
-    private http: HttpClient,
+    private http: HttpClient
   ) { }
 
   public getAll() {
