@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class RegisterComponent implements OnInit {
 
-  Roles: any = ['Admin', 'Author', 'Reader'];
+  Roles: any = ['Admin', 'Superuser', 'User'];
 
   constructor()
   { }

@@ -1,35 +1,35 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 
-import { ProductApiService } from '../product/product-api.service';
+import { QuestionApiService } from '../question/question-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  public products$: ReplaySubject<any[]> = new ReplaySubject(1);
-  private products: any[];
+  public questions$: ReplaySubject<any[]> = new ReplaySubject(1);
+  private questions: any[];
 
   constructor(
-    private productApi: ProductApiService
+    private productApi: QuestionApiService
   ) {
     // this.products$.subscribe((a) => console.log('products$ on DataService', JSON.stringify(a)));
-    this.updateProducts();
+    this.updateQuestions();
   }
 
-  public updateProducts() {
+  public updateQuestions() {
     this.productApi.getAll().subscribe(
       (res: any) => {
-        this.products = res;
-        this.products$.next(res);
+        this.questions = res;
+        this.questions$.next(res);
       }
     );
   }
 
-  public getProductById(id) {
-    for (const product of this.products) {
-      if (product.id === id) {
-        return product;
+  public getQuestionById(id) {
+    for (const questions of this.questions) {
+      if (questions.id === id) {
+        return questions;
       }
     }
   }

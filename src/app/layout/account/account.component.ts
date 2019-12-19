@@ -3,11 +3,11 @@ import { BsModalRef } from 'ngx-bootstrap';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-shelf',
-  templateUrl: './shelf.component.html',
-  styleUrls: ['./shelf.component.scss']
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.scss']
 })
-export class ShelfComponent implements OnInit {
+export class AccountComponent implements OnInit {
   public modalRef: BsModalRef;
   public iconNew = faPlus;
   rows = [

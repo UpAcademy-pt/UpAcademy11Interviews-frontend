@@ -12,19 +12,19 @@ import { LayoutRoutingModule } from './layout-routing.module';
 
 import { LayoutComponent } from './layout.component';
 import { MainComponent } from './main/main.component';
-import { ProductComponent } from './product/product.component';
-import { ProductDetailComponent } from './product/product-detail/product-detail.component';
-import { ProductNewComponent } from './product/product-new/product-new.component';
-import { ShelfComponent } from './shelf/shelf.component';
+import { QuestionComponent } from './question/question.component';
+import { QuestionDetailComponent } from './question/question-detail/question-detail.component';
+import { QuestionNewComponent } from './question/question-new/question-new.component';
+import { AccountComponent } from './account/account.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
     MainComponent,
-    ProductComponent,
-    ProductDetailComponent,
-    ProductNewComponent,
-    ShelfComponent,
+    QuestionComponent,
+    QuestionDetailComponent,
+    QuestionNewComponent,
+    AccountComponent,
     LayoutComponent
   ],
   imports: [
@@ -38,6 +38,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],
-  entryComponents: [ProductNewComponent]
+  entryComponents: [QuestionNewComponent]
 })
 export class LayoutModule { }
