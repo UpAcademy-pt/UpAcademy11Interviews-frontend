@@ -1,6 +1,6 @@
-# CriticalQuestions
+# Zecarlos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
 
 ## Development server
 
@@ -13,6 +13,12 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+Run `npm run showlocal` to build the project in production, and run http-server.
+Need `npm install http-server -g`
+
+Run `npm run gitpages` to build the project in production, and upload to [Gitpages](https://sequessu.github.io/UpAcademyAngularExample/).
+Need `npm install -g angular-cli-ghpages`
 
 ## Running unit tests
 
