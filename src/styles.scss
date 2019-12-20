@@ -113,7 +113,7 @@ body {
 .ng-sidebar {
   
   background:rgb(120, 255, 255);
-  width: 10rem;
+  width: 18rem;
   font-size: large;
   font-family: Arial, Helvetica, sans-serif;
   opacity: 100%;
@@ -123,9 +123,13 @@ body {
   position: left;
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
-  width: 5rem;
+  width: 10rem;
   
+/*buttons*/
 
+.questionbutton{
+  color: rgb(120, 255, 255);
+} 
 
   
 }
