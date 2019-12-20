@@ -17,6 +17,7 @@ import { QuestionDetailComponent } from './question/question-detail/question-det
 import { QuestionNewComponent } from './question/question-new/question-new.component';
 import { AccountComponent } from './account/account.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
 
 @NgModule({
   declarations: [
