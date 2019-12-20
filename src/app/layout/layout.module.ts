@@ -17,6 +17,7 @@ import { QuestionDetailComponent } from './question/question-detail/question-det
 import { QuestionNewComponent } from './question/question-new/question-new.component';
 import { AccountComponent } from './account/account.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FormsModule,
     NgxDatatableModule,
     FontAwesomeModule,
+    SidebarModule,
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],
