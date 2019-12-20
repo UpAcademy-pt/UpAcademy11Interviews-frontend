@@ -2,6 +2,7 @@
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
+
 html,
 body {
   height: 100%;
@@ -26,7 +27,6 @@ body {
   justify-content: space-between;
   
 }
-
 .login-wrapper {
   height: 100%;
   
@@ -40,13 +40,11 @@ body {
 }
 
 .box {
-   
   top: 5%;
   margin: 0;
   position: relative;
   left: 40%;
-  
-  opacity: 85%;
+    opacity: 85%;
   box-shadow: 0 3px 5px -1px rgba(255, 255, 255, 0.603);
   float: left;
   padding: 40px 50px 50px 60px;
@@ -113,8 +111,9 @@ body {
 
 /* navbar */
 .ng-sidebar {
-  background:rgb(41, 231, 214);
-  width: 20rem;
+  
+  background:rgb(120, 255, 255);
+  width: 10rem;
   font-size: large;
   font-family: Arial, Helvetica, sans-serif;
   opacity: 100%;

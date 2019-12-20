@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { DataService, ProductApiService, AccountApiService } from './services';
+import { DataService, QuestionApiService, AccountApiService } from './services';
 
 @NgModule({})
 export class CoreModule {
@@ -9,7 +9,7 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         DataService,
-        ProductApiService,
+        QuestionApiService,
         AccountApiService
       ]
     };

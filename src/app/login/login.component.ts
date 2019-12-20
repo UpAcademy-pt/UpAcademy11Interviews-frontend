@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   public login() {
     this.accountApi.login(this.account).subscribe(
       (account: any) => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/question']);
       },
       (error) => {
         console.log(this.msg = error.msg);
