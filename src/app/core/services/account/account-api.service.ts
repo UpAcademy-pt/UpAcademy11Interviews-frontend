@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 
 import { Account } from '../../models';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountApiService {
   private currentAccount: Account = new Account();
-
-  constructor() { }
+  private apiUrl = 'http://localhost:8080/projectInterview/api/user';
+  constructor( private http: HttpClient) { }
 
   public isAuthenticated(): boolean {
     if (this.currentAccount.id) {
@@ -17,6 +18,10 @@ export class AccountApiService {
     } else {
       return false;
     }
+  }
+
+  public setCurrentAccount(account:Account){
+    this.currentAccount = account;
   }
 
   public getCurrentId(): number {
@@ -27,20 +32,8 @@ export class AccountApiService {
     return this.currentAccount.name;
   }
 
-  public login(account: Account): ReplaySubject<Account> {
-    // Simulate Jax-rs Api request
-    if (account.email === 'admin' && account.password === 'admin') {
-      account.id = 1;
-      account.name = 'Ze Carlos';
-      this.currentAccount = account;
-    }
-    const response: ReplaySubject<any> = new ReplaySubject(1);
-    if (account.id) {
-      response.next(account);
-    } else {
-      response.error({ msg: 'Deu erro' });
-    }
-    return response;
+  public login(account: Account) {
+    return this.http.post(this.apiUrl+'/auth', account);
   }
 
   public logout() {

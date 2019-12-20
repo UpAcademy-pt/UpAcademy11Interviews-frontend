@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {
    MatButtonModule,
    MatToolbarModule,
@@ -58,7 +58,8 @@ import {
       MatChipsModule,
       MatTooltipModule,
       MatTableModule,
-      MatPaginatorModule
+      MatPaginatorModule,
+      MatSnackBarModule
    ],
    providers: [
       MatDatepickerModule,

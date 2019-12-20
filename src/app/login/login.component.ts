@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountApiService, Account } from '../core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +11,14 @@ import { AccountApiService, Account } from '../core';
 export class LoginComponent implements OnInit {
   public account: Account = new Account();
   public msg: string;
-
+  error = false;
   constructor(
     private router: Router,
-    private accountApi: AccountApiService
-  ) {
+    private accountApi: AccountApiService,
+    private _snackBar: MatSnackBar
+    ) {
     // Fill email and password
-    this.account.email = 'admin';
-    this.account.password = 'admin';
+   
   }
 
   ngOnInit() { }
@@ -25,10 +26,14 @@ export class LoginComponent implements OnInit {
   public login() {
     this.accountApi.login(this.account).subscribe(
       (account: any) => {
-        this.router.navigate(['/question']);
+        console.log('entrei');
+        this.accountApi.setCurrentAccount(account);
+        this.router.navigate(['/layout/question']);
       },
       (error) => {
-        console.log(this.msg = error.msg);
+        console.log(error);
+        this.msg = 'Email or password invalid. Try again.';
+        this.error = true;
       }
     );
   }

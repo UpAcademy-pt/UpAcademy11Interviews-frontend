@@ -8,7 +8,7 @@ import { AuthGuard } from './core';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'layout',
     loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),
     canActivate: [AuthGuard]
   },
