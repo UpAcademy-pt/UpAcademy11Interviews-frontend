@@ -7,15 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  private _opened: boolean = false;
-  
   constructor() { }
 
   ngOnInit() { }
-
-
-  private _toggleSidebar() {
-    this._opened = !this._opened;
-  }
 
 }

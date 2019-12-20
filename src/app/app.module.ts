@@ -15,8 +15,6 @@ import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
 
 
-
-
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

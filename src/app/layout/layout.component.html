@@ -1,23 +1,4 @@
 <app-header></app-header>
-<!-- <app-sidenav></app-sidenav> -->
-<button (click)="_toggleSidebar()">Toggle sidebar</button>
-
-<ng-sidebar-container style="height: 100vh;">
-
-	<!-- A sidebar -->
-	<ng-sidebar [(opened)]="_opened" position="left">
-		<ul>
-			<li>LISTAS</li>
-			<li>ULTILIZADORES</li>
-			<li>QUESTÕES</li>
-		</ul>
-	</ng-sidebar>
-
-	<!-- Page content -->
-	<div ng-sidebar-content>
-		<section class="container">
-      <router-outlet></router-outlet>  
-    </section>
-	</div>
-
-</ng-sidebar-container>
+<section class="container">
+  <router-outlet></router-outlet>
+</section>
