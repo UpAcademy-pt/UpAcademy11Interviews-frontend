@@ -18,6 +18,16 @@ export class QuestionComponent implements OnInit, OnDestroy {
   private subscriptionQuestions: Subscription;
   public modalRef: BsModalRef;
   public iconNew = faPlus;
+  rows = [
+    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+    { name: 'Dany', gender: 'Male', company: 'KFC' },
+    { name: 'Molly', gender: 'Female', company: 'Burger King' },
+  ];
+  columns = [
+    { prop: 'name' },
+    { name: 'Gender' },
+    { name: 'Company' }
+  ];
 
   constructor(
     private dataService: DataService,

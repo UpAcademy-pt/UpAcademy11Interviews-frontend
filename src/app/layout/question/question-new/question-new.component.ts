@@ -16,9 +16,9 @@ export class QuestionNewComponent {
   constructor(
     public bsModalRef: BsModalRef
   ) {
-    this.question.question = "why?";
-    this.question.answer = "yes";
-    this.question.attributes = "java";
+    this.question.question = "";
+    this.question.answer = "";
+    this.question.attributes = "";
   }
 
   triggerEvent() {
