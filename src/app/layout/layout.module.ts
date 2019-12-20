@@ -32,6 +32,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     SharedModule,
     LayoutRoutingModule,
     TranslateModule,
+    SidebarModule,
     FormsModule,
     NgxDatatableModule,
     FontAwesomeModule,
