@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatInputModule} from '@angular/material/input';
 import {
    MatButtonModule,
    MatToolbarModule,
@@ -10,7 +11,6 @@ import {
    MatListModule,
    MatGridListModule,
    MatFormFieldModule,
-   MatInputModule,
    MatSelectModule,
    MatRadioModule,
    MatDatepickerModule,
@@ -18,7 +18,9 @@ import {
    MatChipsModule,
    MatTooltipModule,
    MatTableModule,
-   MatPaginatorModule
+   MatPaginatorModule,
+   MatCardModule,
+   
 } from '@angular/material';
 
 @NgModule({
@@ -40,6 +42,8 @@ import {
       MatChipsModule,
       MatTooltipModule,
       MatTableModule,
+      MatCardModule,
+      MatFormFieldModule,
       MatPaginatorModule
    ],
    exports: [
@@ -59,6 +63,8 @@ import {
       MatTooltipModule,
       MatTableModule,
       MatPaginatorModule,
+      MatCardModule,
+      MatFormFieldModule,
       MatSnackBarModule
    ],
    providers: [
