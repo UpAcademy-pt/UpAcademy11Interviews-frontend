@@ -1,4 +1,6 @@
-<div class="login-wrapper">
+<!-- card -->
+
+<!-- <div class="login-wrapper">
   <mat-card class="box">
     <mat-card-header>
       <mat-card-title class="card-title mb-2">
@@ -38,3 +40,26 @@
   </mat-card>
 </div>
 <router-outlet></router-outlet>
+ -->
+
+<!-- modal -->
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Create a new account</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <input class="w-100 p-1 m-1" name="name" type="name" [(ngModel)]="account.name" placeholder="Username">
+  <input class="w-100 p-1 m-1" name="email" type="email" [(ngModel)]="account.email" placeholder="Email">
+  <input class="w-100 p-1 m-1" name="password" type="password" [(ngModel)]="account.password" placeholder="Password">
+  <label class="font-weight-bold text-center mt-2">Choose a role:</label>
+  <select mdbInput class="form-control w-100">
+    <option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+    </option>
+  </select>
+</div>
+<div class="text-center modal-footer">
+  <button type="button" class="btn btn-outline-info mt-2" (click)="register()">Create</button>
+  <!-- <button type="button" class="btn btn-outline-danger mt-2" (click)="back()">Cancel</button> -->
+</div>

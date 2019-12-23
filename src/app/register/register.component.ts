@@ -3,14 +3,13 @@ import { Location } from '@angular/common';
 import { AccountApiService, Account } from '../core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-
-
 
 export class RegisterComponent implements OnInit {
 
@@ -24,16 +23,21 @@ export class RegisterComponent implements OnInit {
     private location: Location,
     private router: Router,
     private accountApi: AccountApiService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public bsModalRef: BsModalRef
+
     ){ 
+    this.account.name = "";
+    this.account.email = "";
+    this.account.password = "";
   }
 
   ngOnInit() {
   }
 
-  public back() {
+ /*  public back() {
     this.location.back();
-  }
+  } */
 
   public register() {
     this.accountApi.create(this.account).subscribe(
@@ -45,6 +49,7 @@ export class RegisterComponent implements OnInit {
         this.error = true;
       }
     );
-    this.location.back();
+    
+    /* this.location.back(); */
   }
 }
