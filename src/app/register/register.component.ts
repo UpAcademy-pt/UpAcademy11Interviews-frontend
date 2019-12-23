@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { AccountApiService, Account } from '../core';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -6,15 +10,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 
+
+
 export class RegisterComponent implements OnInit {
 
   Roles: any = ['Admin', 'Superuser', 'User'];
 
-  constructor()
-  { }
+  public account: Account = new Account();
+  public msg: string;
+  error = false;
+
+  constructor(
+    private location: Location,
+    private router: Router,
+    private accountApi: AccountApiService,
+    private _snackBar: MatSnackBar
+    ){ 
+  }
 
   ngOnInit() {
   }
 
-  
+  public back() {
+    this.location.back();
+  }
+
+  public register() {
+    this.accountApi.create(this.account).subscribe(
+      (account: any) => {
+      },
+      (error) => {
+        console.log(error);
+        this.msg = 'Invalid fields.';
+        this.error = true;
+      }
+    );
+    this.location.back();
+  }
 }

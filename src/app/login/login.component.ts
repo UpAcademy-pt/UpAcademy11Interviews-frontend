@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountApiService, Account } from '../core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
   public account: Account = new Account();
@@ -26,13 +28,12 @@ export class LoginComponent implements OnInit {
   public login() {
     this.accountApi.login(this.account).subscribe(
       (account: any) => {
-        console.log('entrei');
         this.accountApi.setCurrentAccount(account);
         this.router.navigate(['/layout/question']);
       },
       (error) => {
         console.log(error);
-        this.msg = 'Email or password invalid. Try again.';
+        this.msg = 'Invalid email or password.';
         this.error = true;
       }
     );
