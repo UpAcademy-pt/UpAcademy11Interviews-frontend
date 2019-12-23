@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { AccountApiService, Account } from 'src/app/core';
 
 @Component({
   selector: 'app-account',
@@ -10,19 +11,20 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 export class AccountComponent implements OnInit {
   public modalRef: BsModalRef;
   public iconNew = faPlus;
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' },
-  ];
-  columns = [
-    { prop: 'name' },
-    { name: 'Gender' },
-    { name: 'Company' }
-  ];
-  constructor() { }
+   
+  constructor(private accountService: AccountApiService) { }
+  columns = ["User Id","Email", "Role" ];
+  index = ["id", "email", "role"];
+    
+  account : Account[] = [];
 
-  ngOnInit() {
+  ngOnInit():void {
+    this.accountService.getAll().subscribe(
+    (response) => {
+      this.account = response;
+    },
+    (error) => console.log(error)
+    )
   }
 
 }

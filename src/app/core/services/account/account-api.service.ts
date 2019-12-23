@@ -20,6 +20,10 @@ export class AccountApiService {
     }
   }
 
+  public getAll() {
+    return this.http.get<Account[]>(this.apiUrl);
+  }
+
   public setCurrentAccount(account:Account){
     this.currentAccount = account;
   }

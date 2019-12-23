@@ -25,7 +25,6 @@ export class AppComponent {
   public logout() {
     this.accountApi.logout();
     this.router.navigate(['/login']);
-    window.location.reload();
   }
 
 }

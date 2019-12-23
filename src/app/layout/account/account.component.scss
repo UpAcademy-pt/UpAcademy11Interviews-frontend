@@ -1,3 +1,31 @@
-.right {
-    float: right;
+h1{
+    text-align: center;
+    color: blue;
+}
+
+#account {
+    font-family: "Trebuchet MS",Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#account td, #account th {
+    border: 1px solid white;
+    padding: 8px;
+}
+
+#account tr,:nth-child(even) {
+    background-color: white;
+}
+
+/* #account tr:hover{
+    background-color: yellow;
+} */
+
+#account th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: blue;
+    color: white;
 }
