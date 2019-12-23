@@ -36,6 +36,10 @@ export class AccountApiService {
     return this.currentAccount.name;
   }
 
+  public create(account: Account){
+    return this.http.post(this.apiUrl, account);
+  }
+
   public login(account: Account) {
     return this.http.post(this.apiUrl+'/auth', account);
   }

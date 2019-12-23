@@ -2,7 +2,7 @@ import { Component, EventEmitter } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap';
 
-import { Question } from 'src/app/core';
+import { Question, QuestionApiService } from 'src/app/core';
 
 @Component({
   selector: 'app-question-new',
@@ -13,7 +13,9 @@ export class QuestionNewComponent {
 
   public question: Question = new Question();
   public event: EventEmitter<any> = new EventEmitter();
+  
   constructor(
+    private questionApi: QuestionApiService,
     public bsModalRef: BsModalRef
   ) {
     this.question.question = "";
@@ -23,6 +25,15 @@ export class QuestionNewComponent {
 
   triggerEvent() {
     this.event.emit(this.question);
+  }
+
+  public new() {
+    this.questionApi.create(this.question).subscribe(
+      (account: any) => {
+      },
+      (error) => {
+      }
+    );
   }
 
 }

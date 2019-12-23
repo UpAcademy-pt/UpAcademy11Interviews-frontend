@@ -8,7 +8,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
   public account: Account = new Account();
@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   public login() {
     this.accountApi.login(this.account).subscribe(
       (account: any) => {
-        console.log('entrei');
         this.accountApi.setCurrentAccount(account);
         this.router.navigate(['/layout/question']);
       },
