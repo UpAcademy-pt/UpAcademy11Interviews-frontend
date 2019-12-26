@@ -7,7 +7,6 @@
         </button>
 </h2>
 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  
 
 <table id="account">
         <tr>
@@ -15,7 +14,7 @@
                         {{col}}
                 </th>
         </tr>
-        <tr *ngFor="let account of account">
+        <tr *ngFor="let account of accounts$ | async">
                 <td *ngFor="let col of index">
                         {{account[col]}}
                 </td>

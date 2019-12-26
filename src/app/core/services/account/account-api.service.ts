@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, Observable } from 'rxjs';
 
 import { Account } from '../../models';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AccountApiService {
   private currentAccount: Account = new Account();
+  accounts$:ReplaySubject<Account[]> =new ReplaySubject();
   private apiUrl = 'http://localhost:8080/projectInterview/api/user';
   constructor( private http: HttpClient) { }
 
@@ -21,7 +22,9 @@ export class AccountApiService {
   }
 
   public getAll() {
-    return this.http.get<Account[]>(this.apiUrl);
+    this.http.get<Account[]>(this.apiUrl).subscribe(data => {
+      this.accounts$.next(data);
+    });
   }
 
   public setCurrentAccount(account:Account){
@@ -37,7 +40,7 @@ export class AccountApiService {
   }
 
   public create(account: Account){
-    return this.http.post(this.apiUrl, account);
+    return this.http.post(this.apiUrl, account, {responseType:'text'});
   }
 
   public login(account: Account) {
