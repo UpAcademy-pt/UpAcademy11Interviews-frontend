@@ -39,6 +39,10 @@ export class AccountApiService {
     return this.currentAccount.name;
   }
 
+  public getCurrentRole(): string {
+    return this.currentAccount.role;
+  }
+
   public create(account: Account){
     return this.http.post(this.apiUrl, account, {responseType:'text'});
   }

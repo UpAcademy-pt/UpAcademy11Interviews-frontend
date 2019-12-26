@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AccountApiService } from './core';
 import { Router } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,9 @@ export class AppComponent {
 
   public logout() {
     this.accountApi.logout();
-    this.router.navigate(['/login']);
+    
+    this.router.navigate(['']);
+    window.location.reload();
   }
 
 }

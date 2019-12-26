@@ -41,7 +41,10 @@ export class AccountComponent implements OnInit {
       )
   } */
 
-  
+  public applyFilter(filterValue: String) {
+   
+        this.accountService.getAll();
+  }
   public openCreateModal() {
     this.modal = this.modalService.show(RegisterComponent)
     this.modalService.onHide.subscribe(() => {
