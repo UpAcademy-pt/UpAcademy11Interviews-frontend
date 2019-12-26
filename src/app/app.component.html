@@ -3,9 +3,9 @@
   <div>
     <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" class="positronx rounded float-left">
   </div>
-  <div class="btn-group">
-    <button *ngIf="accountApi.getCurrentRole() == 'Admin'" class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="layout/question">Questions</button>
-    <button *ngIf="accountApi.getCurrentRole() == 'Admin'" class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="layout/account">Accounts</button>
+  <div *ngIf="accountApi.isAdmin()" class="btn-group">
+    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="layout/question">Questions</button>
+    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="layout/account">Accounts</button>
   </div>
     <div *ngIf="accountApi.isAuthenticated()">
       <span class="navbar-text mx-3 text-white">
