@@ -6,6 +6,8 @@
                 <fa-icon [icon]="iconNew"></fa-icon>
         </button>
 </h2>
+<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  
 
 <table id="account">
         <tr>
