@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.account.role='Admin';
+    this.account.role='User';
   }
 
  /*  public back() {
