@@ -21,7 +21,7 @@ export class AccountComponent implements OnInit {
     ) { }
   columns = ["User Id","Name", "Email", "Role" ];
   index = ["id","name", "email", "role"];
-    accounts = [];
+  accounts = [];
   accounts$ =new ReplaySubject<Account[]>();
 
   ngOnInit():void {
@@ -41,16 +41,12 @@ export class AccountComponent implements OnInit {
       )
   } */
 
-  public applyFilter(filterValue: String) {
-   
-        this.accountService.getAll();
-  }
-
+  
   public openCreateModal() {
     this.modal = this.modalService.show(RegisterComponent)
     this.modalService.onHide.subscribe(() => {
-      console.log('cheguei');
-      this.accountService.getAll();
+    this.accountService.getAll();
+    
   });
   }
 
