@@ -14,16 +14,15 @@ export class AccountComponent implements OnInit {
   public iconNew = faPlus;
   public modal: BsModalRef;
 
-   
   constructor(
     private accountService: AccountApiService,
     private modalService: BsModalService
     ) { }
-
-  columns = ["User Id","Email", "Role" ];
-  index = ["id", "email", "role"];
+  columns = ["User Id","Name", "Email", "Role" ];
+  index = ["id","name", "email", "role"];
     
   account : Account[] = [];
+
 
   ngOnInit():void {
     this.accountService.getAll().subscribe(
