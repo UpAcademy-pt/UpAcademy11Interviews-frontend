@@ -19,6 +19,7 @@ export class AccountComponent implements OnInit {
     private accountService: AccountApiService,
     private modalService: BsModalService
     ) { }
+
   columns = ["User Id","Email", "Role" ];
   index = ["id", "email", "role"];
     
@@ -32,6 +33,7 @@ export class AccountComponent implements OnInit {
     (error) => console.log(error)
     )
   }
+  
   public openCreateModal() {
     this.modal = this.modalService.show(RegisterComponent)
     this.modal.content.event.subscribe(Account => {

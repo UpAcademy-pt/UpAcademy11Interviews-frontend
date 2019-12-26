@@ -47,4 +47,8 @@ export class AccountApiService {
   public logout() {
     this.currentAccount = null;
   }
+
+  public getByEmail(filterValue: String) {
+    return this.http.get(this.apiUrl+'/name?name='+filterValue);
+  }
 }
