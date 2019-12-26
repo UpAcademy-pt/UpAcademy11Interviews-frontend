@@ -11,14 +11,14 @@ export class DataService {
   private questions: any[];
 
   constructor(
-    private productApi: QuestionApiService
+    private questionApi: QuestionApiService
   ) {
-    // this.products$.subscribe((a) => console.log('products$ on DataService', JSON.stringify(a)));
+    // this.questions$.subscribe((a) => console.log('questions$ on DataService', JSON.stringify(a)));
     this.updateQuestions();
   }
 
   public updateQuestions() {
-    this.productApi.getAll().subscribe(
+    this.questionApi.getAll().subscribe(
       (res: any) => {
         this.questions = res;
         this.questions$.next(res);

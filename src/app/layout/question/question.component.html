@@ -1,10 +1,10 @@
 <h2 class="text-white" translate>New Question
-        <button type="button" class="btn btn-primary right" (click)="updateQuestions()" translate>
-                Update Questions
-        </button>
         <button type="button" class="btn btn-primary" (click)="openCreateModal()">
                 <fa-icon [icon]="iconNew"></fa-icon>
         </button>
+       <!--  <button type="button" class="btn btn-primary right" (click)="updateQuestions()" translate>
+                Update Questions
+        </button> -->
 </h2>
 
         
@@ -17,7 +17,7 @@
                         {{col}}
                 </th>
         </tr>
-        <tr *ngFor="let question of question">
+        <tr *ngFor="let question of questions">
                 <td *ngFor="let col of index">
                         {{question[col]}}
                 </td>

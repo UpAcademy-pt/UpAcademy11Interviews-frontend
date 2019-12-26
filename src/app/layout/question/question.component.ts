@@ -43,15 +43,15 @@ export class QuestionComponent implements OnInit, OnDestroy {
   columns = ["Question","Answer"];
   index = ["question", "answer"];
     
-  question : Question[] = [];
+  questions : Question[] = [];
 
   ngOnInit():void {
-   /*  this.questionApi.getAll().subscribe(
-    (response) => {
-      this.question = response;
+    this.questionApi.getAll().subscribe(
+    (response : Question[]) => {
+      this.questions = response;
     },
     (error) => console.log(error)
-    ) */
+    )
   }
 
   ngOnDestroy() {
