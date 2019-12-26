@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { AccountApiService, Account, DataService } from 'src/app/core';
 import { RegisterComponent } from 'src/app/register/register.component';
+import { ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-account',
@@ -20,30 +21,37 @@ export class AccountComponent implements OnInit {
     ) { }
   columns = ["User Id","Name", "Email", "Role" ];
   index = ["id","name", "email", "role"];
-    
-  account : Account[] = [];
-
+    accounts = [];
+  accounts$ =new ReplaySubject<Account[]>();
 
   ngOnInit():void {
-    this.accountService.getAll().subscribe(
-    (response) => {
-      this.account = response;
-    },
-    (error) => console.log(error)
-    )
+     this.accountService.accounts$.subscribe(data => {
+      this.accounts$.next(data);
+    })
+    this.accountService.getAll();
+    /*this.getAllAccounts()*/
   }
 
-  
+ /*  getAllAccounts() {
+    this.accountService.getAll().subscribe(
+      (response) => {
+        this.accounts = response;
+      },
+      (error) => console.log(error)
+      )
+  } */
+
+  public applyFilter(filterValue: String) {
+   
+        this.accountService.getAll();
+  }
+
   public openCreateModal() {
     this.modal = this.modalService.show(RegisterComponent)
-    this.modal.content.event.subscribe(Account => {
-      this.accountService.create(Account).subscribe(
-        () => {
-          this.accountService.getAll();
-          this.modal.hide();
-        }
-      )
-    })
+    this.modalService.onHide.subscribe(() => {
+      console.log('cheguei');
+      this.accountService.getAll();
+  });
   }
 
 }

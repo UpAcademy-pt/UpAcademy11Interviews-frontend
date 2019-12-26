@@ -20,7 +20,7 @@ export class QuestionNewComponent {
   ) {
     this.question.question = "";
     this.question.answer = "";
-    this.question.attributes = "";
+    this.question.attributes = [];
   }
 
   triggerEvent() {
@@ -28,6 +28,7 @@ export class QuestionNewComponent {
   }
 
   public new() {
+    this.question.attributes.push('hard as f');
     this.questionApi.create(this.question).subscribe(
       (account: any) => {
       },
