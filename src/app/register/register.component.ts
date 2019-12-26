@@ -27,12 +27,10 @@ export class RegisterComponent implements OnInit {
     public bsModalRef: BsModalRef
 
     ){ 
-    this.account.name = "";
-    this.account.email = "";
-    this.account.password = "";
   }
 
   ngOnInit() {
+    this.account.role='Admin';
   }
 
  /*  public back() {
