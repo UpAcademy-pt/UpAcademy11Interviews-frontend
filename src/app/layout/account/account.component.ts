@@ -34,9 +34,7 @@ export class AccountComponent implements OnInit {
   }
 
   public getByEmail() {
-    console.log('entrei');
-    this.accountApi.getByEmail(this.value).subscribe((data: any)=> {
-      console.log(data);
+    this.accountApi.getByEmail(this.value).subscribe((data: Account[])=> {
       this.accounts$.next(data);
     });
   }
