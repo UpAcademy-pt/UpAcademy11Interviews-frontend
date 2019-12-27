@@ -3,6 +3,8 @@ import { Component, EventEmitter } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 
 import { Question, QuestionApiService } from 'src/app/core';
+import { Attribute } from 'src/app/core/models/attribute';
+import { AttributeApiService } from 'src/app/core/services/attribute-service';
 
 @Component({
   selector: 'app-question-new',
@@ -13,6 +15,8 @@ export class QuestionNewComponent {
 
   public question: Question = new Question();
   public event: EventEmitter<any> = new EventEmitter();
+
+  public attributeApi : AttributeApiService;
   
   constructor(
     private questionApi: QuestionApiService,
@@ -37,6 +41,13 @@ export class QuestionNewComponent {
       (error) => {
       }
     );
+  }
+
+  Attributes: Attribute[];
+
+  ngOnInit() {
+    //this.Attributes = this.attributeApi.getAll();
+    //this.question.attributes;
   }
 
 }

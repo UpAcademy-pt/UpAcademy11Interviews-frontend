@@ -7,7 +7,9 @@
 <div class="modal-body">
     <input class="w-100 p-1 m-1" name="question" type="string" [(ngModel)]="question.question" placeholder="Question" />
     <input class="w-100 p-1 m-1" name="answer" type="string" [(ngModel)]="question.answer" placeholder="Expected Answer" />
-    <!--<input class="w-100 p-1 m-1" name="attributes" type="string" [(ngModel)]="question.attributes" placeholder="Category" />-->
+    <select mdbInput class="form-control w-100" [(ngModel)]="question.attributes">
+        <option [value]="roles" *ngFor="let attribute of Attributes">{{attribute}}</option>
+      </select>
 </div>
 <div class="modal-footer">
     <!--<button type="button" class="btn btn-default" (click)="triggerEvent()">Create</button>-->
