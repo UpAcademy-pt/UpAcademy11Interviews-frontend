@@ -1,17 +1,18 @@
 <app-header></app-header>
+
+  
+
+
 <!-- <app-sidenav></app-sidenav> -->
-<button type="button" class= "btn btn-primary"  (click)="_toggleSidebar()" >
-	<fa-icon [icon]="iconNew"></fa-icon>
-</button>
+
 
 <ng-sidebar-container style="height: 100vh;">
 
-	<ng-sidebar [(opened)]="_opened" position="left">
+	<!-- A sidebar -->
+	<ng-sidebar [(opened)]="_opened" position="left" [mode]="'push'">
+		<h3>Selectors</h3>
 		<ul>
-			<ul>*cenas*</ul>
-		</ul>
-		<ul>
-			
+			<div class="selectors container">
 		<div>
 			<label class="font-weight-bold text-center mt-2">Technology</label>
 			<select mdbInput class="form-control w-100">
@@ -33,16 +34,18 @@
 			  </option>
 			</select>
 		</div>
+	</div>
 			
 		
 		</ul>
 
 	</ng-sidebar>
+
+	<!-- Page content -->
 	<div ng-sidebar-content>
 		<section class="container">
-			<router-outlet></router-outlet>
-		</section>
+      <router-outlet> </router-outlet>  
+    </section>
 	</div>
 
 </ng-sidebar-container>
- 
