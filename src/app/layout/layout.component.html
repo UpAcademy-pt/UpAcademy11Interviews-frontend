@@ -1,21 +1,55 @@
 <app-header></app-header>
+
+  
+
+
 <!-- <app-sidenav></app-sidenav> -->
-<button (click)="_toggleSidebar()">Toggle sidebar</button>
+
 
 <ng-sidebar-container style="height: 100vh;">
 
+<<<<<<< HEAD
 	<ng-sidebar [(opened)]="_opened" position="left" [mode]= "'push'">
+=======
+	<!-- A sidebar -->
+	<ng-sidebar [(opened)]="_opened" position="left" [mode]="'push'">
+		<h3>Selectors</h3>
+>>>>>>> origin/ivomesquita
 		<ul>
-			<li>LISTAS</li>
-			<li>ULTILIZADORES</li>
-			<li>QUESTÕES</li>
+			<div class="selectors container">
+		<div>
+			<label class="font-weight-bold text-center mt-2">Technology</label>
+			<select mdbInput class="form-control w-100">
+			  <option [value]="roles" *ngFor="let roles of Technology">{{roles}}
+			  </option>
+			</select>
+		</div>
+		<div>
+			<label class="font-weight-bold text-center mt-2">Difficulty</label>
+			<select mdbInput class="form-control w-100">
+			  <option [value]="roles" *ngFor="let roles of Difficulty">{{roles}}
+			  </option>
+			</select>
+		</div>
+		<div>
+			<label class="font-weight-bold text-center mt-2">Roles</label>
+			<select mdbInput class="form-control w-100">
+			  <option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+			  </option>
+			</select>
+		</div>
+	</div>
+			
+		
 		</ul>
+
 	</ng-sidebar>
+
+	<!-- Page content -->
 	<div ng-sidebar-content>
 		<section class="container">
-			<router-outlet></router-outlet>
-		</section>
+      <router-outlet> </router-outlet>  
+    </section>
 	</div>
 
 </ng-sidebar-container>
- 
