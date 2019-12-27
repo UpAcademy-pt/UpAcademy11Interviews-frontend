@@ -18,6 +18,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
   private subscriptionQuestions: Subscription;
   public modalRef: BsModalRef;
   public iconNew = faPlus;
+ 
 
 /*   rows = [
     { name: 'Austin', gender: 'Male', company: 'Swimlane' },
@@ -54,6 +55,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     )
   }
 
+  
   ngOnDestroy() {
     this.subscriptionQuestions.unsubscribe();
   }
