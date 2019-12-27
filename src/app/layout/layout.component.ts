@@ -8,7 +8,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  private _opened: boolean = false;
+  private _opened: boolean = true;
 
   Technology: any = ['JAVA', 'JS', 'AngularJS', 'HTML', 'CSS'];
 

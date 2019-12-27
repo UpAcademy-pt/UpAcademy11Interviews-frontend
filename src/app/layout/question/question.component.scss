@@ -4,8 +4,15 @@ h1{
     color: blue;
 }
 
+h2{
+    padding-top: 3%;
+    color:whitesmoke;
+
+
+}
+
 #question {
-    font-family: "Trebuchet MS",Arial, Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
@@ -26,9 +33,18 @@ h1{
 #question th{
     padding-top: 12px;
     padding-bottom: 12px;
-    border: none;
-    text-align: center;
-    background-color: rgb(13, 30, 207);
+    text-align: left;
+    background-color: rgb(43, 42, 46);
     color: white;
-    
+}
+
+.QuestButton{
+    background-color:rgb(25, 196, 194)!important;
+    border-radius: 60px;
+    border: 0px;
+    size: 5px;
+}
+
+.QuestIcon{
+    size: 10px;
 }
