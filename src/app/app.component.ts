@@ -27,5 +27,6 @@ export class AppComponent {
     this.accountApi.logout();
     this.router.navigate(['']);
   }
+  
 
 }

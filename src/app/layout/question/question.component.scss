@@ -31,17 +31,21 @@ h2{
 
 #question th{
     padding-top: 12px;
-    padding-bottom: 12px;
+    padding-bottom: 20px;
     text-align: left;
-    background-color: rgb(43, 42, 46);
+    background-color: slateblue;
     color: white;
 }
 
 .QuestButton{
-    background-color:rgb(25, 196, 194)!important;
+    background-image: linear-gradient(to right, rgb(0, 255, 251) , rgb(13, 30, 207));
+    
     border-radius: 60px;
     border: 0px;
     size: 5px;
+    animation-delay: 1000ms;
+    animation-timing-function: 1000ms;
+
 }
 
 .QuestIcon{
