@@ -14,7 +14,7 @@ import { QuestionNewComponent } from './question-new/question-new.component';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit, OnDestroy {
-  public question$: ReplaySubject<Question[]>;
+  public questions$: ReplaySubject<Question[]>;
   private subscriptionQuestions: Subscription;
   public modalRef: BsModalRef;
   public iconNew = faPlus;
@@ -36,8 +36,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private router: Router,
     private modalService: BsModalService
   ) {
-    this.question$ = this.dataService.questions$;
-    this.subscriptionQuestions = this.question$.subscribe((a) => console.log('question$ on QuestionComponent', JSON.stringify(a)));
+    this.questions$ = this.dataService.questions$;
+    this.subscriptionQuestions = this.questions$.subscribe((a) => console.log('questions$ on QuestionComponent', JSON.stringify(a)));
   }
 
   columns = ["Question","Answer"];
@@ -62,19 +62,14 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.dataService.updateQuestions();
   }
 
-  clickRow(question) {
+  clickRow(question : Question) {
     this.router.navigate(['/question', question.id]);
-  }
+  }s
 
   public openCreateModal() {
     this.modalRef = this.modalService.show(QuestionNewComponent);
-    this.modalRef.content.event.subscribe(question => {
-      this.questionApi.create(question).subscribe(
-        () => {
-          this.dataService.updateQuestions();
-          this.modalRef.hide();
-        }
-      );
+    this.modalService.onHide.subscribe((question : Question)=> {
+        this.dataService.updateQuestions();
     });
   }
 }

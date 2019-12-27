@@ -27,10 +27,12 @@ export class QuestionNewComponent {
     this.event.emit(this.question);
   }
 
-  public new() {
+  public create() {
     /* this.question.attributes.push('hard as f'); */
     this.questionApi.create(this.question).subscribe(
-      (account: Account) => {
+      (data) => {
+        console.log(data);
+        
       },
       (error) => {
       }
