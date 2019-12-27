@@ -10,8 +10,8 @@ h1{
     width: 100%;
 }
 
-#question td, #question th {
-    border: 1px solid white;
+#question td {
+    border: 1px solid rgb(0, 0, 0);
     padding: 8px;
 }
 
@@ -26,7 +26,9 @@ h1{
 #question th{
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: blue;
+    border: none;
+    text-align: center;
+    background-color: rgb(13, 30, 207);
     color: white;
+    
 }

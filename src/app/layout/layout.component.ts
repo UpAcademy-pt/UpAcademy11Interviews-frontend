@@ -17,10 +17,6 @@ export class LayoutComponent implements OnInit {
   Roles: any = ['beginner', 'medium', 'advanced', 'pro'];
 
   
-
-
-
-  
   constructor() { }
 
   ngOnInit() { }
