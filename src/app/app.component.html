@@ -3,15 +3,15 @@
   <div>
     <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" class="positronx rounded float-left">
   </div>
-  <div class="btn-group">
-    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="question">Questions</button>
-    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="account">Accounts</button>
+  <div *ngIf="accountApi.isAdmin()" class="btn-group">
+    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="layout/question">Questions</button>
+    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="layout/account">Accounts</button>
   </div>
-    <div>
-      <span class="navbar-text mx-3">
-        {{name}}
+    <div *ngIf="accountApi.isAuthenticated()">
+      <span class="navbar-text mx-3 text-white">
+        {{accountApi.getCurrentName()}}
       </span>
-      <button class="btn text-ligth font-weight-bold btn-secondary btn-outline-ligth" routerLink="login" (click)="logout()">Logout</button>
+      <button class="btn text-ligth font-weight-bold btn-dark btn-outline-danger" routerLink="login" (click)="logout()">Logout</button>
     </div>
 </mat-toolbar>
 

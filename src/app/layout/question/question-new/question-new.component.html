@@ -5,10 +5,11 @@
     </button>
 </div>
 <div class="modal-body">
-    <input class="w-100 p-1 m-1" name="question" type="string" [(ngModel)]="question.question" placeholder="question" />
-    <input class="w-100 p-1 m-1" name="answer" type="string" [(ngModel)]="question.answer" placeholder="expected answer" />
-    <input class="w-100 p-1 m-1" name="attributes" type="string" [(ngModel)]="question.attributes" placeholder="category" />
+    <input class="w-100 p-1 m-1" name="question" type="string" [(ngModel)]="question.question" placeholder="Question" />
+    <input class="w-100 p-1 m-1" name="answer" type="string" [(ngModel)]="question.answer" placeholder="Expected Answer" />
+    <!--<input class="w-100 p-1 m-1" name="attributes" type="string" [(ngModel)]="question.attributes" placeholder="Category" />-->
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="triggerEvent()">Create</button>
+    <!--<button type="button" class="btn btn-default" (click)="triggerEvent()">Create</button>-->
+    <button type="button" class="btn btn-outline-info" (click)="new()" (click)="bsModalRef.hide()">Create</button>
 </div>

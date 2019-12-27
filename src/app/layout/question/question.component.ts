@@ -18,7 +18,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
   private subscriptionQuestions: Subscription;
   public modalRef: BsModalRef;
   public iconNew = faPlus;
-  rows = [
+
+/*   rows = [
     { name: 'Austin', gender: 'Male', company: 'Swimlane' },
     { name: 'Dany', gender: 'Male', company: 'KFC' },
     { name: 'Molly', gender: 'Female', company: 'Burger King' },
@@ -27,7 +28,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     { prop: 'name' },
     { name: 'Gender' },
     { name: 'Company' }
-  ];
+  ]; */
 
   constructor(
     private dataService: DataService,
@@ -39,13 +40,25 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.subscriptionQuestions = this.question$.subscribe((a) => console.log('question$ on QuestionComponent', JSON.stringify(a)));
   }
 
-  ngOnInit() { }
+  columns = ["Question","Answer"];
+  index = ["question", "answer"];
+    
+  questions : Question[] = [];
+
+  ngOnInit():void {
+    this.questionApi.getAll().subscribe(
+    (response : Question[]) => {
+      this.questions = response;
+    },
+    (error) => console.log(error)
+    )
+  }
 
   ngOnDestroy() {
     this.subscriptionQuestions.unsubscribe();
   }
 
-  updateProducts() {
+  updateQuestions() {
     this.dataService.updateQuestions();
   }
 

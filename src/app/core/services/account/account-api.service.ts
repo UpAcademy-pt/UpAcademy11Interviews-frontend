@@ -1,22 +1,38 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, Observable } from 'rxjs';
 
 import { Account } from '../../models';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountApiService {
   private currentAccount: Account = new Account();
-
-  constructor() { }
+  accounts$:ReplaySubject<Account[]> =new ReplaySubject();
+  private apiUrl = 'http://localhost:8080/projectInterview/api/user';
+  constructor( private http: HttpClient) { }
 
   public isAuthenticated(): boolean {
-    if (this.currentAccount.id) {
-      return true;
+    if (this.currentAccount != null) {
+      if (this.currentAccount.id) {
+        return true;
+      } else {
+        return false;
+      } 
     } else {
       return false;
     }
+  }
+
+  public getAll() {
+    this.http.get<Account[]>(this.apiUrl).subscribe(data => {
+      this.accounts$.next(data);
+    });
+  }
+
+  public setCurrentAccount(account:Account){
+    this.currentAccount = account;
   }
 
   public getCurrentId(): number {
@@ -27,23 +43,35 @@ export class AccountApiService {
     return this.currentAccount.name;
   }
 
-  public login(account: Account): ReplaySubject<Account> {
-    // Simulate Jax-rs Api request
-    if (account.email === 'admin' && account.password === 'admin') {
-      account.id = 1;
-      account.name = 'Ze Carlos';
-      this.currentAccount = account;
-    }
-    const response: ReplaySubject<any> = new ReplaySubject(1);
-    if (account.id) {
-      response.next(account);
+  public getCurrentRole(): string {
+    return this.currentAccount.role;
+  }
+
+  public isAdmin(): boolean {
+    if (this.currentAccount != null) {
+      if (this.currentAccount.role == "Admin") {
+        return true;
+      } else {
+        return false;
+      } 
     } else {
-      response.error({ msg: 'Deu erro' });
+      return false;
     }
-    return response;
+  }
+
+  public create(account: Account){
+    return this.http.post(this.apiUrl, account, {responseType:'text'});
+  }
+
+  public login(account: Account) {
+    return this.http.post(this.apiUrl+'/auth', account);
   }
 
   public logout() {
     this.currentAccount = null;
+  }
+
+  public getByEmail(filterValue: String) {
+    return this.http.get(this.apiUrl+'/filter?email='+filterValue);
   }
 }

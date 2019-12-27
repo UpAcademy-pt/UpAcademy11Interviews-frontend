@@ -3,23 +3,6 @@
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-image: url(http://cdn.sdcarnews.com/wp-content/uploads/2016/03/bmw-concept-4-1000x600.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  font-family: 'Roboto', sans-serif;
-}
-
-
 .app-header {
   text-align: justify;
   box-shadow: 0 3px 5px -1px rgba(28, 2, 145, 0.603);
@@ -44,7 +27,7 @@ body {
   margin: 0;
   position: relative;
   left: 40%;
-    opacity: 85%;
+  opacity: 85%;
   box-shadow: 0 3px 5px -1px rgba(255, 255, 255, 0.603);
   float: left;
   padding: 40px 50px 50px 60px;
@@ -67,16 +50,20 @@ body {
   z-index: -1;
 }
 
-.login-wrapper .example-form {
-  min-width: 100%;
-  max-width: 300px;
-  width: 100%;
-}
 
-.login-wrapper .example-full-width,
 .login-wrapper .btn-block {
   width: 100%;
   
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
 }
 
 .login-wrapper mat-card-header {

@@ -11,10 +11,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
-
-
+import { MatInputModule } from '@angular/material';
+import { RegisterComponent } from './register/register.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 // AoT requires an exported function for factories
@@ -39,6 +39,8 @@ export function createTranslateLoader(http: HttpClient) {
     HttpClientModule,
     AngularMaterialModule,
     FlexLayoutModule,
+    MatInputModule,
+    MatFormFieldModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -34,9 +34,9 @@ import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
     LayoutRoutingModule,
     TranslateModule,
     FormsModule,
+    SidebarModule,
     NgxDatatableModule,
     FontAwesomeModule,
-    SidebarModule,
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],

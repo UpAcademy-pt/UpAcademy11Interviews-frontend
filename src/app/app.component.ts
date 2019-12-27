@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AccountApiService } from './core';
+import { Router } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +12,20 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   
   constructor(
-    translate: TranslateService
+    translate: TranslateService,
+
+    private router: Router,
+    private accountApi: AccountApiService
   ) {
     translate.addLangs(['en', 'pt']);
     translate.setDefaultLang('pt');
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|pt/) ? browserLang : 'en');
+  }
+
+  public logout() {
+    this.accountApi.logout();
+    this.router.navigate(['']);
   }
 
 }
