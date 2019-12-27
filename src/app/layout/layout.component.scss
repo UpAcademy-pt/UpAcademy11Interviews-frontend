@@ -15,3 +15,14 @@ body {
 }
 
 
+/* navbar */
+-ng-host .ng-sidebar {
+    background: rgb(41, 231, 214)!important;
+    width: 13rem;
+  }
+  
+.ng-sidebar--left {
+    color: rgb(13,30,207);
+    background: antiquewhite;
+    width: 50rem;
+  }

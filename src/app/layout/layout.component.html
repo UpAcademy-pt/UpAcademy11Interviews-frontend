@@ -1,15 +1,42 @@
 <app-header></app-header>
 <!-- <app-sidenav></app-sidenav> -->
-<button (click)="_toggleSidebar()">Toggle sidebar</button>
+<button type="button" class= "btn btn-primary"  (click)="_toggleSidebar()" >
+	<fa-icon [icon]="iconNew"></fa-icon>
+</button>
 
 <ng-sidebar-container style="height: 100vh;">
 
 	<ng-sidebar [(opened)]="_opened" position="left" [mode]= "'push'">
 		<ul>
-			<li>LISTAS</li>
-			<li>ULTILIZADORES</li>
-			<li>QUESTÕES</li>
+			<ul>*cenas*</ul>
 		</ul>
+		<ul>
+			
+		<div>
+			<label class="font-weight-bold text-center mt-2">Technology</label>
+			<select mdbInput class="form-control w-100">
+			  <option [value]="roles" *ngFor="let roles of Technology">{{roles}}
+			  </option>
+			</select>
+		</div>
+		<div>
+			<label class="font-weight-bold text-center mt-2">Difficulty</label>
+			<select mdbInput class="form-control w-100">
+			  <option [value]="roles" *ngFor="let roles of Difficulty">{{roles}}
+			  </option>
+			</select>
+		</div>
+		<div>
+			<label class="font-weight-bold text-center mt-2">Roles</label>
+			<select mdbInput class="form-control w-100">
+			  <option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+			  </option>
+			</select>
+		</div>
+			
+		
+		</ul>
+
 	</ng-sidebar>
 	<div ng-sidebar-content>
 		<section class="container">

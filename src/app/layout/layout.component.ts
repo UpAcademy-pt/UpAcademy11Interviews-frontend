@@ -9,6 +9,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 export class LayoutComponent implements OnInit {
 
   private _opened: boolean = false;
+
+  Technology: any = ['JAVA', 'JS', 'AngularJS', 'HTML', 'CSS'];
+
+  Difficulty: any = ['1', '2', '3', '4', '5'];
+
+  Roles: any = ['beginner', 'medium', 'advanced', 'pro'];
+
+  
+
+
+
   
   constructor() { }
 
