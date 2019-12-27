@@ -30,7 +30,7 @@ export class QuestionNewComponent {
   public new() {
     /* this.question.attributes.push('hard as f'); */
     this.questionApi.create(this.question).subscribe(
-      (account: any) => {
+      (account: Account) => {
       },
       (error) => {
       }

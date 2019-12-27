@@ -14,8 +14,12 @@ export class AccountApiService {
   constructor( private http: HttpClient) { }
 
   public isAuthenticated(): boolean {
-    if (this.currentAccount.id) {
-      return true;
+    if (this.currentAccount != null) {
+      if (this.currentAccount.id) {
+        return true;
+      } else {
+        return false;
+      } 
     } else {
       return false;
     }
@@ -43,6 +47,18 @@ export class AccountApiService {
     return this.currentAccount.role;
   }
 
+  public isAdmin(): boolean {
+    if (this.currentAccount != null) {
+      if (this.currentAccount.role == "Admin") {
+        return true;
+      } else {
+        return false;
+      } 
+    } else {
+      return false;
+    }
+  }
+
   public create(account: Account){
     return this.http.post(this.apiUrl, account, {responseType:'text'});
   }
@@ -56,6 +72,6 @@ export class AccountApiService {
   }
 
   public getByEmail(filterValue: String) {
-    return this.http.get(this.apiUrl+'/name?name='+filterValue);
+    return this.http.get(this.apiUrl+'/filter?email='+filterValue);
   }
 }

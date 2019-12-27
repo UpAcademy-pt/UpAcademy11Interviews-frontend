@@ -14,9 +14,10 @@ export class AccountComponent implements OnInit {
   public modalRef: BsModalRef;
   public iconNew = faPlus;
   public modal: BsModalRef;
+  public value : String;
 
   constructor(
-    private accountService: AccountApiService,
+    private accountApi: AccountApiService,
     private modalService: BsModalService
     ) { }
   columns = ["User Id","Name", "Email", "Role" ];
@@ -25,11 +26,17 @@ export class AccountComponent implements OnInit {
   accounts$ =new ReplaySubject<Account[]>();
 
   ngOnInit():void {
-     this.accountService.accounts$.subscribe(data => {
+     this.accountApi.accounts$.subscribe(data => {
       this.accounts$.next(data);
     })
-    this.accountService.getAll();
+    this.accountApi.getAll();
     /*this.getAllAccounts()*/
+  }
+
+  public getByEmail() {
+    this.accountApi.getByEmail(this.value).subscribe((data: Account[])=> {
+      this.accounts$.next(data);
+    });
   }
 
  /*  getAllAccounts() {
@@ -41,15 +48,16 @@ export class AccountComponent implements OnInit {
       )
   } */
 
-  public applyFilter(filterValue: String) {
+/*   public applyFilter(filterValue: String) {
    
         this.accountService.getAll();
   }
+ */
+
   public openCreateModal() {
     this.modal = this.modalService.show(RegisterComponent)
     this.modalService.onHide.subscribe(() => {
-    this.accountService.getAll();
-    
+      this.accountApi.getAll();
   });
   }
 
