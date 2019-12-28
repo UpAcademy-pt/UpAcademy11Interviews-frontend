@@ -1,26 +1,30 @@
-<h2 class="text-white" translate>New Account
-        <!-- <button type="button" class="btn btn-primary mt-2" routerLink="/register" routerLinkActive="active">
-                <fa-icon [icon]="iconNew"></fa-icon>
-        </button> -->
-        <button type="button" class="btn btn-primary" (click)="openCreateModal()">
-                <fa-icon [icon]="iconNew"></fa-icon>
-        </button>
-</h2>
-<!-- <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"> -->
+<section class="container">
 
-<input (keyup)="getByEmail()" [(ngModel)] = "value" placeholder="  Filter" style="width: 100%" class="rounded mb-2">
+        <h2 class="text-white" translate>New Account
+                <!-- <button type="button" class="btn btn-primary mt-2" routerLink="/register" routerLinkActive="active">
+                        <fa-icon [icon]="iconNew"></fa-icon>
+                </button> -->
+                <button type="button" class="accountButton" (click)="openCreateModal()">
+                        <fa-icon [icon]="iconNew"></fa-icon>
+                </button>
+        </h2>
+        <!-- <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"> -->
 
-<table id="account">
-        <tr>
-                <th *ngFor="let col of columns">
-                        {{col}}
-                </th>
-        </tr>
-        <tr *ngFor="let account of accounts$ | async">
-                <td *ngFor="let col of index">
-                        {{account[col]}}
-                </td>
-        </tr>
-</table>
-<!-- <app-tables [header]='["question","answer","attributes"]' [data$]='questions$' [theme]='"table-bordered"'
-  (clickedRow)='clickRow($event)'></app-tables> -->
+        <input (keyup)="getByEmail()" [(ngModel)]="value" placeholder="  Search user" id="filter"
+                class="rounded mb-2">
+
+        <table id="account">
+                <tr>
+                        <th *ngFor="let col of columns">
+                                {{col}}
+                        </th>
+                </tr>
+                <tr *ngFor="let account of accounts$ | async">
+                        <td *ngFor="let col of index">
+                                {{account[col]}}
+                        </td>
+                </tr>
+        </table>
+        <!-- <app-tables [header]='["question","answer","attributes"]' [data$]='questions$' [theme]='"table-bordered"'
+          (clickedRow)='clickRow($event)'></app-tables> -->
+</section>

@@ -11,14 +11,22 @@ import { QuestionNewComponent } from './question-new/question-new.component';
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss']
+  styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnInit, OnDestroy {
   public questions$: ReplaySubject<Question[]>;
   private subscriptionQuestions: Subscription;
   public modalRef: BsModalRef;
   public iconNew = faPlus;
- 
+  
+  private _opened: boolean = true;
+  
+  Technology: any = ['JAVA', 'JS', 'AngularJS', 'HTML', 'CSS'];
+
+  Difficulty: any = ['1', '2', '3', '4', '5'];
+
+  Roles: any = ['beginner', 'medium', 'advanced', 'pro'];
+
 
   constructor(
     private dataService: DataService,
@@ -43,7 +51,9 @@ export class QuestionComponent implements OnInit, OnDestroy {
     (error) => console.log(error)
     )
   }
-
+  private _toggleSidebar() {
+    this._opened = !this._opened;
+  }
   
   ngOnDestroy() {
     this.subscriptionQuestions.unsubscribe();

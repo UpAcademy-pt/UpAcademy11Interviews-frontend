@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material';
 import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
 
 
 // AoT requires an exported function for factories
@@ -41,6 +42,7 @@ export function createTranslateLoader(http: HttpClient) {
     FlexLayoutModule,
     MatInputModule,
     MatFormFieldModule,
+    SidebarModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
