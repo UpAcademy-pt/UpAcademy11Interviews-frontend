@@ -1,1 +1,14 @@
 
+.LogButton{
+    //background-image: linear-gradient(to right, rgb(0, 255, 251) , rgb(13, 30, 207));
+    transform: matrix(1, -0.3, 0, 1, 0, 0);
+    border: none;
+    
+    animation-name: example;
+    animation-duration: 5s;
+    animation-timing-function: 1000s;
+}
+@keyframes example {
+    from {background-color: rgb(0, 255, 251);}
+    to {background-color: rgb(13, 30, 207);}
+  }

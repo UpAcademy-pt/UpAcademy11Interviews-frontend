@@ -1,6 +1,6 @@
 
 
-<h2 class="text-white" translate>New Question
+<h2 class="text-white" translate> New Question
         <button type="button" class="QuestButton" (click)="openCreateModal()">
                 <fa-icon class="QuestIcon" [icon]="iconNew"></fa-icon>
         </button>
@@ -8,12 +8,14 @@
                 Update Questions
         </button> -->
 </h2>
+<br>
+<br>
 
         
 <!-- <ngx-datatable class="material" [columnMode]="'force'" [rows]="rows" [columns]="columns">
 </ngx-datatable> -->
 
-<table id="question">
+<table id="question" style="overflow-x:auto;">
         <tr>
                 <th *ngFor="let col of columns">
                         {{col}}
