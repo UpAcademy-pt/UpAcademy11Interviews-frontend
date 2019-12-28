@@ -38,7 +38,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.subscriptionQuestions = this.questions$.subscribe((a) => console.log('questions$ on QuestionComponent', JSON.stringify(a)));
   }
 
-  columns = ["Question","Answer"];
+  columns = ["Question","Expected Answer"];
   index = ["question", "answer"];
     
   questions : Question[] = [];
