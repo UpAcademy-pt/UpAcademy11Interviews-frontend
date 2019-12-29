@@ -23,11 +23,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
   
   private _opened: boolean = true;
   
-  Technology: any = ['JAVA', 'JS', 'AngularJS', 'HTML', 'CSS'];
+  Technology: any = ['Any','JAVA', 'JS', 'AngularJS', 'HTML', 'CSS'];
 
-  Difficulty: any = ['1', '2', '3', '4', '5'];
+  Difficulty: any = ['Any','1', '2', '3', '4', '5'];
 
-  Roles: any = ['beginner', 'medium', 'advanced', 'pro'];
+  Roles: any = ['Any','beginner', 'medium', 'advanced', 'pro'];
 
 
   constructor(
@@ -41,7 +41,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.subscriptionQuestions = this.questions$.subscribe((a) => console.log('questions$ on QuestionComponent', JSON.stringify(a)));
   }
 
-  columns = ["Question","Expected Answer"];
+  columns = ["Question","Expected Answer",""];
   index = ["question", "answer"];
     
   questions : Question[] = [];
@@ -71,13 +71,17 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.router.navigate(['/question', question.id]);
   }
 
+  public deleteQuestion(row: number) {
+    this.questionApi.delete(row.valueOf());
+  }
+
   public openCreateModal() {
     this.modalRef = this.modalService.show(QuestionNewComponent);
     this.modalService.onHide.subscribe((question : Question)=> {
         this.dataService.updateQuestions();
     });
   }
-  
+
   generatePdf(){
     var rows = [];
     rows.push([{text:'Question', style:'tableHeader', alignment: 'center'}, {text:'Expected Answer', style:'tableHeader', alignment: 'center'}]);

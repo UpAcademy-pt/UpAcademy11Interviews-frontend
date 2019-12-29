@@ -59,6 +59,10 @@
                                         <td *ngFor="let col of index">
                                                 {{question[col]}}
                                         </td>
+                                        <td style="width:150px">
+                                                <button type="button" class="btn btn-outline-info mr-2">Edit</button>
+                                                <button type="button" class="btn btn-outline-danger" (click)="deleteQuestion(this)">X</button>
+                                        </td>
                                 </tr>
                         </table>
                 </section>
