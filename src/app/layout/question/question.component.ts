@@ -1,12 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ReplaySubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-
-import { Question, DataService, QuestionApiService } from '../../core';
+import { Question, DataService, QuestionApiService, AccountApiService } from '../../core';
 import { QuestionNewComponent } from './question-new/question-new.component';
+/* pdf */
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-question',
@@ -32,6 +34,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private dataService: DataService,
     private questionApi: QuestionApiService,
     private router: Router,
+    private accountApi: AccountApiService,
     private modalService: BsModalService
   ) {
     this.questions$ = this.dataService.questions$;
@@ -72,5 +75,27 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.modalService.onHide.subscribe((question : Question)=> {
         this.dataService.updateQuestions();
     });
+  }
+  generatePdf(){
+    var rows = [];
+    rows.push(['Question', 'Expected Answer']);
+  
+    for( var i = 0; i < this.questions.length; i++) {
+      rows.push([this.questions[i].question, this.questions[i].answer]);
+    }
+  
+      const documentDefinition = { content: [
+        {text: 'Tables', style: 'header'},
+      'Official documentation is in progress, this document is just a glimpse of what is possible with pdfmake and its layout engine.',
+      {
+        style: 'table',
+        table: {
+          widths: ['*', '*'],
+          body: rows
+        }
+      }
+    ]
+   };
+    pdfMake.createPdf(documentDefinition).open();
   }
 }

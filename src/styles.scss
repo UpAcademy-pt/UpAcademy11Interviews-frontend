@@ -10,10 +10,7 @@
   justify-content: space-between;
   
 }
-.login-wrapper {
-  height: 100%;
-  
-}
+
 
 .positronx {
   justify-content: space-evenly;
@@ -23,13 +20,12 @@
 }
 
 .box {
-  top: 5%;
-  margin: 0;
-  position: relative;
-  left: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8%;
   opacity: 85%;
-  box-shadow: 0 3px 5px -1px rgba(255, 255, 255, 0.603);
-  float: left;
+  box-shadow: 0 3px 5px -1px rgba(10, 1, 134, 0.603);
+  position: relative;
   padding: 40px 50px 50px 60px;
   width: 100%;
   background: #fff;

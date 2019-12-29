@@ -40,7 +40,7 @@ table tr:first-child th:first-child {
   }
 
 #question td {
-    border-bottom: 2px solid rgb(0, 0, 0);
+    border-top: 2px solid rgb(0, 0, 0);
     padding: 8px;
     max-width: 130px;
     word-wrap: break-word;   
@@ -48,7 +48,7 @@ table tr:first-child th:first-child {
 
 #question tr {
     background-color: white;
-    border-bottom: 2px solid rgb(0, 0, 0);
+    border-top: 2px solid rgb(0, 0, 0);
 }
 
 #question tr:hover{

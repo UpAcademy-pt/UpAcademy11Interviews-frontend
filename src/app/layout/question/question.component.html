@@ -37,9 +37,16 @@
                 <section class="container">
 
                         <h2 class="text-white" translate> New Question
+
                                 <button type="button" class="QuestButton" (click)="openCreateModal()">
                                         <fa-icon [icon]="iconNew"></fa-icon>
                                 </button>
+                                <div>
+                                        <button class="btn btn-info" (click)="generatePdf()">
+                                                Open PDF
+                                        </button>
+                                </div>
+
                                 <!--  <button type="button" class="btn btn-primary right" (click)="updateQuestions()" translate>
                                         Update Questions
                                 </button> -->
