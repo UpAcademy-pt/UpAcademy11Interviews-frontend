@@ -1,7 +1,5 @@
 import { Component, EventEmitter } from '@angular/core';
-
 import { BsModalRef } from 'ngx-bootstrap';
-
 import { Question, QuestionApiService } from 'src/app/core';
 import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeApiService } from 'src/app/core/services/attribute-service';
