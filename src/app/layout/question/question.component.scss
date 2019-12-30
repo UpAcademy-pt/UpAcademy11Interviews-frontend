@@ -42,13 +42,15 @@ table tr:first-child th:first-child {
 #question td {
     border-top: 2px solid rgb(0, 0, 0);
     padding: 8px;
-    max-width: 130px;
+    min-width: 200px;
+    max-width: 200px;
     word-wrap: break-word;   
 }
 
 #question tr {
     background-color: white;
     border-top: 2px solid rgb(0, 0, 0);
+    
 }
 
 #question tr:hover{
@@ -83,6 +85,7 @@ table tr:first-child th:first-child {
     padding: 10px;
     padding-left: 30px;
     padding-right: 30px;
+    outline: none;
     
 }
 .pdfButton::selection{

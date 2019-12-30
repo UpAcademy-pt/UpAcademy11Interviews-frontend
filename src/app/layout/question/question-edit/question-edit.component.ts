@@ -7,11 +7,11 @@ import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
 
 @Component({
-  selector: 'app-question-new',
-  templateUrl: './question-new.component.html',
-  styleUrls: ['./question-new.component.scss']
+  selector: 'app-question-edit',
+  templateUrl: './question-edit.component.html',
+  styleUrls: ['./question-edit.component.scss']
 })
-export class QuestionNewComponent {
+export class QuestionEditComponent {
 
   public question: Question = new Question();
   public event: EventEmitter<any> = new EventEmitter();
@@ -22,7 +22,8 @@ export class QuestionNewComponent {
 
   attributes : Attribute[] = [];
   attributeValues : AttributeValue[] = [];
-  
+  id;
+
   constructor(
     public attributeApi : AttributeApiService,
     private questionApi: QuestionApiService,
@@ -31,16 +32,17 @@ export class QuestionNewComponent {
   ) {
     this.question.question = "";
     this.question.answer = "";
-
     this.attribute.type = "";
     this.attributeValue.value = "";
-  }
+   }
 
-  public create() {
+   public editQuestion() {
     /* this.question.attributes.push('attributeValue.value'); */
-    this.questionApi.create(this.question).subscribe(
+    console.log('entrei');
+    
+     this.questionApi.update(this.id, this.question).subscribe(
       (data) => {
-        console.log(data);
+        console.log('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
         this.bsModalRef.hide()
       },
       (error) => {
@@ -57,7 +59,6 @@ export class QuestionNewComponent {
       (error) => console.log(error)
       )
   }
-
   getAttributeValues() {
     this.attributeValueApi.getByAttribute(this.attributeOption).subscribe(
       (response : AttributeValue[]) => {

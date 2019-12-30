@@ -2,13 +2,13 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import { ReplaySubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { faPlus, faAlignCenter } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Question, DataService, QuestionApiService, AccountApiService } from '../../core';
 import { QuestionNewComponent } from './question-new/question-new.component';
 /* pdf */
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { QuestionEditComponent } from './question-edit/question-edit.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -81,14 +81,16 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.questionApi.delete(row).subscribe( data => {
       this.dataService.updateQuestions();
     });
-    
   }
 
-  public editQuestion(row: number) {
-    this.modalRef = this.modalService.show(QuestionNewComponent);
-    this.modalService.onHide.subscribe((Question : Question)=>{
+  public editQuestion(id: number) {
+    const initialState = {
+      id: id,
+  };
+    this.modalRef = this.modalService.show(QuestionEditComponent, {initialState});
+    this.modalService.onHide.subscribe((question : Question)=>{
       this.dataService.updateQuestions();
-    })
+    });
   }
 
   public openCreateModal() {
