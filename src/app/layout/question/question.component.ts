@@ -8,6 +8,7 @@ import { QuestionNewComponent } from './question-new/question-new.component';
 /* pdf */
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -38,7 +39,10 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private modalService: BsModalService
   ) {
     this.questions$ = this.dataService.questions$;
-    this.subscriptionQuestions = this.questions$.subscribe((a) => console.log('questions$ on QuestionComponent', JSON.stringify(a)));
+    this.subscriptionQuestions = this.questions$.subscribe((data) => {
+      console.log('questions$ on QuestionComponent', JSON.stringify(data));
+      this.questions = data;
+    });
   }
 
   columns = ["Question","Expected Answer",""];
@@ -48,12 +52,14 @@ export class QuestionComponent implements OnInit, OnDestroy {
   
 
   ngOnInit():void {
+
     this.questionApi.getAll().subscribe(
     (response : Question[]) => {
       this.questions = response;
     },
     (error) => console.log(error)
     )
+
   }
   private _toggleSidebar() {
     this._opened = !this._opened;
@@ -72,7 +78,17 @@ export class QuestionComponent implements OnInit, OnDestroy {
   }
 
   public deleteQuestion(row: number) {
-    this.questionApi.delete(row.valueOf());
+    this.questionApi.delete(row).subscribe( data => {
+      this.dataService.updateQuestions();
+    });
+    
+  }
+
+  public editQuestion(row: number) {
+    this.modalRef = this.modalService.show(QuestionNewComponent);
+    this.modalService.onHide.subscribe((Question : Question)=>{
+      this.dataService.updateQuestions();
+    })
   }
 
   public openCreateModal() {
