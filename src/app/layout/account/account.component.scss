@@ -4,37 +4,73 @@ h1{
 }
 
 h2{
-    padding-top: 3px;
+    padding-top: 3%;
+    color:white;
+
+
+}
+
+#filter {
+    text-align: left;
+    width: 100%;
 }
 
 #account {
     font-family: "Trebuchet MS",Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0px;
     width: 100%;
 }
 
-#account td, #account th {
-    border: 1px solid white;
+/* top-left border-radius */
+table tr:first-child th:first-child {
+    border-top-left-radius: 20px;
+  }
+  
+  /* top-right border-radius */
+  table tr:first-child th:last-child {
+    border-top-right-radius: 20px;
+  }
+  
+  /* bottom-left border-radius */
+  table tr:last-child td:first-child {
+    border-bottom-left-radius: 20px;
+  }
+  
+  /* bottom-right border-radius */
+  table tr:last-child td:last-child {
+    border-bottom-right-radius: 20px;
+  }
+
+
+
+#account td {
+    border-top: 2px solid rgb(0, 0, 0);
     padding: 8px;
+    border-collapse: collapse;
 }
 
-#account tr,:nth-child(even) {
+#account tr {
     background-color: white;
+    border-top: 2px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+    text-align: center;
 }
 
-/* #account tr:hover{
-    background-color: yellow;
-} */
+#account tr:hover{
+    background-color: lightgrey;
+} 
 
 #account th{
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
-    background-color: blue;
+    border: none;
+    text-align: center;
+    background-color: rgb(0, 0, 120) !important;
     color: white;
 }
 
-.AccountButton{
+.accountButton{
     background-image: linear-gradient(to right, rgb(0, 255, 251) , rgb(13, 30, 207));
     
     border-radius: 60px;

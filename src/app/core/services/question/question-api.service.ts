@@ -2,10 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Question } from '../..';
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -29,12 +25,12 @@ export class QuestionApiService {
     return this.http.get(this.apiUrl + id);
   }
 
-  public update(question: Question) {
-    return this.http.put(this.apiUrl, question);
+  public update(id: number, question: Question) {
+    return this.http.put(this.apiUrl + id, question, {responseType: 'text'});
   }
 
   public delete(id: number) {
-    return this.http.delete(this.apiUrl + id);
+    return this.http.delete(this.apiUrl + id, {responseType: 'text'});
   }
 
 

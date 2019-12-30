@@ -18,6 +18,7 @@ import { QuestionNewComponent } from './question/question-new/question-new.compo
 import { AccountComponent } from './account/account.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
+import { QuestionEditComponent } from './question/question-edit/question-edit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
     QuestionDetailComponent,
     QuestionNewComponent,
     AccountComponent,
-    LayoutComponent
+    LayoutComponent,
+    QuestionEditComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,6 @@ import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],
-  entryComponents: [QuestionNewComponent]
+  entryComponents: [QuestionNewComponent, QuestionEditComponent]
 })
 export class LayoutModule { }

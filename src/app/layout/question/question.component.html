@@ -1,32 +1,72 @@
+<ng-sidebar-container style="height: 100vh;">
 
+        <!-- A sidebar -->
+        <ng-sidebar [(opened)]="_opened" position="left" [mode]="'push'">
+                <h3>Selectors</h3>
 
-<h2 class="text-white" translate> New Question
-        <button type="button" class="QuestButton" (click)="openCreateModal()">
-                <fa-icon class="QuestIcon"[icon]="iconNew"></fa-icon>
-        </button>
-       <!--  <button type="button" class="btn btn-primary right" (click)="updateQuestions()" translate>
-                Update Questions
-        </button> -->
-</h2>
-<br>
-<br>
+                <div class="selectors container">
+                        <div>
+                                <label class="font-weight-bold text-center mt-2">Technology</label>
+                                <select mdbInput class="form-control w-100">
+                                        <option [value]="roles" *ngFor="let roles of Technology">{{roles}}
+                                        </option>
+                                </select>
+                        </div>
+                        <div>
+                                <label class="font-weight-bold text-center mt-2">Difficulty</label>
+                                <select mdbInput class="form-control w-100">
+                                        <option [value]="roles" *ngFor="let roles of Difficulty">{{roles}}
+                                        </option>
+                                </select>
+                        </div>
+                        <div>
+                                <label class="font-weight-bold text-center mt-2">Roles</label>
+                                <select mdbInput class="form-control w-100">
+                                        <option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+                                        </option>
+                                </select>
+                        </div>
+                </div>
 
-        
-<!-- <ngx-datatable class="material" [columnMode]="'force'" [rows]="rows" [columns]="columns">
-</ngx-datatable> -->
+        </ng-sidebar>
 
-<table id="question" style="overflow-x:auto;">
-        <tr>
-                <th *ngFor="let col of columns">
-                        {{col}}
-                </th>
-        </tr>
-        <tr *ngFor="let question of questions">
-                <td *ngFor="let col of index">
-                        {{question[col]}}
-                </td>
-        </tr>
-</table>
+        <!-- Page content -->
+        <div ng-sidebar-content>
+                <section class="container">
 
-<!-- <app-tables [header]='["question","answer","attributes"]' [data$]='questions$' [theme]='"table-bordered"'
-        (clickedRow)='clickRow($event)'></app-tables> -->
+                        <h2 class="text-white" translate> New Question
+
+                                <button type="button" class="QuestButton" (click)="openCreateModal()">
+                                        <fa-icon [icon]="iconNew"></fa-icon>
+                                </button>
+                                <div>
+                                        <button class="pdfButton" (click)="generatePdf()">
+                                              <span>Export PDF</span>
+                                        </button>
+                                </div>
+
+                                <!--  <button type="button" class="btn btn-primary right" (click)="updateQuestions()" translate>
+                                        Update Questions
+                                </button> -->
+                        </h2>
+                        <table id="question" style="overflow-x:auto;">
+                                <tr>
+                                        <th *ngFor="let col of columns">
+                                                {{col}}
+                                        </th>
+                                </tr>
+                                <tr *ngFor="let question of questions$ | async">
+                                        <td *ngFor="let col of index">
+                                                {{question[col]}}
+                                        </td>
+                                        <td style="width:150px">
+                                        <button type="button" class="btn btn-outline-info mr-2" (click)="editQuestion(question.id)">Edit</button>
+                                        <button type="button" class="btn btn-outline-danger" (click)="deleteQuestion(question.id)">X</button>
+                                        </td>
+                                </tr>
+                        </table>
+                </section>
+        </div>
+
+</ng-sidebar-container>
+<!-- content -->

@@ -20,9 +20,9 @@ export class AccountComponent implements OnInit {
     private accountApi: AccountApiService,
     private modalService: BsModalService
     ) { }
-  columns = ["User Id","Name", "Email", "Role" ];
+  columns = ["User Id","Name", "Email", "Role","" ];
   index = ["id","name", "email", "role"];
-    accounts = [];
+  accounts = [];
   accounts$ =new ReplaySubject<Account[]>();
 
   ngOnInit():void {
@@ -47,12 +47,6 @@ export class AccountComponent implements OnInit {
       (error) => console.log(error)
       )
   } */
-
-/*   public applyFilter(filterValue: String) {
-   
-        this.accountService.getAll();
-  }
- */
 
   public openCreateModal() {
     this.modal = this.modalService.show(RegisterComponent)

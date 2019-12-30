@@ -28,6 +28,10 @@ export class AttributeValueApiService {
     return this.http.get(this.apiUrl + id);
   }
 
+  public getByAttribute(attribute: String) {
+    return this.http.get(this.apiUrl + 'filter/?attribute=' + attribute);
+  }  
+
   public update(attributevalue: AttributeValue) {
     return this.http.put(this.apiUrl, attributevalue);
   }
