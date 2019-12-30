@@ -116,6 +116,12 @@
 
 }
 
+.ng-sidebar__content {
+  padding: 0 0 0 80%;
+  &.open {
+    padding: 0 !important
+  }
+}
   
 /*buttons*/
 

@@ -3,6 +3,10 @@ h1{
     color: blue;
 }
 
+h2{
+    padding-top: 3px;
+}
+
 #account {
     font-family: "Trebuchet MS",Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -28,4 +32,14 @@ h1{
     text-align: left;
     background-color: blue;
     color: white;
+}
+
+.AccountButton{
+    background-image: linear-gradient(to right, rgb(0, 255, 251) , rgb(13, 30, 207));
+    
+    border-radius: 60px;
+    border: 0px;
+    size: 5px;
+    animation-delay: 1000ms;
+    animation-timing-function: 1000ms;
 }
