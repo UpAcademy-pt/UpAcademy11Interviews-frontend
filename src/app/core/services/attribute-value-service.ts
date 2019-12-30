@@ -29,7 +29,7 @@ export class AttributeValueApiService {
   }
 
   public getByAttribute(attribute: String) {
-    return this.http.get(this.apiUrl + 'filter/?attribute=' + attribute);
+    return this.http.get(this.apiUrl + 'filter?attribute=' + attribute);
   }  
 
   public update(attributevalue: AttributeValue) {

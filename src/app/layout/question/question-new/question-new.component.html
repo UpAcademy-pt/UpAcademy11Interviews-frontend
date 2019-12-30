@@ -5,16 +5,31 @@
     </button>
 </div>
 <div class="modal-body">
+    
     <input class="w-100 p-1 m-1" name="question" type="text" [(ngModel)]="question.question" placeholder="Question" />
-    <input class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer" placeholder="Expected Answer" />
-    <select mdbInput (click)="getAttributeValues()" class="form-control w-100" [(ngModel)]= "attributeOption">
+    <input class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer"
+        placeholder="Expected Answer" />
+    <select mdbInput (change)="getAttributeValues()" class="form-control w-100" [(ngModel)]="attributeOption">
         <option value="" hidden>Select</option>
-        <option [value]="attribute.type" *ngFor="let attribute of attributes">{{attribute.type}}</option>
-      </select>
-      <select  mdbInput *ngIf="attributeOption != '' "  class="form-control w-100" [(ngModel)]= "attributeValueOption">
-          <option value="" hidden>Select</option>
-          <option [value]="attributeValue.value" *ngFor="let attributeValue of attributeValues">{{attributeValue.value}}</option>
-      </select>
+        <option [value]="attribute.category" *ngFor="let attribute of attributes">{{attribute.category}}</option>
+    </select>
+    <select mdbInput *ngIf="attributeOption != '' " class="form-control w-100" [(ngModel)]="attributeValueOption">
+        <option value="" hidden>Select</option>
+        <option [value]="attributeValue.id" *ngFor="let attributeValue of attributeValues">{{attributeValue.value}}
+        </option>
+    </select>
+    <button *ngIf="attributeValueOption != '' " (click)="addAttributeValue(attributeValueOption)"> + </button>
+
+    <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                       [removable]="removable" (removed)="remove(fruit)">
+                {{fruit.name}}
+                <mat-icon class="myRemove" matChipRemove *ngIf="removable">x</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+          </mat-form-field>
+
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-info" (click)="create()">Create</button>

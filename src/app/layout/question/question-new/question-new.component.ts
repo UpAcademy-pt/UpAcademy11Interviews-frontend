@@ -6,6 +6,13 @@ import { AttributeApiService } from 'src/app/core/services/attribute-service';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
 
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
+
+export interface Fruit {
+  name: string;
+}
+
 @Component({
   selector: 'app-question-new',
   templateUrl: './question-new.component.html',
@@ -31,9 +38,12 @@ export class QuestionNewComponent {
   ) {
     this.question.question = "";
     this.question.answer = "";
+    this.question.attributes  = [];
 
-    this.attribute.type = "";
+    this.attribute.category = "";
+
     this.attributeValue.value = "";
+    this.attributeValue.attribute = null;
   }
 
 /*   triggerEvent() {
@@ -71,4 +81,53 @@ export class QuestionNewComponent {
       (error) => console.log(error)
       )
   }
+
+  addAttributeValue(id: number) {
+    console.log(id);
+    this.attributeValueApi.get(id).subscribe((data : AttributeValue)=>
+      {
+        this.attributeValue = data;
+        this.question.attributes.push(this.attributeValue);
+        console.log(this.question.attributes);
+        console.log(this.question);
+      });
+  }
+
+
+
+    visible = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    fruits: Fruit[] = [
+      {name: 'Lemon'},
+      {name: 'Lime'},
+      {name: 'Apple'},
+    ];
+  
+    add(event: MatChipInputEvent): void {
+      const input = event.input;
+      const value = event.value;
+  
+      // Add our fruit
+      if ((value || '').trim()) {
+        this.fruits.push({name: value.trim()});
+      }
+  
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+    }
+  
+    remove(fruit: Fruit): void {
+      const index = this.fruits.indexOf(fruit);
+  
+      if (index >= 0) {
+        this.fruits.splice(index, 1);
+      }
+    }
+
+
 }

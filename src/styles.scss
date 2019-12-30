@@ -3,6 +3,7 @@
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 
+
 .app-header {
   text-align: justify;
   box-shadow: 0 3px 5px -1px rgba(28, 2, 145, 0.603);
@@ -90,6 +91,10 @@
 
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
+}
+
+.mat-ripple-element {
+  display: none!important;
 }
 
 
