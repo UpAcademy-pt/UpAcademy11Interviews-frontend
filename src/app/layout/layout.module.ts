@@ -18,9 +18,13 @@ import { QuestionNewComponent } from './question/question-new/question-new.compo
 import { AccountComponent } from './account/account.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
+<<<<<<< HEAD
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
+=======
+import { QuestionEditComponent } from './question/question-edit/question-edit.component';
+>>>>>>> origin/ivomesquita
 
 @NgModule({
   declarations: [
@@ -29,7 +33,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     QuestionDetailComponent,
     QuestionNewComponent,
     AccountComponent,
-    LayoutComponent
+    LayoutComponent,
+    QuestionEditComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +51,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],
-  entryComponents: [QuestionNewComponent]
+  entryComponents: [QuestionNewComponent, QuestionEditComponent]
 })
 export class LayoutModule { }

@@ -27,7 +27,7 @@ export class QuestionDetailComponent implements OnInit {
   ngOnInit() { }
 
   update() {
-    this.productApi.update(this.question).subscribe(
+    this.productApi.update(this.question.id,this.question).subscribe(
       () => {
         this.msg = 'Question Updated';
       }

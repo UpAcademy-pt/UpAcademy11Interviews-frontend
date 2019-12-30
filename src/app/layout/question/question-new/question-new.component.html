@@ -9,6 +9,7 @@
     <input class="w-100 p-1 m-1" name="question" type="text" [(ngModel)]="question.question" placeholder="Question" />
     <input class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer"
         placeholder="Expected Answer" />
+<<<<<<< HEAD
     <select mdbInput (change)="getAttributeValues()" class="form-control w-100" [(ngModel)]="attributeOption">
         <option value="" hidden>Select</option>
         <option [value]="attribute.category" *ngFor="let attribute of attributes">{{attribute.category}}</option>
@@ -30,6 +31,17 @@
             </mat-chip-list>
           </mat-form-field>
 
+=======
+    <select mdbInput (click)="getAttributeValues()" class="form-control w-100" [(ngModel)]="attributeOption">
+        <option value="" hidden>Select</option>
+        <option [value]="attribute.type" *ngFor="let attribute of attributes">{{attribute.type}}</option>
+    </select>
+    <select mdbInput *ngIf="attributeOption != '' " class="form-control w-100" [(ngModel)]="attributeValueOption">
+        <option value="" hidden>Select</option>
+        <option [value]="attributeValue.value" *ngFor="let attributeValue of attributeValues">{{attributeValue.value}}
+        </option>
+    </select>
+>>>>>>> origin/ivomesquita
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-info" (click)="create()">Create</button>
