@@ -6,8 +6,8 @@ import { AttributeApiService } from 'src/app/core/services/attribute-service';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
 
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 export interface Fruit {
   name: string;
@@ -24,21 +24,29 @@ export class QuestionNewComponent {
   public event: EventEmitter<any> = new EventEmitter();
   attributeOption = '';
   attributeValueOption = '';
-  attribute : Attribute = new Attribute();
-  attributeValue : AttributeValue = new AttributeValue();
+  attribute: Attribute = new Attribute();
+  attributeValue: AttributeValue = new AttributeValue();
 
-  attributes : Attribute[] = [];
-  attributeValues : AttributeValue[] = [];
-  
+  attributes: Attribute[] = [];
+  attributeValues: AttributeValue[] = [];
+
+  selectedValues: AttributeValue[] = [];
+
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
   constructor(
-    public attributeApi : AttributeApiService,
+    public attributeApi: AttributeApiService,
     private questionApi: QuestionApiService,
-    private attributeValueApi : AttributeValueApiService,
+    private attributeValueApi: AttributeValueApiService,
     public bsModalRef: BsModalRef
   ) {
     this.question.question = "";
     this.question.answer = "";
-    this.question.attributes  = [];
+    this.question.attributes = [];
 
     this.attribute.category = "";
 
@@ -47,7 +55,10 @@ export class QuestionNewComponent {
   }
 
   public create() {
-    /* this.question.attributes.push('attributeValue.value'); */
+    this.question.attributes = this.selectedValues;
+    console.log(this.question.attributes);
+    console.log(this.question);
+
     this.questionApi.create(this.question).subscribe(
       (data) => {
         console.log(data);
@@ -60,70 +71,48 @@ export class QuestionNewComponent {
 
   ngOnInit() {
     this.attributeApi.getAll().subscribe(
-      (response : Attribute[]) => {
+      (response: Attribute[]) => {
         this.attributes = response;
         console.log(this.attributes);
       },
       (error) => console.log(error)
-      )
+    )
   }
 
   getAttributeValues() {
     this.attributeValueApi.getByAttribute(this.attributeOption).subscribe(
-      (response : AttributeValue[]) => {
+      (response: AttributeValue[]) => {
         this.attributeValues = response;
         console.log(this.attributeValues);
       },
       (error) => console.log(error)
-      )
+    )
   }
 
   addAttributeValue(id: number) {
     console.log(id);
-    this.attributeValueApi.get(id).subscribe((data : AttributeValue)=>
-      {
-        this.attributeValue = data;
-        this.question.attributes.push(this.attributeValue);
-        console.log(this.question.attributes);
-        console.log(this.question);
-      });
+    console.log(this.attributeValues);
+
+    this.attributeValueApi.get(id).subscribe((data: AttributeValue) => {
+      this.attributeValue = data;
+      let index = this.attributeValues.findIndex((attr: any) => attr.id == id);
+      console.log(index);
+
+      this.attributeValues.splice(index, 1)
+      this.selectedValues.push(this.attributeValue);
+    });
   }
 
+  remove(value: AttributeValue): void {
+    const index = this.selectedValues.indexOf(value);
 
+    if (index >= 0) {
+      this.selectedValues.splice(index, 1);
 
-    visible = true;
-    selectable = true;
-    removable = true;
-    addOnBlur = true;
-    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-    fruits: Fruit[] = [
-      {name: 'Lemon'},
-      {name: 'Lime'},
-      {name: 'Apple'},
-    ];
-  
-    add(event: MatChipInputEvent): void {
-      const input = event.input;
-      const value = event.value;
-  
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.fruits.push({name: value.trim()});
-      }
-  
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
+      this.attributeValues.push(value);
+
     }
-  
-    remove(fruit: Fruit): void {
-      const index = this.fruits.indexOf(fruit);
-  
-      if (index >= 0) {
-        this.fruits.splice(index, 1);
-      }
-    }
+  }
 
 
 }

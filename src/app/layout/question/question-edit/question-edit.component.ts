@@ -22,7 +22,7 @@ export class QuestionEditComponent {
 
   attributes : Attribute[] = [];
   attributeValues : AttributeValue[] = [];
-  id;
+  id: number;
 
   constructor(
     public attributeApi : AttributeApiService,
@@ -30,10 +30,6 @@ export class QuestionEditComponent {
     private attributeValueApi : AttributeValueApiService,
     public bsModalRef: BsModalRef
   ) {
-    this.question.question = "";
-    this.question.answer = "";
-    this.attribute.category = "";
-    this.attributeValue.value = "";
    }
 
    public editQuestion() {
@@ -52,6 +48,15 @@ export class QuestionEditComponent {
 
   
   ngOnInit() {
+    console.log(this.id);
+    
+    this.questionApi.get(this.id).subscribe((data:Question) => {
+      console.log(data);
+      this.question.question = data.question;
+      this.question.answer = data.answer;
+      this.attribute.category = "";
+      this.attributeValue.value = "";
+    })
     this.attributeApi.getAll().subscribe(
       (response : Attribute[]) => {
         this.attributes = response;
