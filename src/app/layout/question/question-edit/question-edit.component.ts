@@ -38,11 +38,9 @@ export class QuestionEditComponent {
 
    public editQuestion() {
     /* this.question.attributes.push('attributeValue.value'); */
-    console.log('entrei');
-    
+        
      this.questionApi.update(this.id, this.question).subscribe(
       (data) => {
-        console.log('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
         this.bsModalRef.hide()
       },
       (error) => {
