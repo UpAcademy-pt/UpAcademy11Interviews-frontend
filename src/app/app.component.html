@@ -5,10 +5,12 @@
   </div>
 
     <div *ngIf="accountApi.isAuthenticated()" class="logOutButton">
+      
       <div *ngIf="accountApi.isAdmin()" class="btn">
         <button class="qaButton" routerLink="layout/question">Questions</button>
         <button class="qaButton" routerLink="layout/account">Accounts</button>
       </div>
+
       <span class="logOutButton navbar-text mx-3 text-white">
         {{accountApi.getCurrentName()}}
       </span>
