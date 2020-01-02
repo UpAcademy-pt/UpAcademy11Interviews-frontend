@@ -32,7 +32,7 @@ export class QuestionEditComponent {
   ) {
     this.question.question = "";
     this.question.answer = "";
-    this.attribute.type = "";
+    this.attribute.category = "";
     this.attributeValue.value = "";
    }
 
@@ -50,6 +50,7 @@ export class QuestionEditComponent {
     );
   }
 
+  
   ngOnInit() {
     this.attributeApi.getAll().subscribe(
       (response : Attribute[]) => {
