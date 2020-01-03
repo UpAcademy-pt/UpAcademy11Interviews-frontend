@@ -18,16 +18,17 @@ rel="stylesheet">
 
       
       
-      <i class="material-icons">emoji_people</i>
-      <span class="logOutButton navbar-text mx-3 text-white">
-        
-        {{accountApi.getCurrentName()}}
+      
+      <span class="fontsize navbar-text  text-white">
+         {{accountApi.getCurrentName()}}
+
+         <i class="material-icons">how_to_reg</i>
       </span>
 
       <button class="logOutButton" routerLink="login" (click)="logout()">
         <i class="material-icons1">
           power_settings_new
-          </i>
+        </i>
 
       </button>
     </div>
