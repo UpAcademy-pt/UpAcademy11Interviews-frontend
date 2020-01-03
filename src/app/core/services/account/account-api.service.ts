@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject, Observable } from 'rxjs';
-
 import { Account } from '../../models';
 import { HttpClient } from '@angular/common/http';
 
@@ -73,5 +72,13 @@ export class AccountApiService {
 
   public getByEmail(filterValue: String) {
     return this.http.get(this.apiUrl+'/filter?email='+filterValue);
+  }
+
+  public delete(id: number) {
+    return this.http.delete(this.apiUrl + '/' + id, {responseType: 'text'});
+  }
+
+  public update(id: number, account: Account) {
+    return this.http.put(this.apiUrl + '/' + id, account, {responseType: 'text'});
   }
 }

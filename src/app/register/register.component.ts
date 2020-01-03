@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit {
     private accountApi: AccountApiService,
     private _snackBar: MatSnackBar,
     public bsModalRef: BsModalRef
-
     ){ 
   }
 
