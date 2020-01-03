@@ -5,18 +5,41 @@
     </button>
 </div>
 <div class="modal-body">
-    <input class="w-100 p-1 m-1" name="question" value= "xd" type="text" [(ngModel)]="question.question"/>
-    <input class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer"/>
-    <select mdbInput (click)="getAttributeValues()" class="form-control w-100" [(ngModel)]="attributeOption">
-        <option value="" hidden>Select</option>
-        <option [value]="attribute.type" *ngFor="let attribute of attributes">{{attribute.category}}</option>
-    </select>
-    <select mdbInput *ngIf="attributeOption != '' " class="form-control w-100" [(ngModel)]="attributeValueOption">
-        <option value="" hidden>Select</option>
-        <option [value]="attributeValue.value" *ngFor="let attributeValue of attributeValues">{{attributeValue.value}}
-        </option>
-    </select>
+    <div class="row">
+        <input class="w-100 p-1 m-1" name="question" type="text" [(ngModel)]="question.question"
+            placeholder="Question" />
+        <input class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer"
+            placeholder="Expected Answer" />
+        <select mdbInput (change)="getAttributeValues()" class="form-control" style="margin-left: 4px; margin-right: 4px;"
+            [(ngModel)]="attributeOption">
+            <option value="" hidden>Select</option>
+            <option [value]="attribute.category" *ngFor="let attribute of attributes">{{attribute.category}}</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <select mdbInput *ngIf="attributeOption != '' " class="form-control" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;"
+            [(ngModel)]="attributeValueOption">
+            <option value="" hidden>Select</option>
+            <option [value]="attributeValueString" *ngFor="let attributeValueString of attributeValuesString">{{attributeValueString}}
+            </option>
+        </select>
+        <button *ngIf="attributeValueOption != '' " (click)="addAttributeValue(attributeValueOption)" style="margin-top: 3px; margin-bottom: 4px; background-color: rgb(0, 0, 120); border-radius: 20%; color: rgb(248, 248, 248);"> + </button>
+    </div>
+
+
+    <mat-form-field class="chip-list">
+        <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let selectedValueString of selectedValuesString" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(selectedValueString)">
+                {{selectedValueString}}
+                <mat-icon class="myRemove" matChipRemove *ngIf="removable">x</mat-icon>
+            </mat-chip>
+        </mat-chip-list>
+    </mat-form-field>
+
 </div>
+
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-info" (click)="editQuestion()">Edit</button>
 </div>

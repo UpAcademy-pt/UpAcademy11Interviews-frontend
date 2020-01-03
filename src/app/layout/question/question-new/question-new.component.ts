@@ -27,10 +27,15 @@ export class QuestionNewComponent {
   attribute: Attribute = new Attribute();
   attributeValue: AttributeValue = new AttributeValue();
 
-  attributes: Attribute[] = [];
+  attributes: Set<Attribute> = new Set<Attribute>();
+
   attributeValues: AttributeValue[] = [];
 
   selectedValues: AttributeValue[] = [];
+
+  attributeValuesString: Set<String> = new Set<String>();
+
+  selectedValuesString: Set<String> = new Set<String>();
 
   visible = true;
   selectable = true;
@@ -55,6 +60,12 @@ export class QuestionNewComponent {
   }
 
   public create() {
+
+    this.selectedValuesString.forEach(element => {
+      let index= this.attributeValues.findIndex((attr: any) => attr.value == element);
+      this.selectedValues.push(this.attributeValues[index]);
+    });
+
     this.question.attributes = this.selectedValues;
     console.log(this.question.attributes);
     console.log(this.question);
@@ -71,7 +82,7 @@ export class QuestionNewComponent {
 
   ngOnInit() {
     this.attributeApi.getAll().subscribe(
-      (response: Attribute[]) => {
+      (response: Set<Attribute>) => {
         this.attributes = response;
         console.log(this.attributes);
       },
@@ -83,35 +94,40 @@ export class QuestionNewComponent {
     this.attributeValueApi.getByAttribute(this.attributeOption).subscribe(
       (response: AttributeValue[]) => {
         this.attributeValues = response;
+        
+        this.attributeValues.forEach((attributeValueString : AttributeValue) => {
+          this.attributeValuesString.add(attributeValueString.value);
+        }); 
+
         console.log(this.attributeValues);
       },
       (error) => console.log(error)
     )
   }
 
-  addAttributeValue(id: number) {
-    console.log(id);
+  addAttributeValue(value: String) {
+    //console.log(id);
     console.log(this.attributeValues);
 
-    this.attributeValueApi.get(id).subscribe((data: AttributeValue) => {
-      this.attributeValue = data;
-      let index = this.attributeValues.findIndex((attr: any) => attr.id == id);
-      console.log(index);
+    //this.attributeValueApi.get(id).subscribe((data: AttributeValue) => {
+      //this.attributeValue = data;
+      //let index = this.attributeValues.findIndex((attr: any) => attr.id == id);
+      //console.log(index);
 
-      this.attributeValues.splice(index, 1)
-      this.selectedValues.push(this.attributeValue);
-    });
+      this.attributeValuesString.delete(value);
+      this.selectedValuesString.add(value);
+    //});
   }
 
-  remove(value: AttributeValue): void {
-    const index = this.selectedValues.indexOf(value);
+  remove(value: String) {
+    //const index = this.selectedValues.indexOf(value);
 
-    if (index >= 0) {
-      this.selectedValues.splice(index, 1);
+    //if (index >= 0) {
+      this.selectedValuesString.delete(value);
 
-      this.attributeValues.push(value);
+      this.attributeValuesString.add(value);
 
-    }
+    //}
   }
 
 
