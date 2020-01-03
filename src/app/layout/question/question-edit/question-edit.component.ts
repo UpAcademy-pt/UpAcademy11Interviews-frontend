@@ -32,7 +32,7 @@ export class QuestionEditComponent {
   ) {
     this.question.question = "";
     this.question.answer = "";
-    this.attribute.type = "";
+    this.attribute.category = "";
     this.attributeValue.value = "";
    }
 

@@ -18,13 +18,10 @@ import { QuestionNewComponent } from './question/question-new/question-new.compo
 import { AccountComponent } from './account/account.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
-<<<<<<< HEAD
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
-=======
 import { QuestionEditComponent } from './question/question-edit/question-edit.component';
->>>>>>> origin/ivomesquita
 
 @NgModule({
   declarations: [
