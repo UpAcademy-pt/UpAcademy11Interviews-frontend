@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Account, AccountApiService } from 'src/app/core';
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-account-edit',
   templateUrl: './account-edit.component.html',
-  styleUrls: ['./account-edit.component.scss']
+  styleUrls: ['./account-edit.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AccountEditComponent implements OnInit {
   editPassword = false;
