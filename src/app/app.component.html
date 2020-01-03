@@ -3,16 +3,21 @@
   <div>
     <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" class="positronx rounded float-left">
   </div>
-  <div *ngIf="accountApi.isAdmin()" class="btn-group">
-    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="layout/question">Questions</button>
-    <button class="btn text-ligth font-weight-bold btn-info btn-outline-ligth" routerLink="layout/account">Accounts</button>
-  </div>
-    <div *ngIf="accountApi.isAuthenticated()">
-      <span class="navbar-text mx-3 text-white">
+
+    <div *ngIf="accountApi.isAuthenticated()" class="logOutButton">
+      
+      <div *ngIf="accountApi.isAdmin()" class="btn">
+        <button class="qaButton" routerLink="layout/question">Questions</button>
+        <button class="qaButton" routerLink="layout/account">Accounts</button>
+      </div>
+
+      <span class="logOutButton navbar-text mx-3 text-white">
         {{accountApi.getCurrentName()}}
       </span>
-      <button class="btn btn-outline-danger" routerLink="login" (click)="logout()">Logout</button>
+      <button class="logOutButton btn btn-outline-danger" routerLink="login" (click)="logout()">Logout</button>
     </div>
+    
+    
 </mat-toolbar>
 
 <router-outlet></router-outlet>

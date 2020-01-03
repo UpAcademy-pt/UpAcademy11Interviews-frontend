@@ -19,3 +19,52 @@
  .myinput {
   border: 1px solid #ced4da !important;
  }
+ 
+
+.loginButton {
+  border-radius: 60px;
+  border: 0px;
+  background-color: rgb(0, 255, 251);
+  color: rgb(0, 0, 120);
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  outline: none;
+  
+}
+.loginButton::selection{
+  background-color: transparent;
+}
+
+.loginButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  
+}
+
+.loginButton:hover {
+  background-color: rgb(0, 0, 120);
+  color: rgb(0, 255, 251);
+}
+
+.loginButton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.loginButton:hover span {
+  padding-right: 25px;
+}
+
+.loginButton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
