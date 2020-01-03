@@ -8,14 +8,14 @@
                         <div>
                                 <label class="font-weight-bold text-center mt-2">Technology</label>
                                 <select mdbInput class="form-control w-100">
-                                        <option [value]="roles" *ngFor="let roles of Technology">{{roles}}
+                                        <option [value]="tech" *ngFor="let tech of Technology">{{tech}}
                                         </option>
                                 </select>
                         </div>
                         <div>
                                 <label class="font-weight-bold text-center mt-2">Difficulty</label>
                                 <select mdbInput class="form-control w-100">
-                                        <option [value]="roles" *ngFor="let roles of Difficulty">{{roles}}
+                                        <option [value]="dif" *ngFor="let dif of Difficulty">{{dif}}
                                         </option>
                                 </select>
                         </div>
@@ -58,8 +58,16 @@
                                         </th>
                                 </tr>
                                 <tr *ngFor="let question of questions$ | async">
-                                        <td *ngFor="let col of index">
-                                                {{question[col]}}
+                                        <td *ngFor="let col of indexTable; let i = index">
+                                                
+                                                <ng-container *ngIf="i==0">
+                                                        <span *ngFor="let attr of question[col]">{{attr.value}}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="i>0">
+                                                       
+                                                        {{question[col]}}
+                                                </ng-container>
+                                               
                                         </td>
                                         <td style="width:150px">
                                         <button type="button" class="btn btn-outline-info mr-2" (click)="editQuestion(question.id)">Edit</button>
