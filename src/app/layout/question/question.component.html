@@ -39,6 +39,7 @@
                                 <button type="button" class="QuestButton" (click)="openCreateModal()">
                                         <fa-icon [icon]="iconNew"></fa-icon>
                                 </button>
+                                <br> 
                                 <div>
                                         <button class="pdfButton" (click)="generatePdf()">
                                               <span>Export PDF</span>
@@ -49,6 +50,7 @@
                                         Update Questions
                                 </button> -->
                         </h2>
+                        <br>
                         <table id="question" style="overflow-x:auto;">
                                 <tr>
                                         <th *ngFor="let col of columns">
