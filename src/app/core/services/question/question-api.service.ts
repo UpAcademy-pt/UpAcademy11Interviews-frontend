@@ -18,7 +18,7 @@ export class QuestionApiService {
   }
 
   public create(question: Question) {
-    return this.http.post(this.apiUrl, question);
+    return this.http.post(this.apiUrl, question, {responseType: 'text'});
   }
 
   public get(id: number) {
