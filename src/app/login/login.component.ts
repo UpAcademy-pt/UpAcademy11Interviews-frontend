@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
    this.account.password= '123'; 
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public login() {
     this.accountApi.login(this.account).subscribe(
