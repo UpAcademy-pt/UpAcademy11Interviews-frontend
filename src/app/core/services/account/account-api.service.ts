@@ -85,4 +85,8 @@ export class AccountApiService {
   public update(id: number, account: Account) {
     return this.http.put(this.apiUrl + '/' + id, account, {responseType: 'text'});
   }
+
+  public updatePassword(id:number, account: Account) {
+    return this.http.put(this.apiUrl + '/' + id + '/changePassword', account, {responseType: 'text'});
+  }
 }

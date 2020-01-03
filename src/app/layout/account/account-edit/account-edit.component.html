@@ -7,7 +7,11 @@
   <div class="modal-body">
     <input class="w-100 p-1 m-1" name="name" type="name" [(ngModel)]="account.name">
     <input class="w-100 p-1 m-1" name="email" type="email" [(ngModel)]="account.email">
-    <input class="w-100 p-1 m-1" name="password" type="password" [(ngModel)]="account.password">
+    <label class="font-weight-bold text-center mt-2">Password:</label>
+    <input [disabled]="!editPassword" class="w-80 p-1 m-1" name="password" type="password" [(ngModel)]="account.hashcode" >
+    <!-- <i class="fa fa-edit"></i> -->
+    <button class="btn btn-info w-20" (click)="editPassword = true">
+      edit pass</button>
     <label class="font-weight-bold text-center mt-2">Choose a role:</label>
     <select mdbInput class="form-control w-100" [(ngModel)]="account.role">
       <option [value]="roles" *ngFor="let roles of Roles">{{roles}}</option>
