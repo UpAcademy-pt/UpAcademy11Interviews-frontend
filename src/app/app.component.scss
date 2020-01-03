@@ -151,9 +151,10 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
-  color: red;
+  color: rgb(0, 255, 255);
   align-content: center;
-  vertical-align:center;
+  vertical-align: middle;
+
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
@@ -165,6 +166,13 @@
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+
 }
 
+.material-icons1:hover{  
+  color: rgb(207, 58, 13);
+}
+.material-icons1::selection{
+  background-color: transparent;
 
+}
