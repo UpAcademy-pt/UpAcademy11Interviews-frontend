@@ -10,7 +10,7 @@ import { BsModalRef } from 'ngx-bootstrap';
 export class AccountEditComponent implements OnInit {
 
   Roles: any = ['Admin', 'Superuser', 'User'];
-  id;
+  id: number;
   public account: Account = new Account();
   public msg: string;
   error = false;
@@ -21,7 +21,13 @@ export class AccountEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.account.role='User';
+    console.log(this.id);
+    this.accountApi.get(this.id).subscribe((data:Account)=>{
+      this.account.name = data.name;
+      this.account.email = data.email;
+      this.account.password = data.password;
+      this.account.role = data.role;
+    })
   }
   
   public editAccount(id:number) {

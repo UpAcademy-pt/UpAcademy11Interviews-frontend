@@ -38,6 +38,10 @@ export class AccountApiService {
     return this.currentAccount.id;
   }
 
+  public get(id: number) {
+    return this.http.get(this.apiUrl + '/' + id);
+  }
+
   public getCurrentName(): string {
     return this.currentAccount.name;
   }
