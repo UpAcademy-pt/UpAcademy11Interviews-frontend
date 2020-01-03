@@ -7,6 +7,7 @@ import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-question-edit',
@@ -20,19 +21,15 @@ export class QuestionEditComponent {
   public event: EventEmitter<any> = new EventEmitter();
   attributeOption = '';
   attributeValueOption = '';
-  attribute : Attribute = new Attribute();
-  attributeValue : AttributeValue = new AttributeValue();
-
-  attributes : Set<Attribute> = new Set<Attribute>();
-  id: number;
-
+  attribute: Attribute = new Attribute();
+  attributeValue: AttributeValue = new AttributeValue();
+  attributes: Set<Attribute> = new Set<Attribute>();
   attributeValues: AttributeValue[] = [];
-
   selectedValues: AttributeValue[] = [];
-
   attributeValuesString: Set<String> = new Set<String>();
-
   selectedValuesString: Set<String> = new Set<String>();
+
+  id: number;
 
 
   visible = true;
@@ -43,22 +40,22 @@ export class QuestionEditComponent {
 
 
   constructor(
-    public attributeApi : AttributeApiService,
+    public attributeApi: AttributeApiService,
     private questionApi: QuestionApiService,
-    private attributeValueApi : AttributeValueApiService,
+    private attributeValueApi: AttributeValueApiService,
     public bsModalRef: BsModalRef
   ) {
-   }
+  }
 
-   public editQuestion() {
+  public editQuestion() {
 
     this.selectedValuesString.forEach(element => {
-      let index= this.attributeValues.findIndex((attr: any) => attr.value == element);
+      let index = this.attributeValues.findIndex((attr: any) => attr.value == element);
       this.selectedValues.push(this.attributeValues[index]);
     });
 
-      this.question.attributes = this.selectedValues; 
-     this.questionApi.update(this.id, this.question).subscribe(
+    this.question.attributes = this.selectedValues;
+    this.questionApi.update(this.id, this.question).subscribe(
       (data) => {
         this.bsModalRef.hide()
       },
@@ -67,34 +64,43 @@ export class QuestionEditComponent {
     );
   }
 
-  
+
   ngOnInit() {
     console.log(this.id);
-    
-    this.questionApi.get(this.id).subscribe((data:Question) => {
+
+    this.questionApi.get(this.id).subscribe((data: Question) => {
       console.log(data);
       this.question.question = data.question;
       this.question.answer = data.answer;
+      this.question.attributes = data.attributes;
+
+      this.question.attributes.forEach(attribute => {
+        this.selectedValuesString.add(attribute.value);
+      });
+
       this.attribute.category = "";
       this.attributeValue.value = "";
     })
     this.attributeApi.getAll().subscribe(
-      (response : Set<Attribute>) => {
+      (response: Set<Attribute>) => {
         this.attributes = response;
         console.log(this.attributes);
       },
       (error) => console.log(error)
-      )
+    )
   }
 
   getAttributeValues() {
     this.attributeValueApi.getByAttribute(this.attributeOption).subscribe(
       (response: AttributeValue[]) => {
         this.attributeValues = response;
-        
-        this.attributeValues.forEach((attributeValueString : AttributeValue) => {
-          this.attributeValuesString.add(attributeValueString.value);
-        }); 
+
+        this.attributeValues.forEach((attributeValue: AttributeValue) => {
+          if (this.selectedValuesString.has(attributeValue.value) != true) {
+            this.attributeValuesString.add(attributeValue.value);
+          }
+
+        });
 
         console.log(this.attributeValues);
       },
@@ -111,9 +117,9 @@ export class QuestionEditComponent {
     //   let index = this.attributeValues.findIndex((attr: any) => attr.id == id);
     //   console.log(index);
 
-      this.selectedValuesString.add(value);
+    this.selectedValuesString.add(value);
 
-      this.attributeValuesString.delete(value);
+    this.attributeValuesString.delete(value);
     //});
   }
 
@@ -122,9 +128,9 @@ export class QuestionEditComponent {
 
     // if (index >= 0) {
 
-      this.attributeValuesString.add(value);
+    this.attributeValuesString.add(value);
 
-      this.selectedValuesString.delete(value);
+    this.selectedValuesString.delete(value);
 
     //}
   }
