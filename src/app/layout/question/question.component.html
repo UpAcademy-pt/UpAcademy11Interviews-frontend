@@ -6,7 +6,7 @@
                 <div class="selectors container">
                         <div *ngFor="let attribute of attributes; let i = index">
                                 <label class="font-weight-bold text-center mt-2">{{attribute.category}}</label>
-                                <select mdbInput (change)= "filterQuestions(fileredValue)" class="form-control w-100">
+                                <select mdbInput class="form-control w-100" [(ngModel)]="valueOption" (change)= "filterQuestions(valueOption)">
                                         <option value="" hidden>Select</option>
                                         <option [value]="filteredValue" *ngFor="let filteredValue of filteredValues[i]">
                                                 {{filteredValue}}
@@ -43,7 +43,7 @@
                                 <tr *ngFor="let question of questions$ | async">
                                         <td *ngFor="let col of indexTable; let i = index">
                                                 <ng-container *ngIf="i==0">
-                                                        <span *ngFor="let attr of question[col]">{{attr.value}}</span>
+                                                        <span *ngFor="let attr of question[col]">{{attr.value}}<br></span>
                                                 </ng-container>
                                                 <ng-container *ngIf="i>0">
                                                         {{question[col]}}

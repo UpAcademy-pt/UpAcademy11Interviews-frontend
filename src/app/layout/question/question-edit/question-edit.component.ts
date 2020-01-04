@@ -6,9 +6,6 @@ import { AttributeApiService } from 'src/app/core/services/attribute-service';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
 
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { element } from 'protractor';
-
 @Component({
   selector: 'app-question-edit',
   templateUrl: './question-edit.component.html',
@@ -29,14 +26,9 @@ export class QuestionEditComponent {
   attributeValuesString: Set<String> = new Set<String>();
   selectedValuesString: Set<String> = new Set<String>();
 
+  filteredValues: AttributeValue[] = [];
+
   id: number;
-
-
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
 
   constructor(
@@ -48,10 +40,12 @@ export class QuestionEditComponent {
   }
 
   public editQuestion() {
-
+    console.log(this.selectedValuesString);
     this.selectedValuesString.forEach(element => {
       let index = this.attributeValues.findIndex((attr: any) => attr.value == element);
       this.selectedValues.push(this.attributeValues[index]);
+      console.log(this.selectedValues);
+      
     });
 
     this.question.attributes = this.selectedValues;
@@ -88,50 +82,39 @@ export class QuestionEditComponent {
       },
       (error) => console.log(error)
     )
-  }
-
-  getAttributeValues() {
-    this.attributeValueApi.getByAttribute(this.attributeOption).subscribe(
+    this.attributeValueApi.getAll().subscribe(
       (response: AttributeValue[]) => {
         this.attributeValues = response;
-
-        this.attributeValues.forEach((attributeValue: AttributeValue) => {
-          if (this.selectedValuesString.has(attributeValue.value) != true) {
-            this.attributeValuesString.add(attributeValue.value);
-          }
-
-        });
-
         console.log(this.attributeValues);
       },
       (error) => console.log(error)
     )
   }
 
+  getAttributeValues() {
+    this.attributeValueApi.getByAttribute(this.attributeOption).subscribe(
+      (response: AttributeValue[]) => {
+        this.filteredValues = response;
+
+        this.filteredValues.forEach((attributeValue: AttributeValue) => {
+          if (this.selectedValuesString.has(attributeValue.value) != true) {
+            this.attributeValuesString.add(attributeValue.value);
+          }
+        });
+        console.log(this.getAttributeValues);
+        console.log(this.filteredValues);
+      },
+      (error) => console.log(error)
+    )
+  }
+
   addAttributeValue(value: String) {
-    //console.log(id);
-    console.log(this.attributeValues);
-
-    // this.attributeValueApi.get(id).subscribe((data: AttributeValue) => {
-    //   this.attributeValue = data;
-    //   let index = this.attributeValues.findIndex((attr: any) => attr.id == id);
-    //   console.log(index);
-
     this.selectedValuesString.add(value);
-
     this.attributeValuesString.delete(value);
-    //});
   }
 
   remove(value: String) {
-    // const index = this.selectedValues.indexOf(value);
-
-    // if (index >= 0) {
-
     this.attributeValuesString.add(value);
-
     this.selectedValuesString.delete(value);
-
-    //}
   }
 }

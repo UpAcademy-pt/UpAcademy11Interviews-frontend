@@ -33,7 +33,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
   attributeValues: AttributeValue[] = [];
 
   filteredValues: String[][] = [];
-
+  
+  displayedQuestions: Question[] = [];
 
   constructor(
     private dataService: DataService,
@@ -41,7 +42,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private attributeApi: AttributeApiService,
     private attributeValueApi: AttributeValueApiService,
     private router: Router,
-    private accountApi: AccountApiService,
     private modalService: BsModalService
   ) {
     this.questions$ = this.dataService.questions$;
@@ -60,6 +60,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.questionApi.getAll().subscribe(
       (response: Question[]) => {
         this.questions = response;
+        this.displayedQuestions = response;
       },
       (error) => console.log(error)
       )
@@ -91,21 +92,18 @@ export class QuestionComponent implements OnInit, OnDestroy {
         },
         (error) => console.log(error)
       )
-
-
-
-
   }
 
   public filterQuestions(value : string) {
-    this.questionApi.getByAttribute(value).subscribe(
-      (response: Question[]) => {
-        this.questions = response;
-        console.log(this.questions);
-        
-      },
-      (error) => console.log(error)
-      )
+    this.displayedQuestions = [];
+    this.questions.forEach(question => {
+      question.attributes.forEach(attribute => {
+        if (attribute['value'] == value) {
+          this.displayedQuestions.push(question);
+        }
+      });
+    });
+    console.log(this.displayedQuestions);
   }
 
   public getValues(category : String) {

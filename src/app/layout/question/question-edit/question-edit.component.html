@@ -28,16 +28,12 @@
         <button *ngIf="attributeValueOption != '' " (click)="addAttributeValue(attributeValueOption)" style="margin-top: 3px; margin-bottom: 4px; background-color: rgb(0, 0, 120); border-radius: 20%; color: rgb(248, 248, 248);"> + </button>
     </div>
 
-
-    <mat-form-field class="chip-list">
-        <mat-chip-list #chipList aria-label="Fruit selection">
-            <mat-chip *ngFor="let selectedValueString of selectedValuesString" [selectable]="selectable" [removable]="removable"
-                (removed)="remove(selectedValueString)">
+    <div class="my-chip-list">
+            <label *ngFor="let selectedValueString of selectedValuesString" style="background-color: cadetblue; border-radius: 5rem; padding-top: 3px; padding-left: 6px; padding-right: 5px; padding-bottom: 3px; margin: 2px">
                 {{selectedValueString}}
-                <mat-icon class="myRemove" matChipRemove *ngIf="removable">x</mat-icon>
-            </mat-chip>
-        </mat-chip-list>
-    </mat-form-field>
+                <button class="myRemove"  (click)="remove(selectedValueString)" style="border-radius: 1rem; border-color: cadetblue; background-color:cadetblue; font-size: 15px;">x</button>
+            </label>
+    </div>
 
 </div>
 
