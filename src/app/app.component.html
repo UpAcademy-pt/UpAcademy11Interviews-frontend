@@ -1,20 +1,36 @@
 <!-- Toolbar -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">
+
+
 <mat-toolbar color="primary" class="app-header">
   <div>
     <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" class="positronx rounded float-left">
   </div>
 
-    <div *ngIf="accountApi.isAuthenticated()" class="logOutButton">
+    <div *ngIf="accountApi.isAuthenticated()" class="">
+
       
       <div *ngIf="accountApi.isAdmin()" class="btn">
         <button class="qaButton" routerLink="layout/question">Questions</button>
         <button class="qaButton" routerLink="layout/account">Accounts</button>
       </div>
 
-      <span class="logOutButton navbar-text mx-3 text-white">
-        {{accountApi.getCurrentName()}}
+      
+      
+      
+      <span class="fontsize navbar-text  text-white">
+         {{accountApi.getCurrentName()}}
+
+         <i class="material-icons">account_circle</i>
       </span>
-      <button class="logOutButton btn btn-outline-danger" routerLink="login" (click)="logout()">Logout</button>
+
+      <button class="logOutButton" routerLink="login" (click)="logout()">
+        <i class="material-icons1">
+          power_settings_new
+        </i>
+
+      </button>
     </div>
     
     

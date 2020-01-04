@@ -70,8 +70,7 @@ table tr:first-child th:first-child {
     border-radius: 60px;
     border: 0px;
     size: 5px;
-
-
+   
 }
 
 .pdfButton {
@@ -121,3 +120,94 @@ table tr:first-child th:first-child {
     opacity: 1;
     right: 0;
 }
+
+// icons 
+
+
+.material-icons2 {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px; 
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    color: rgb(50, 211, 211);
+    align-content: center;
+    vertical-align: middle;
+    outline: none;
+    border: hidden;
+    
+  
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  
+  }
+
+
+
+  .buttonEdit{
+      border: none;
+      outline: none;
+      border-radius: initial;
+  }
+
+  .buttonEdit :hover{
+      background-color: lightgrey;
+  }
+
+  .buttonRemove{
+      border: none;
+      outline: none;
+  }
+
+  .buttonRemove :hover{
+      background-color: lightgrey;
+
+  }
+
+  .material-icons3 {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px; 
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    color: rgb(155, 23, 0);
+    align-content: center;
+    vertical-align: middle;
+    border: hidden !important;
+    border: thin;
+  
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  
+  }
+
