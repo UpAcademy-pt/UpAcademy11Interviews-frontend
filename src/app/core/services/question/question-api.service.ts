@@ -33,5 +33,9 @@ export class QuestionApiService {
     return this.http.delete(this.apiUrl + id, {responseType: 'text'});
   }
 
+  public getByAttribute(value: string) {
+    return this.http.get(this.apiUrl + '?' + value);
+  }
+
 
 }
