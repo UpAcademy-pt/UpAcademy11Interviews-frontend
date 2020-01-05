@@ -5,6 +5,7 @@ import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeApiService } from 'src/app/core/services/attribute-service';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
+import { QuestionComponent } from '../question.component';
 
 export interface Fruit {
   name: string;
@@ -36,6 +37,11 @@ export class QuestionNewComponent {
 
   filteredValues: AttributeValue[] = [];
 
+  empty = false;
+  missingAttributes = false;
+
+  questionComponent : QuestionComponent;
+
 
   constructor(
     public attributeApi: AttributeApiService,
@@ -55,23 +61,28 @@ export class QuestionNewComponent {
 
   public create() {
 
-    this.selectedValuesString.forEach(element => {
-      let index= this.attributeValues.findIndex((attr: any) => attr.value == element);
-      this.selectedValues.push(this.attributeValues[index]);
-    });
+    this.missingAttributes = false;
 
-    this.question.attributes = this.selectedValues;
-    console.log(this.question.attributes);
-    console.log(this.question);
-
-    this.questionApi.create(this.question).subscribe(
-      (data) => {
-        console.log(data);
-        this.bsModalRef.hide()
-      },
-      (error) => {
-      }
-    );
+    if (this.selectedValuesString.size == this.attributes.length) {
+      this.selectedValuesString.forEach(element => {
+        let index= this.attributeValues.findIndex((attr: any) => attr.value == element);
+        this.selectedValues.push(this.attributeValues[index]);
+      });
+  
+      this.question.attributes = this.selectedValues;
+      console.log(this.question.attributes);
+      console.log(this.question);
+  
+      this.questionApi.create(this.question).subscribe(
+        (data) => {
+          this.bsModalRef.hide()
+        },
+        (error) => {
+        }
+      );
+    } else{
+      this.missingAttributes = true;
+    }
   }
 
   ngOnInit() {
@@ -114,12 +125,20 @@ export class QuestionNewComponent {
       this.attributesString.delete(attributeValue.attribute['category']);
       this.attributeOption = '';
     });
+
+    if (this.attributesString.size == 1) {
+      this.empty = true;
+    }
   }
 
   remove(str: string) {
       this.selectedValuesString.delete(str);
       let index= this.attributeValues.findIndex((attr: any) => attr.value == str);
+      this.attributesString.add(this.attributeValues[index].attribute['category']);
 
+      if (this.attributesString.size != 0) {
+        this.empty = false;
+      }
   }
 
 }

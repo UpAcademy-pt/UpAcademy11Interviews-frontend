@@ -33,8 +33,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
   attributeValues: AttributeValue[] = [];
 
   filteredValues: String[][] = [];
-  
+
   displayedQuestions: Question[] = [];
+
+  filter: Set<String> = new Set<String>();
+  valueOption ={};
 
   constructor(
     private dataService: DataService,
@@ -63,50 +66,58 @@ export class QuestionComponent implements OnInit, OnDestroy {
         this.displayedQuestions = response;
       },
       (error) => console.log(error)
-      )
-      
-      this.attributeValueApi.getAll().subscribe(
-        (response: AttributeValue[]) => {
-          this.attributeValues = response;
+    )
 
-          this.attributeApi.getAll().subscribe(
-            (response: Attribute[]) => {
-              this.attributes = response;
-              this.attributes.forEach((attribute : Attribute) => {
-                let printValues = [];
-                this.attributeValues.forEach(element => {
-                  if (element.attribute['id'] == attribute.id) {
-                    printValues.push(element.value);
-                    console.log("ATRIBUTO IGUAL " + printValues);
-                  }  
-                });
+    this.attributeValueApi.getAll().subscribe(
+      (response: AttributeValue[]) => {
+        this.attributeValues = response;
 
-                this.filteredValues.push(printValues);
-                console.log(this.filteredValues);
-                
+        this.attributeApi.getAll().subscribe(
+          (response: Attribute[]) => {
+            this.attributes = response;
+            this.attributes.forEach((attribute: Attribute) => {
+              let printValues = [];
+              this.attributeValues.forEach(element => {
+                if (element.attribute['id'] == attribute.id) {
+                  printValues.push(element.value);
+                  console.log("ATRIBUTO IGUAL " + printValues);
+                }
               });
 
-            },
-            (error) => console.log(error)
-          )
-        },
-        (error) => console.log(error)
-      )
+              this.filteredValues.push(printValues);
+              console.log(this.filteredValues);
+
+            });
+
+          },
+          (error) => console.log(error)
+        )
+      },
+      (error) => console.log(error)
+    )
   }
 
-  public filterQuestions(value : string) {
+
+  public filterQuestions() {
+    let count;
     this.displayedQuestions = [];
     this.questions.forEach(question => {
-      question.attributes.forEach(attribute => {
-        if (attribute['value'] == value) {
-          this.displayedQuestions.push(question);
-        }
+      count = 0
+      question.attributes.forEach(attributeValue => {
+          if (attributeValue.value == this.valueOption[attributeValue['attribute']['category']] || this.valueOption[attributeValue['attribute']['category']] == '') {
+            count += 1;
+          }
       });
+      if (count == Object.keys(this.valueOption).length) {
+        this.displayedQuestions.push(question);
+        console.log(this.displayedQuestions);
+      }
     });
+ 
     console.log(this.displayedQuestions);
   }
 
-  public getValues(category : String) {
+  public getValues(category: String) {
     this.attributeValueApi.getByAttribute(category).subscribe(
       (data: AttributeValue[]) => {
         this.attributeValues = data;

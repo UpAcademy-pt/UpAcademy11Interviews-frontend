@@ -5,6 +5,7 @@ import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeApiService } from 'src/app/core/services/attribute-service';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
+import { QuestionComponent } from '../question.component';
 
 @Component({
   selector: 'app-question-edit',
@@ -20,7 +21,7 @@ export class QuestionEditComponent {
   attributeValueOption = '';
   attribute: Attribute = new Attribute();
   attributeValue: AttributeValue = new AttributeValue();
-  attributes: Set<Attribute> = new Set<Attribute>();
+  attributes: Attribute[] = [];
   attributeValues: AttributeValue[] = [];
   selectedValues: AttributeValue[] = [];
   attributeValuesString: Set<String> = new Set<String>();
@@ -28,8 +29,12 @@ export class QuestionEditComponent {
 
   filteredValues: AttributeValue[] = [];
 
-  id: number;
+  attributesString: Set<String> = new Set<String>();
 
+  id: number;
+  empty = false;
+  missingAttributes = false;
+  questionComponent: QuestionComponent;
 
   constructor(
     public attributeApi: AttributeApiService,
@@ -40,22 +45,22 @@ export class QuestionEditComponent {
   }
 
   public editQuestion() {
-    console.log(this.selectedValuesString);
-    this.selectedValuesString.forEach(element => {
-      let index = this.attributeValues.findIndex((attr: any) => attr.value == element);
-      this.selectedValues.push(this.attributeValues[index]);
-      console.log(this.selectedValues);
-      
-    });
-
-    this.question.attributes = this.selectedValues;
-    this.questionApi.update(this.id, this.question).subscribe(
-      (data) => {
-        this.bsModalRef.hide()
-      },
-      (error) => {
-      }
-    );
+    this.missingAttributes = false;
+    if (this.selectedValuesString.size == this.attributes.length) {
+      this.selectedValuesString.forEach(element => {
+        let index = this.attributeValues.findIndex((attr: any) => attr.value == element);
+        this.selectedValues.push(this.attributeValues[index]);
+      });
+      this.question.attributes = this.selectedValues;
+      this.questionApi.update(this.id, this.question).subscribe(
+        (data) => {
+          this.bsModalRef.hide()
+        },
+        (error) => {
+        }
+      );
+    }
+    this.missingAttributes = true;
   }
 
 
@@ -74,47 +79,77 @@ export class QuestionEditComponent {
 
       this.attribute.category = "";
       this.attributeValue.value = "";
+
     })
+
     this.attributeApi.getAll().subscribe(
-      (response: Set<Attribute>) => {
+      (response: Attribute[]) => {
         this.attributes = response;
         console.log(this.attributes);
-      },
-      (error) => console.log(error)
-    )
-    this.attributeValueApi.getAll().subscribe(
-      (response: AttributeValue[]) => {
-        this.attributeValues = response;
-        console.log(this.attributeValues);
+
+
+        let done = false;
+
+
+        this.attributeValueApi.getAll().subscribe(
+          (response: AttributeValue[]) => {
+            this.attributeValues = response;
+            console.log(this.attributeValues);
+            console.log(this.attributes);
+            console.log(this.selectedValuesString);
+
+            this.attributes.forEach(attribute => {
+              this.attributesString.add(attribute.category);
+            });
+
+            this.selectedValuesString.forEach(element => {
+              let index = this.attributeValues.findIndex((attr: any) => attr.value == element);
+              this.attributesString.delete(this.attributeValues[index].attribute['category']);
+            });
+
+
+            if (this.attributesString.size == 0) {
+              this.empty = true;
+            }
+          });
       },
       (error) => console.log(error)
     )
   }
 
   getAttributeValues() {
+    console.log(this.attributeOption);
+
     this.attributeValueApi.getByAttribute(this.attributeOption).subscribe(
       (response: AttributeValue[]) => {
         this.filteredValues = response;
-
-        this.filteredValues.forEach((attributeValue: AttributeValue) => {
-          if (this.selectedValuesString.has(attributeValue.value) != true) {
-            this.attributeValuesString.add(attributeValue.value);
-          }
-        });
-        console.log(this.getAttributeValues);
-        console.log(this.filteredValues);
+        console.log(this.attributeValues);
+        console.log(this.attributeOption);
       },
       (error) => console.log(error)
     )
   }
 
-  addAttributeValue(value: String) {
-    this.selectedValuesString.add(value);
-    this.attributeValuesString.delete(value);
+  addAttributeValue(id: number) {
+    this.attributeValueApi.get(id).subscribe((data: AttributeValue) => {
+      let attributeValue = data;
+      this.selectedValuesString.add(attributeValue.value);
+      this.attributesString.delete(attributeValue.attribute['category']);
+      this.attributeOption = '';
+    });
+
+    if (this.attributesString.size == 1) {
+      this.empty = true;
+    }
   }
 
-  remove(value: String) {
-    this.attributeValuesString.add(value);
-    this.selectedValuesString.delete(value);
+  remove(str: string) {
+    this.selectedValuesString.delete(str);
+    let index = this.attributeValues.findIndex((attr: any) => attr.value == str);
+    this.attributesString.add(this.attributeValues[index].attribute['category']);
+
+    if (this.attributesString.size != 0) {
+      this.empty = false;
+    }
   }
 }
