@@ -50,7 +50,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.questions$ = this.dataService.questions$;
     this.subscriptionQuestions = this.questions$.subscribe((data) => {
       console.log('questions$ on QuestionComponent', JSON.stringify(data));
-      this.questions = data;
+      this.displayedQuestions = data;
     });
   }
 
@@ -76,8 +76,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
           (response: Attribute[]) => {
             this.attributes = response;
             this.attributes.forEach((attribute: Attribute) => {
+              this.valueOption[attribute.category] = '';
               let printValues = [];
               this.attributeValues.forEach(element => {
+                console.log(element);
+               
                 if (element.attribute['id'] == attribute.id) {
                   printValues.push(element.value);
                   console.log("ATRIBUTO IGUAL " + printValues);
@@ -168,12 +171,12 @@ export class QuestionComponent implements OnInit, OnDestroy {
     var rows = [];
     rows.push([{ text: 'Category', style: 'tableHeader', alignment: 'center' }, { text: 'Question', style: 'tableHeader', alignment: 'center' }, { text: 'Expected Answer', style: 'tableHeader', alignment: 'center' }]);
 
-    for (var i = 0; i < this.questions.length; i++) {
+    for (var i = 0; i < this.displayedQuestions.length; i++) {
       let str = "";
-      this.questions[i].attributes.forEach(attr => {
+      this.displayedQuestions[i].attributes.forEach(attr => {
         str += attr.value + " ";
       })
-      rows.push([str, this.questions[i].question, this.questions[i].answer]);
+      rows.push([str, this.displayedQuestions[i].question, this.displayedQuestions[i].answer]);
     }
 
     const documentDefinition = {
@@ -185,7 +188,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
         },
         { text: 'Interview', margin: [0, 50, 0, 0], style: 'header' },
         /* this.accountApi, */
-        { text: 'Role', margin: [0, 10, 0, 30], style: 'header' },
+        /* { text: 'Role', margin: [0, 10, 0, 30], style: 'header' }, */
         {
           style: 'table',
           table: {
