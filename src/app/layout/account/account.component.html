@@ -25,8 +25,8 @@
                                 {{account[col]}}
                         </td>
                         <td style="width:150px">
-                                <button type="button" class="btn btn-outline-info mr-2">Edit</button>
-                                <button type="button" class="btn btn-outline-danger">X</button>
+                                <button type="button" class="btn btn-outline-info mr-2" (click)="accountEdit(account.id)">Edit</button>
+                                <button type="button" class="btn btn-outline-danger" (click)="deleteAccount(account.id)">X</button>
                         </td>
                 </tr>
         </table>

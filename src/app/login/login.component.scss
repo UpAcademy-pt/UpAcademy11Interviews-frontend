@@ -73,17 +73,17 @@
   color: rgb(0, 255, 251);
 }
 
-.loginButton span:after {
+/* .loginButton span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
   top: 0;
   right: -20px;
   transition: 0.5s;
-}
+} */
 
 .loginButton:hover span {
-  padding-right: 25px;
+  font-size: 110%;
 }
 
 .loginButton:hover span:after {

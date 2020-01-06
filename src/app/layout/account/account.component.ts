@@ -4,6 +4,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { AccountApiService, Account, DataService } from 'src/app/core';
 import { RegisterComponent } from 'src/app/register/register.component';
 import { ReplaySubject } from 'rxjs';
+import { AccountEditComponent } from './account-edit/account-edit.component';
 
 @Component({
   selector: 'app-account',
@@ -37,6 +38,23 @@ export class AccountComponent implements OnInit {
     this.accountApi.getByEmail(this.value).subscribe((data: Account[])=> {
       this.accounts$.next(data);
     });
+  }
+
+  public deleteAccount(id) {
+    this.accountApi.delete(id).subscribe( (data:any) =>{
+     /*  this.accounts$.next(data); */
+     this.accountApi.getAll();
+    });
+  }
+
+  public accountEdit(id: number) {
+    const initialState = {
+      id: id,
+  };
+    this.modal = this.modalService.show(AccountEditComponent, {initialState})
+    this.modalService.onHide.subscribe((account: Account) => {
+      this.accountApi.getAll();
+  });
   }
 
  /*  getAllAccounts() {

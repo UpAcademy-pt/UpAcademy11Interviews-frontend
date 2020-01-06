@@ -18,7 +18,7 @@ export class QuestionApiService {
   }
 
   public create(question: Question) {
-    return this.http.post(this.apiUrl, question);
+    return this.http.post(this.apiUrl, question, {responseType: 'text'});
   }
 
   public get(id: number) {
@@ -31,6 +31,10 @@ export class QuestionApiService {
 
   public delete(id: number) {
     return this.http.delete(this.apiUrl + id, {responseType: 'text'});
+  }
+
+  public getByAttribute(value: string) {
+    return this.http.get(this.apiUrl + '?' + value);
   }
 
 
