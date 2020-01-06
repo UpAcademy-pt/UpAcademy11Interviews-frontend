@@ -23,6 +23,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { QuestionEditComponent } from './question/question-edit/question-edit.component';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
+import { InterviewComponent } from './interview/interview.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AccountEditComponent } from './account/account-edit/account-edit.compon
     AccountComponent,
     LayoutComponent,
     QuestionEditComponent,
-    AccountEditComponent
+    AccountEditComponent,
+    InterviewComponent
   ],
   imports: [
     CommonModule,

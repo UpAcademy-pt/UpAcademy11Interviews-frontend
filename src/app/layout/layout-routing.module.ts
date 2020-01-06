@@ -6,6 +6,7 @@ import { MainComponent } from './main/main.component';
 import { QuestionComponent } from './question/question.component';
 import { AccountComponent } from './account/account.component';
 import { QuestionDetailComponent } from './question/question-detail/question-detail.component';
+import { InterviewComponent } from './interview/interview.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
       },
       {
         path: 'account', component: AccountComponent
+      },
+      {
+        path: 'interview', component: InterviewComponent
       },
     ]
   }
