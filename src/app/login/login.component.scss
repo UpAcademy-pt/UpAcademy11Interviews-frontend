@@ -8,12 +8,34 @@
  }
  
  body {
-   background-image: url(https://www.shardagroup.com/images/shrda.gif);
+   background-color: rgb(0, 0, 22);
+   //background-image: url(https://www.shardagroup.com/images/shrda.gif);
    background-position: center;
    background-size: cover;
    background-repeat: no-repeat;
    max-height: 80vh;
    font-family: 'Roboto', sans-serif;
+ }
+
+ p {
+  font-family: Mark-Bold, sans-serif;
+  font-size: 50px;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+  text-align: center;
+ }
+
+ b{
+  color: rgb(41, 231, 214);
+  font-weight:bold;
+ }
+
+ .criticalLogo{
+  height: 160px;
+  width: 140px;
+  margin-bottom: 70px;
+  text-align: center;
+  margin-left: 45%;
  }
 
  .myinput {
