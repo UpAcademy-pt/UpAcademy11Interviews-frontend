@@ -23,6 +23,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { QuestionEditComponent } from './question/question-edit/question-edit.component';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
+import { AttributeNewComponent } from './question/attribute-new/attribute-new.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AccountEditComponent } from './account/account-edit/account-edit.compon
     AccountComponent,
     LayoutComponent,
     QuestionEditComponent,
-    AccountEditComponent
+    AccountEditComponent,
+    AttributeNewComponent
   ],
   imports: [
     CommonModule,
@@ -50,6 +52,6 @@ import { AccountEditComponent } from './account/account-edit/account-edit.compon
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],
-  entryComponents: [QuestionNewComponent, QuestionEditComponent, AccountEditComponent]
+  entryComponents: [QuestionNewComponent, QuestionEditComponent, AccountEditComponent, AttributeNewComponent]
 })
 export class LayoutModule { }
