@@ -5,9 +5,7 @@ import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeApiService } from 'src/app/core/services/attribute-service';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
-
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { QuestionComponent } from '../question.component';
 
 export interface Fruit {
   name: string;
@@ -27,21 +25,23 @@ export class QuestionNewComponent {
   attribute: Attribute = new Attribute();
   attributeValue: AttributeValue = new AttributeValue();
 
-  attributes: Set<Attribute> = new Set<Attribute>();
+  attributes: Attribute[] = [];
 
   attributeValues: AttributeValue[] = [];
 
   selectedValues: AttributeValue[] = [];
 
-  attributeValuesString: Set<String> = new Set<String>();
-
   selectedValuesString: Set<String> = new Set<String>();
 
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  attributesString: Set<String> = new Set<String>();  
+
+  filteredValues: AttributeValue[] = [];
+
+  empty = false;
+  missingAttributes = false;
+
+  questionComponent : QuestionComponent;
+
 
   constructor(
     public attributeApi: AttributeApiService,
@@ -61,74 +61,84 @@ export class QuestionNewComponent {
 
   public create() {
 
-    this.selectedValuesString.forEach(element => {
-      let index= this.attributeValues.findIndex((attr: any) => attr.value == element);
-      this.selectedValues.push(this.attributeValues[index]);
-    });
+    this.missingAttributes = false;
 
-    this.question.attributes = this.selectedValues;
-    console.log(this.question.attributes);
-    console.log(this.question);
-
-    this.questionApi.create(this.question).subscribe(
-      (data) => {
-        console.log(data);
-        this.bsModalRef.hide()
-      },
-      (error) => {
-      }
-    );
+    if (this.selectedValuesString.size == this.attributes.length) {
+      this.selectedValuesString.forEach(element => {
+        let index= this.attributeValues.findIndex((attr: any) => attr.value == element);
+        this.selectedValues.push(this.attributeValues[index]);
+      });
+  
+      this.question.attributes = this.selectedValues;
+      console.log(this.question.attributes);
+      console.log(this.question);
+  
+      this.questionApi.create(this.question).subscribe(
+        (data) => {
+          this.bsModalRef.hide()
+        },
+        (error) => {
+        }
+      );
+    } else{
+      this.missingAttributes = true;
+    }
   }
 
   ngOnInit() {
     this.attributeApi.getAll().subscribe(
-      (response: Set<Attribute>) => {
+      (response: Attribute[]) => {
         this.attributes = response;
         console.log(this.attributes);
+        this.attributes.forEach(attribute => {
+          this.attributesString.add(attribute.category)
+        });
       },
       (error) => console.log(error)
     )
+
+    this.attributeValueApi.getAll().subscribe(
+      (response: AttributeValue[]) => {
+        this.attributeValues = response;
+        console.log(this.attributeValues);
+      },
+      (error) => console.log(error))
   }
 
   getAttributeValues() {
+    console.log(this.attributeOption);
+    
     this.attributeValueApi.getByAttribute(this.attributeOption).subscribe(
       (response: AttributeValue[]) => {
-        this.attributeValues = response;
-        
-        this.attributeValues.forEach((attributeValueString : AttributeValue) => {
-          this.attributeValuesString.add(attributeValueString.value);
-        }); 
-
+        this.filteredValues = response;
         console.log(this.attributeValues);
+        console.log(this.attributeOption);
       },
       (error) => console.log(error)
     )
   }
 
-  addAttributeValue(value: String) {
-    //console.log(id);
-    console.log(this.attributeValues);
+  addAttributeValue(id: number) {
+    this.attributeValueApi.get(id).subscribe( (data : AttributeValue) =>{
+      let attributeValue = data;
+      this.selectedValuesString.add(attributeValue.value);
+      this.attributesString.delete(attributeValue.attribute['category']);
+      this.attributeOption = '';
+    });
 
-    //this.attributeValueApi.get(id).subscribe((data: AttributeValue) => {
-      //this.attributeValue = data;
-      //let index = this.attributeValues.findIndex((attr: any) => attr.id == id);
-      //console.log(index);
-
-      this.attributeValuesString.delete(value);
-      this.selectedValuesString.add(value);
-    //});
+    if (this.attributesString.size == 1) {
+      this.empty = true;
+    }
   }
 
-  remove(value: String) {
-    //const index = this.selectedValues.indexOf(value);
+  remove(str: string) {
+      this.selectedValuesString.delete(str);
+      let index= this.attributeValues.findIndex((attr: any) => attr.value == str);
+      this.attributesString.add(this.attributeValues[index].attribute['category']);
 
-    //if (index >= 0) {
-      this.selectedValuesString.delete(value);
-
-      this.attributeValuesString.add(value);
-
-    //}
+      if (this.attributesString.size != 0) {
+        this.empty = false;
+      }
   }
-
 
 }

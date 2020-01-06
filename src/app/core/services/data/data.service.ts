@@ -10,6 +10,7 @@ import { Question } from '../..';
 export class DataService {
   public questions$: ReplaySubject<Question[]> = new ReplaySubject(1);
   private questions: any[];
+  
 
   constructor(
     private questionApi: QuestionApiService

@@ -6,41 +6,44 @@
 </div>
 <div class="modal-body">
 
-    <div class="row">
-        <input class="w-100 p-1 m-1" name="question" type="text" [(ngModel)]="question.question"
-            placeholder="Question" />
-        <input class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer"
-            placeholder="Expected Answer" />
-        <select mdbInput (change)="getAttributeValues()" class="form-control" style="margin-left: 4px; margin-right: 4px;"
-            [(ngModel)]="attributeOption">
-            <option value="" hidden>Select</option>
-            <option [value]="attribute.category" *ngFor="let attribute of attributes">{{attribute.category}}</option>
-        </select>
-    </div>
+        <div class="row">
+                <label for="question" style="margin-bottom: 0px; margin-left: 4px;">Question</label>
+                <input id="question" class="w-100 p-1 m-1" name="question" type="text" [(ngModel)]="question.question" placeholder="Write question"/>
+        
+                <label for="answer" style="margin-bottom: 0px; margin-left: 4px;">Expected Answer</label>    
+                <input id="answer" class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer" placeholder="Write expected answer"/>
+        
+                <label for="categories" style="margin-bottom: 0px; margin-left: 4px;">Categories</label> 
+                <select id="categories" *ngIf="!empty" (change)="getAttributeValues()" class="form-control"
+                    style="margin-left: 4px; margin-right: 4px;" [(ngModel)]="attributeOption">
+                    <option value="" *ngIf="attributeOption == ''">Choose a category</option>
+                    <option [value]="attributeString" *ngFor="let attributeString of attributesString">{{attributeString}}
+                    </option>
+                </select>
+            </div>
 
-    <div class="row">
-        <select mdbInput *ngIf="attributeOption != '' " class="form-control" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;"
+    <div class="row" *ngIf="attributeOption != '' ">
+        <select class="form-control" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;"
             [(ngModel)]="attributeValueOption">
-            <option value="" hidden>Select</option>
-            <option [value]="attributeValueString" *ngFor="let attributeValueString of attributeValuesString">{{attributeValueString}}
+            <option value="" hidden>Choose a option</option>
+            <option [value]="filteredValue.id" *ngFor="let filteredValue of filteredValues">{{filteredValue.value}}
             </option>
         </select>
-        <button *ngIf="attributeValueOption != '' " (click)="addAttributeValue(attributeValueOption)" style="margin-top: 3px; margin-bottom: 4px; background-color: rgb(0, 0, 120); border-radius: 20%; color: rgb(248, 248, 248);"> + </button>
+        <button *ngIf="attributeValueOption != '' " (click)="addAttributeValue(attributeValueOption)"  style="margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black"> + </button>
     </div>
 
 
-    <mat-form-field class="chip-list">
-        <mat-chip-list #chipList aria-label="Fruit selection">
-            <mat-chip *ngFor="let selectedValueString of selectedValuesString" [selectable]="selectable" [removable]="removable"
-                (removed)="remove(selectedValueString)">
-                {{selectedValueString}}
-                <mat-icon class="myRemove" matChipRemove *ngIf="removable">x</mat-icon>
-            </mat-chip>
-        </mat-chip-list>
-    </mat-form-field>
+    <div class="my-chip-list">
+        <label *ngFor="let selectedValueString of selectedValuesString" style="background-color: cadetblue; border-radius: 1rem; padding-top: 3px; padding-left: 6px; padding-right: 5px; padding-bottom: 3px; margin: 2px">
+            {{selectedValueString}}
+            <button class="myRemove"  (click)="remove(selectedValueString)" style="border-radius: 1rem; border-color: cadetblue; background-color:cadetblue; font-size: 15px;">x</button>
+        </label>
+    </div>
+
+    <label for="" *ngIf="empty" style="font-size: 12px;">  (All categories are defined)</label>
 
 </div>
 <div class="modal-footer">
-    
+    <label for="" *ngIf="missingAttributes">Define all categories</label>
     <button type="button" class="createButton" (click)="create()">Create</button>
 </div>
