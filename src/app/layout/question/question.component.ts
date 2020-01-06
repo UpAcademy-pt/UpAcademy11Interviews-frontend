@@ -54,7 +54,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     });
   }
 
-  columns = ["", "Question", "Expected Answer", ""];
+  columns = ["Add to Interview", "Question", "Expected Answer", ""];
   indexTable = ["attributes", "question", "answer"];
 
 

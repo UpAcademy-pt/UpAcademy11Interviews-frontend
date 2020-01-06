@@ -46,8 +46,10 @@
                                 <tr *ngFor="let question of displayedQuestions">
                                         <td *ngFor="let col of indexTable; let i = index">
                                                 <ng-container *ngIf="i==0">
-                                                        <span
-                                                                *ngFor="let attr of question[col]">{{attr.value}}<br></span>
+                                                        <label class="checkbox-label">
+                                                                <input type="checkbox" />
+                                                                <span class="checkbox-custom"></span>
+                                                        </label>
                                                 </ng-container>
                                                 <ng-container *ngIf="i>0">
                                                         {{question[col]}}

@@ -1,4 +1,27 @@
 <section class="container">
-    <p>interview works!</p>
-
+    <div>
+        <button class="pdfButton" (click)="generatePdf()">
+            <span>Export PDF</span>
+        </button>
+    </div>
+    <table id="interview">
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col}}
+            </th>
+        </tr>
+        <tr *ngFor="let account of accounts$ | async">
+            <td *ngFor="let col of index">
+                {{account[col]}}
+            </td>
+            <td style="width:150px">
+                <select class="form-control w-100" [(ngModel)]="evaluation">
+                    <option value="" selected>No evaluation</option>
+                    <option [value]="evaluation" *ngFor="let evaluation of evaluation">
+                        {{evaluation}}
+                    </option>
+                </select>
+            </td>
+        </tr>
+    </table>
 </section>
