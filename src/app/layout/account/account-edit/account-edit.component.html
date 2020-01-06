@@ -5,7 +5,9 @@
     </button>
   </div>
   <div class="modal-body">
+    <label class="font-weight-bold text-center mt-2">Edit Name:</label>
     <input class="w-100 p-1 m-1" name="name" type="name" [(ngModel)]="account.name">
+    <label class="font-weight-bold text-center mt-2">Edit Email:</label>
     <input class="w-100 p-1 m-1" name="email" type="email" [(ngModel)]="account.email">
     <label class="font-weight-bold text-center mt-2">Password:</label>
     <input [disabled]="!editPassword" class="w-90 p-1 m-1" name="password" type="password" [(ngModel)]="account.hashcode" >
