@@ -168,12 +168,12 @@ export class QuestionComponent implements OnInit, OnDestroy {
     var rows = [];
     rows.push([{ text: 'Category', style: 'tableHeader', alignment: 'center' }, { text: 'Question', style: 'tableHeader', alignment: 'center' }, { text: 'Expected Answer', style: 'tableHeader', alignment: 'center' }]);
 
-    for (var i = 0; i < this.questions.length; i++) {
+    for (var i = 0; i < this.displayedQuestions.length; i++) {
       let str = "";
-      this.questions[i].attributes.forEach(attr => {
+      this.displayedQuestions[i].attributes.forEach(attr => {
         str += attr.value + " ";
       })
-      rows.push([str, this.questions[i].question, this.questions[i].answer]);
+      rows.push([str, this.displayedQuestions[i].question, this.displayedQuestions[i].answer]);
     }
 
     const documentDefinition = {
