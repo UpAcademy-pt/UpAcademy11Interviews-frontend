@@ -25,11 +25,8 @@ import { QuestionEditComponent } from './question/question-edit/question-edit.co
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { InterviewComponent } from './interview/interview.component';
 import { AttributeNewComponent } from './question/attribute-new/attribute-new.component';
-<<<<<<< HEAD
 import { AttributeEditComponent } from './question/attribute-edit/attribute-edit.component';
-=======
 import { GenerateInterviewComponent } from './question/generate-interview/generate-interview.component';
->>>>>>> origin/jsilvestre
 
 @NgModule({
   declarations: [
@@ -43,11 +40,8 @@ import { GenerateInterviewComponent } from './question/generate-interview/genera
     AccountEditComponent,
     AttributeNewComponent,
     InterviewComponent,
-<<<<<<< HEAD
-    AttributeEditComponent
-=======
+    AttributeEditComponent,
     GenerateInterviewComponent
->>>>>>> origin/jsilvestre
   ],
   imports: [
     CommonModule,
@@ -64,10 +58,6 @@ import { GenerateInterviewComponent } from './question/generate-interview/genera
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],
-<<<<<<< HEAD
-  entryComponents: [QuestionNewComponent, QuestionEditComponent, AccountEditComponent, AttributeNewComponent, AttributeEditComponent]
-=======
-  entryComponents: [QuestionNewComponent, QuestionEditComponent, AccountEditComponent, AttributeNewComponent, GenerateInterviewComponent]
->>>>>>> origin/jsilvestre
+  entryComponents: [QuestionNewComponent, QuestionEditComponent, AccountEditComponent, AttributeNewComponent, AttributeEditComponent, GenerateInterviewComponent]
 })
 export class LayoutModule { }

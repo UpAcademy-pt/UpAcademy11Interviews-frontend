@@ -14,12 +14,9 @@ import { AttributeValueApiService } from 'src/app/core/services/attribute-value-
 import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeNewComponent } from './attribute-new/attribute-new.component';
-<<<<<<< HEAD
 import { AttributeEditComponent } from './attribute-edit/attribute-edit.component';
-=======
 import { GenerateInterviewComponent } from './generate-interview/generate-interview.component';
 import { id } from '@swimlane/ngx-datatable';
->>>>>>> origin/jsilvestre
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -98,13 +95,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
             this.attributes.forEach((attribute: Attribute) => {
               this.valueOption[attribute.category] = '';
               let printValues = [];
-<<<<<<< HEAD
               this.attributeValues.forEach(element => {              
-=======
-              this.attributeValues.forEach(element => {
-                console.log(element);
-
->>>>>>> origin/jsilvestre
                 if (element.attribute['id'] == attribute.id) {
                   printValues.push(element.value);
                 }
