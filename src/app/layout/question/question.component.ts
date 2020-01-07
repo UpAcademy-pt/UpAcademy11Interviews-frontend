@@ -14,6 +14,8 @@ import { AttributeValueApiService } from 'src/app/core/services/attribute-value-
 import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeNewComponent } from './attribute-new/attribute-new.component';
+import { GenerateInterviewComponent } from './generate-interview/generate-interview.component';
+import { id } from '@swimlane/ngx-datatable';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -38,7 +40,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
   displayedQuestions: Question[] = [];
 
   filter: Set<String> = new Set<String>();
-  valueOption ={};
+  valueOption = {};
 
   constructor(
     private dataService: DataService,
@@ -81,7 +83,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
               let printValues = [];
               this.attributeValues.forEach(element => {
                 console.log(element);
-               
+
                 if (element.attribute['id'] == attribute.id) {
                   printValues.push(element.value);
                   console.log("ATRIBUTO IGUAL " + printValues);
@@ -111,27 +113,27 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.questions.forEach(question => {
       count = 0
       this.attributes.forEach(attributeValue => {
-       if(this.valueOption[attributeValue.category] !== "") {
-        question.attributes.forEach( attr => {
-          if(attr['attribute']['category'] == attributeValue.category){
-            if(attr.value == this.valueOption[attributeValue.category]){
-              count++;
+        if (this.valueOption[attributeValue.category] !== "") {
+          question.attributes.forEach(attr => {
+            if (attr['attribute']['category'] == attributeValue.category) {
+              if (attr.value == this.valueOption[attributeValue.category]) {
+                count++;
+              }
             }
-          }
-        })
-       }
+          })
+        }
         else {
           count++;
         }
       });
       console.log(Object.keys(this.valueOption));
-      
+
       if (count == Object.keys(this.valueOption).length) {
         this.displayedQuestions.push(question);
         console.log(this.displayedQuestions);
       }
     });
- 
+
     console.log(this.displayedQuestions);
   }
 
@@ -190,8 +192,21 @@ export class QuestionComponent implements OnInit, OnDestroy {
     });
   }
 
+  interviewQuestions: Set<number> = new Set<number>();
+
+  public questionCheck(id) {
+      
+      if (this.interviewQuestions.has(id)) {
+        this.interviewQuestions.delete(id);
+      }
+      else 
+        this.interviewQuestions.add(id);
+        console.log(this.interviewQuestions);
+        
+  }
+
   generateInterview() {
-    
+    this.modalRef = this.modalService.show(GenerateInterviewComponent);
   }
 
   generatePdf() {
