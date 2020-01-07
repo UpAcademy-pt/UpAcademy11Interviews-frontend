@@ -5,12 +5,12 @@
                         <fa-icon [icon]="iconNew"></fa-icon>
                 </button> -->
         </h2>
-
-        <button class="userButton" (click)="openCreateModal()">Add New User
+<div>
+        <button class="userButton container" (click)="openCreateModal()">Add New User
                 <i class="addUserIcon material-icons">add_circle</i>
         </button>
-
-        <br>
+</div>
+        
         <!-- <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"> -->
 
         <input (keyup)="getByEmail()" [(ngModel)]="value" placeholder="  Search user" id="filter"
