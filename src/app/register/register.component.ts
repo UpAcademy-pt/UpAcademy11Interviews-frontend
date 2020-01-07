@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
   } */
 
   public register() {
+    
     this.accountApi.create(this.account).subscribe(
       (account: any) => {
       },

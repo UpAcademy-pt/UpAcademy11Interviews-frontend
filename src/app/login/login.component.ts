@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
     private _snackBar: MatSnackBar
     ) {
     // Fill email and password
-   this.account.email = 'admin';
-   this.account.password= '123'; 
+   this.account.email = 'admin@ctq.com';
+   this.account.password= '1234'; 
   }
 
   ngOnInit() {}
