@@ -23,6 +23,7 @@
                 <div class="selectors container" style="padding-top: 0px; width: 200px;">
                         <div *ngFor="let attribute of attributes; let i = index">
                                 <label class="font-weight-bold text-center mt-3 mb-0">{{attribute.category}}</label>
+                                <button (click)="editCategory(attribute.id)"> / </button>
                                 <select class="form-control w-100" [(ngModel)]="valueOption[attribute.category]"
                                         (change)="filterQuestions()">
                                         <option value="" selected>Any {{attribute.category}}</option>

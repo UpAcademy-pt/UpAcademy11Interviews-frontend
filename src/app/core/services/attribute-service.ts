@@ -28,8 +28,8 @@ export class AttributeApiService {
     return this.http.get(this.apiUrl + id);
   }
 
-  public update(attribute: Attribute) {
-    return this.http.put(this.apiUrl, attribute);
+  public update(id : number, attribute: Attribute) {
+    return this.http.put(this.apiUrl + id, attribute, {responseType: 'text'});
   }
 
   public delete(id: number) {
