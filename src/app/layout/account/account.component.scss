@@ -70,12 +70,61 @@ table tr:first-child th:first-child {
     color: white;
 }
 
-.accountButton{
-    background-image: linear-gradient(to right, rgb(0, 255, 251) , rgb(13, 30, 207));
-    
+
+
+.userButton{
     border-radius: 60px;
     border: 0px;
-    size: 5px;
-    animation-delay: 1000ms;
-    animation-timing-function: 1000ms;
-}
+    background-color: transparent;
+    color: rgb(0, 255, 251);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px;
+    padding-right: 30px;
+    outline: none;
+    justify-content: right;
+    padding-left: 82%;
+
+} 
+
+    .userButton::selection{
+        background-color: transparent;
+    }
+    
+    .userButton span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+        
+      }
+      
+    .userButton:hover {
+        background-color:transparent;
+        color: rgb(255, 255, 255);
+    }
+    
+    .userButton span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    
+    .userButton:hover span {
+        padding-right: 25px;
+    }
+    
+    .userButton:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+
+    .userUserIcon{
+        font-size: 1rem;
+        position: absolute;
+        padding-left: 8px;
+        padding-top: 10px;
+    }

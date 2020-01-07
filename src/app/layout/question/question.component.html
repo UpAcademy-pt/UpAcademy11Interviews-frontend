@@ -4,11 +4,21 @@
 
         <!-- A sidebar -->
         <ng-sidebar [(opened)]="_opened" position="left" [mode]="'push'">
-                <h3>Filter By:</h3>
+               
+                <br>
+                <h3>Categories</h3>
+                <br>
                 <div>
-                        <label style="color: white; margin-left: 30px; margin-right: 5px; padding: 0%;"><strong>Add Category</strong></label>
-                        <button style="margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black"
-                        (click)="addCategory()">+</button>
+
+                        <!--<label style="color: white; margin-left: 30px; margin-right: 5px; padding: 0%;"><strong></strong> </label>-->
+
+
+                <button class="addCategory container" (click)="addCategory()">Add Category 
+
+                        <i class="addCategoryIcon material-icons">add_circle</i>
+
+                </button>
+                               
                 </div>
                 <div class="selectors container" style="padding-top: 0px; width: 200px;">
                         <div *ngFor="let attribute of attributes; let i = index">
@@ -27,11 +37,10 @@
         <!-- Page content -->
         <div ng-sidebar-content>
                 <section class="container">
-                        <h2 class="text-white" translate> New Question
-                                <button type="button" class="QuestButton" (click)="openCreateModal()">
-                                        <fa-icon [icon]="iconNew"></fa-icon>
-                                </button>
-                                <br>
+                        <h2 class="text-white" translate>Interview Questions</h2>
+
+                        
+                                
                                 <div>
                                         <button class="pdfButton" (click)="generateInterview()">
                                                 <span>Generate Interview</span>
@@ -40,7 +49,11 @@
                                 <!--  <button type="button" class="btn btn-primary right" (click)="updateQuestions()" translate>
                                         Update Questions
                                 </button> -->
-                        </h2>
+                                
+                                <button class="QuestButton container" (click)="openCreateModal()">Add Question
+                                        
+                                        <i class="addQuestIcon material-icons">add_circle</i>
+                                </button>
                         <br>
                         <table id="question" style="overflow-x:auto;">
                                 <tr>
