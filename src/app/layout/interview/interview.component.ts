@@ -17,14 +17,16 @@ export class InterviewComponent implements OnInit {
 
   columns = ["Question","Expected Answer", "Evaluation"];
   
-  interviewQuestions = [];
+  interviewQuestions = ["", ""];
   
-  evaluation = [
+  evaluations = [
     "Exceeds Requirements",
     "Meets Requirements",
     "Needs Training",
     "Doesn't meet Requirements"
   ]
+
+  evaluation = '';
   /* interview$ =new ReplaySubject<Interview[]>(); */
 
   ngOnInit() {

@@ -10,15 +10,15 @@
                 {{col}}
             </th>
         </tr>
-        <tr *ngFor="let account of accounts$ | async">
-            <td *ngFor="let col of index">
-                {{account[col]}}
+        <tr *ngFor="let interview of interviewQuestions">
+            <td *ngFor="let col of interviewQuestions">
+                {{interview[col]}}
             </td>
-            <td style="width:150px">
-                <select class="form-control w-100" [(ngModel)]="evaluation">
-                    <option value="" selected>No evaluation</option>
-                    <option [value]="evaluation" *ngFor="let evaluation of evaluation">
-                        {{evaluation}}
+            <td style="width:260px">
+                <select class="form-control" [(ngModel)]="evaluation">
+                    <option value="" selected>No Evaluation</option>
+                    <option [value]="col" *ngFor="let col of evaluations">
+                        {{col}}
                     </option>
                 </select>
             </td>
