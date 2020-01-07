@@ -9,6 +9,18 @@
     <label for="attribute" style="margin-bottom: 0px; margin-left: 4px;">Category</label>
     <input id="attribute" class="w-100 p-1 m-1" name="attribute" type="text" [(ngModel)]="attribute.category">
 
+    <label for="type">Types</label>
+    <input id="type" class="w-100 p-1 m-1" name="value" type="text" [(ngModel)]="attributeValue.value">
+
+    <div class="my-chip-list">
+        <label *ngFor="let attributeValue of attributeValues"
+            style="background-color: cadetblue; border-radius: 1rem; padding-top: 3px; padding-left: 6px; padding-right: 5px; padding-bottom: 3px; margin: 2px">
+            {{attributeValue.value}}
+            <button class="myRemove" (click)="deleteAttributeValue(attributeValue.id)"
+                style="border-radius: 1rem; border-color: cadetblue; background-color:cadetblue; font-size: 15px;">x</button>
+        </label>
+    </div>
+
 <div class="modal-footer">
     <button type="button" class="editButton" (click)="edit()">Edit</button>
 </div>
