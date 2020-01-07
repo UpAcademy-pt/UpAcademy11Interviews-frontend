@@ -13,6 +13,7 @@ import { AttributeApiService } from 'src/app/core/services/attribute-service';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
 import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
+import { AttributeNewComponent } from './attribute-new/attribute-new.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -125,6 +126,14 @@ export class QuestionComponent implements OnInit, OnDestroy {
       (data: AttributeValue[]) => {
         this.attributeValues = data;
       })
+  }
+
+  public addCategory() {
+    const initialState = {
+    };
+    this.modalRef = this.modalService.show(AttributeNewComponent, { initialState });
+    this.modalService.onHide.subscribe((attribute: Attribute) => {
+    });
   }
 
 
