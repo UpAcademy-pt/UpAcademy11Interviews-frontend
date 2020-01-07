@@ -11,7 +11,7 @@
                         <button style="margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black"
                                 (click)="addCategory()">+</button>
                 </div>
-                <div class="selectors container" style="padding-top: 0px; width: 200px;">
+                <div class="selectors container" style="padding-top: 0px; width: 250px;">
                         <div *ngFor="let attribute of attributes; let i = index">
                                 <label class="font-weight-bold text-center mt-3 mb-0">{{attribute.category}}</label>
                                 <select class="form-control w-100" [(ngModel)]="valueOption[attribute.category]"
@@ -19,7 +19,7 @@
                                         <option value="" selected>Any {{attribute.category}}</option>
                                         <option [value]="filteredValue" *ngFor="let filteredValue of filteredValues[i]">
                                                 {{filteredValue}}
-                                        </option>
+                                        </option>s
                                 </select>
                         </div>
                 </div>
