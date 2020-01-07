@@ -98,11 +98,10 @@ export class QuestionComponent implements OnInit, OnDestroy {
                   printValues.push(element.value);
                 }
               });
-
               this.filteredValues.push(printValues);
-
             });
-
+            console.log(this.filteredValues);
+            
           },
           (error) => console.log(error)
         )
@@ -115,9 +114,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
   public filterQuestions() {
     let count;
     this.displayedQuestions = [];
-    console.log(this.questions);
-    console.log(this.attributes);
-    console.log(this.valueOption);
     this.questions.forEach(question => {
       count = 0
       this.attributes.forEach(attributeValue => {

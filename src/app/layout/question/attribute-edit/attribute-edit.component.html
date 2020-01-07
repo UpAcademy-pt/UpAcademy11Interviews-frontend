@@ -9,9 +9,13 @@
     <label for="attribute" style="margin-bottom: 0px; margin-left: 4px;">Category</label>
     <input id="attribute" class="w-100 p-1 m-1" name="attribute" type="text" [(ngModel)]="attribute.category">
 
+    <div>
     <label for="type">Types</label>
-    <input id="type" class="w-100 p-1 m-1" name="value" type="text" [(ngModel)]="attributeValue.value">
-
+    <input id="type" name="value" type="text" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;" [(ngModel)]="attributeValue.value">
+    <button  (click)= "createAttributeValue()" style="margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black">
+    + </button>
+    </div>
+    
     <div class="my-chip-list">
         <label *ngFor="let attributeValue of attributeValues"
             style="background-color: cadetblue; border-radius: 1rem; padding-top: 3px; padding-left: 6px; padding-right: 5px; padding-bottom: 3px; margin: 2px">

@@ -5,6 +5,7 @@ import { AttributeApiService } from 'src/app/core/services/attribute-service';
 import { DataService } from 'src/app/core';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
+import { ReplaySubject, Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,8 +18,11 @@ export class AttributeEditComponent implements OnInit {
   attribute: Attribute = new Attribute();
   attributeValue : AttributeValue = new AttributeValue();
   attributeValues : AttributeValue[] = [];
+  attributeValues$ : ReplaySubject<AttributeValue[]>;
 
   id: number;
+
+  private subscriptionAttributeValues: Subscription;
 
   constructor(
     public dataService: DataService,
@@ -26,6 +30,13 @@ export class AttributeEditComponent implements OnInit {
     public attributeValueApi: AttributeValueApiService,
     public bsModalRef: BsModalRef) { 
       this.attributeValue.value = "";
+      this.attributeValue.attribute = {};
+
+      this.attributeValues$ = this.dataService.attributeValues$;
+      this.subscriptionAttributeValues = this.attributeValues$.subscribe((data) => {
+        console.log('attributeValues$ on AttributeEditComponent', JSON.stringify(data));
+        this.attributeValues = data;
+      });
     }
 
   ngOnInit() {
@@ -48,5 +59,36 @@ export class AttributeEditComponent implements OnInit {
         (error) => {
         }
       );
+  }
+
+  public createAttributeValue () {
+    Object.assign(this.attributeValue.attribute, this.attribute);
+    //this.attributeValue.attribute = this.attribute;
+    this.attributeValueApi.create(this.attributeValue).subscribe(
+      (data : AttributeValue) => {
+        //this.dataService.updateAttributeValues(this.attribute.category);
+        this.attributeValues.push(data);
+      },
+      (error) => {
+      }
+    );
+  }
+
+  public deleteAttributeValue(id : number) {
+    this.attributeValueApi.delete(id).subscribe(
+      (data) => {
+        console.log(data);
+        
+        //this.dataService.updateAttributeValues(this.attribute.category);
+        let index = this.attributeValues.findIndex(attr => attr.id == id);
+        console.log(index);
+        
+        this.attributeValues.splice(index, 1);
+      },
+      (error) => {
+        console.log(error);
+        
+      }
+    );
   }
 }
