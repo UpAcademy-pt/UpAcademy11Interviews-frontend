@@ -14,6 +14,7 @@ import { AttributeValueApiService } from 'src/app/core/services/attribute-value-
 import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeNewComponent } from './attribute-new/attribute-new.component';
+import { AttributeEditComponent } from './attribute-edit/attribute-edit.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -95,12 +96,10 @@ export class QuestionComponent implements OnInit, OnDestroy {
               this.attributeValues.forEach(element => {              
                 if (element.attribute['id'] == attribute.id) {
                   printValues.push(element.value);
-                  console.log("ATRIBUTO IGUAL " + printValues);
                 }
               });
 
               this.filteredValues.push(printValues);
-              console.log(this.filteredValues);
 
             });
 
@@ -157,6 +156,17 @@ export class QuestionComponent implements OnInit, OnDestroy {
     const initialState = {
     };
     this.modalRef = this.modalService.show(AttributeNewComponent, { initialState });
+    this.modalService.onHide.subscribe((attribute: Attribute) => {
+    });
+    this.dataService.updateAttributes();
+  }
+
+  public editCategory(id: number) {
+    const initialState = {
+      id: id,
+    };
+    console.log(id);
+    this.modalRef = this.modalService.show(AttributeEditComponent, { initialState });
     this.modalService.onHide.subscribe((attribute: Attribute) => {
     });
     this.dataService.updateAttributes();

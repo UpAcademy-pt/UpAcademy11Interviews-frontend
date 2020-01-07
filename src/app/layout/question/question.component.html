@@ -6,13 +6,13 @@
         <ng-sidebar [(opened)]="_opened" position="left" [mode]="'push'">
                 <h3>Filter By:</h3>
                 <div>
-                        <label style="color: white; margin-left: 30px; margin-right: 5px; padding: 0%;"><strong>Add Category</strong></label>
-                        <button style="margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black"
-                        (click)="addCategory()">+</button>
+                        <button style="margin-left: 70px; margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black"
+                        (click)="addCategory()">Add Category</button>
                 </div>
                 <div class="selectors container" style="padding-top: 0px; width: 200px;">
                         <div *ngFor="let attribute of attributes; let i = index">
                                 <label class="font-weight-bold text-center mt-3 mb-0">{{attribute.category}}</label>
+                                <button (click)="editCategory(attribute.id)"> / </button>
                                 <select class="form-control w-100" [(ngModel)]="valueOption[attribute.category]"
                                         (change)="filterQuestions()">
                                         <option value="" selected>Any {{attribute.category}}</option>

@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Edit Category</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <label for="attribute" style="margin-bottom: 0px; margin-left: 4px;">Category</label>
+    <input id="attribute" class="w-100 p-1 m-1" name="attribute" type="text" [(ngModel)]="attribute.category">
+
+<div class="modal-footer">
+    <button type="button" class="editButton" (click)="edit()">Edit</button>
+</div>
