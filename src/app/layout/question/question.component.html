@@ -20,7 +20,7 @@
                 </button>
                                
                 </div>
-                <div class="selectors container" style="padding-top: 0px; width: 200px;">
+                <div class="selectors container" style="padding-top: 0px; width: 250px;">
                         <div *ngFor="let attribute of attributes; let i = index">
                                 <label class="font-weight-bold text-center mt-3 mb-0">{{attribute.category}}</label>
                                
@@ -34,7 +34,7 @@
                                         <option value="" selected>Any {{attribute.category}}</option>
                                         <option [value]="filteredValue" *ngFor="let filteredValue of filteredValues[i]">
                                                 {{filteredValue}}
-                                        </option>
+                                        </option>s
                                 </select>
                         </div>
                 </div>
@@ -71,7 +71,7 @@
                                         <td *ngFor="let col of indexTable; let i = index">
                                                 <ng-container *ngIf="i==0">
                                                         <label class="checkbox-label">
-                                                                <input type="checkbox" />
+                                                                <input type="checkbox" (click)="questionCheck(question.id)"/>
                                                                 <span class="checkbox-custom"></span>
                                                         </label>
                                                 </ng-container>

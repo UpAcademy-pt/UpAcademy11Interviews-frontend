@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Generate Interview</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    
+        <label for="form-row">Candidate Name:</label>
+        <div id="form-row" class="form-row mb-1">
+            <div class="col">
+                <input class="form-control p-1 m-1" name="firstname" type="text" placeholder="First Name" />
+            </div>
+            <div class="col">
+                <input class=" form-control p-1 m-1" name="lastname" type="text" placeholder="Last Name" />
+            </div>
+        </div>
+        <label for="role">Candidate Role:</label>
+        <select class="form-control" [(ngModel)]="Role.value">
+            <option value="" selected></option>
+            <option [value]="col" *ngFor="let col of Roles">
+                {{col.value}}
+            </option>
+        </select>
+        <label class="form-row mt-1" for="email">Candidate Email:</label>
+        <input id="email" type="text" class="form-control w-100 p-1 m-1" type="email" placeholder="email@address.com">
+    
+    <!-- Carousel -->
+    <label for="carouselExampleIndicators" style="text-align: center;">Questions:</label>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" [ngClass]="activeImg == 0 ? 'active' : ''"></li>
+            <li data-target="#carouselExampleIndicators" [ngClass]="activeImg == 1 ? 'active' : ''"></li>
+        </ol>
+        <div class="carousel-inner myCenter">
+            <div class="carousel-item" [ngClass]="activeImg == 0 ? 'active' : ''">
+                <span>AAAAAAAAAAAAAAA</span>
+            </div>
+            <div class="carousel-item" [ngClass]="activeImg == 1 ? 'active' : ''">
+                <span>BBBBBBB</span>
+            </div>
+        </div>
+        <a class="carousel-control-prev" (click)="prevSlide()" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" (click)="nextSlide()" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info" routerLink="layout/interview"
+            (click)="createInterview()">Create Interview</button>
+    </div>
