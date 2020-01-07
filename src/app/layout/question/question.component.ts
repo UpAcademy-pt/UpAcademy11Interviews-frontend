@@ -16,6 +16,7 @@ import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeNewComponent } from './attribute-new/attribute-new.component';
 import { GenerateInterviewComponent } from './generate-interview/generate-interview.component';
 import { id } from '@swimlane/ngx-datatable';
+import { QuestionDeleteComponent } from './question-delete/question-delete.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -169,8 +170,12 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.router.navigate(['/question', question.id]);
   }
 
-  public deleteQuestion(row: number) {
-    this.questionApi.delete(row).subscribe(data => {
+  public deleteQuestion(id: number) {
+    const initialState = {
+      id: id,
+    };
+    this.modalRef = this.modalService.show(QuestionDeleteComponent, {initialState});
+    this.modalService.onHide.subscribe((question: Question) => {
       this.dataService.updateQuestions();
     });
   }
