@@ -27,7 +27,6 @@
 .box {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 8%;
   opacity: 85%;
   box-shadow: 0 3px 5px -1px rgba(10, 1, 134, 0.603);
   position: relative;
@@ -102,6 +101,7 @@
 }
 
 /* myCheckbox */
+
 .checkbox-label {
   display: block;
   position: relative;
@@ -138,7 +138,7 @@
 
 
 .checkbox-label input:checked ~ .checkbox-custom {
-  background-color: #FFFFFF;
+  background-color: rgb(0, 0, 120);
   border-radius: 5px;
   -webkit-transform: rotate(0deg) scale(1);
   -ms-transform: rotate(0deg) scale(1);
@@ -156,7 +156,7 @@
   height: 0px;
   width: 0px;
   border-radius: 5px;
-  border: solid #009BFF;
+  border: solid rgb(0, 255, 251);
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(0deg) scale(0);
   -ms-transform: rotate(0deg) scale(0);
@@ -179,7 +179,7 @@ left: 12px;
 top: 3px;
 width: 8px;
 height: 18px;
-border: solid #009BFF;
+border: solid rgb(0, 255, 251);
 border-width: 0 2px 2px 0;
 background-color: transparent;
 border-radius: 0;
