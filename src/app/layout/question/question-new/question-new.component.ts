@@ -38,7 +38,6 @@ export class QuestionNewComponent {
   filteredValues: AttributeValue[] = [];
 
   empty = false;
-  missingAttributes = false;
 
   questionComponent : QuestionComponent;
 
@@ -60,10 +59,6 @@ export class QuestionNewComponent {
   }
 
   public create() {
-
-    this.missingAttributes = false;
-
-    if (this.selectedValuesString.size == this.attributes.length) {
       this.selectedValuesString.forEach(element => {
         let index= this.attributeValues.findIndex((attr: any) => attr.value == element);
         this.selectedValues.push(this.attributeValues[index]);
@@ -80,9 +75,6 @@ export class QuestionNewComponent {
         (error) => {
         }
       );
-    } else{
-      this.missingAttributes = true;
-    }
   }
 
   ngOnInit() {

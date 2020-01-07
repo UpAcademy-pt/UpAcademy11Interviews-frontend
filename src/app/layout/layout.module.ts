@@ -36,7 +36,8 @@ import { AttributeNewComponent } from './question/attribute-new/attribute-new.co
     LayoutComponent,
     QuestionEditComponent,
     AccountEditComponent,
-    AttributeNewComponent
+    AttributeNewComponent,
+    InterviewComponent
   ],
   imports: [
     CommonModule,

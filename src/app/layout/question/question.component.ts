@@ -23,7 +23,13 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class QuestionComponent implements OnInit, OnDestroy {
   public questions$: ReplaySubject<Question[]>;
+
+  public attributes$: ReplaySubject<Attribute[]>;
+
   private subscriptionQuestions: Subscription;
+
+  private subscriptionAttributes: Subscription;
+
   public modalRef: BsModalRef;
   public iconNew = faPlus;
 
@@ -53,6 +59,13 @@ export class QuestionComponent implements OnInit, OnDestroy {
       console.log('questions$ on QuestionComponent', JSON.stringify(data));
       this.displayedQuestions = data;
     });
+
+    this.attributes$ = this.dataService.attributes$;
+    this.subscriptionAttributes = this.attributes$.subscribe((data) => {
+      console.log('attributes$ on QuestionComponent', JSON.stringify(data));
+      this.attributes = data;
+    });
+
   }
 
   columns = ["Add to Interview", "Question", "Expected Answer", ""];
@@ -79,9 +92,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
             this.attributes.forEach((attribute: Attribute) => {
               this.valueOption[attribute.category] = '';
               let printValues = [];
-              this.attributeValues.forEach(element => {
-                console.log(element);
-               
+              this.attributeValues.forEach(element => {              
                 if (element.attribute['id'] == attribute.id) {
                   printValues.push(element.value);
                   console.log("ATRIBUTO IGUAL " + printValues);
@@ -134,6 +145,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.show(AttributeNewComponent, { initialState });
     this.modalService.onHide.subscribe((attribute: Attribute) => {
     });
+    this.dataService.updateAttributes();
   }
 
 
@@ -143,10 +155,15 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptionQuestions.unsubscribe();
+    this.subscriptionAttributes.unsubscribe();
   }
 
   updateQuestions() {
     this.dataService.updateQuestions();
+  }
+
+  updateAttributes() {
+    this.dataService.updateAttributes();
   }
 
   clickRow(question: Question) {
