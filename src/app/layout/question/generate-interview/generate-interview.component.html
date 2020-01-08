@@ -16,15 +16,14 @@
     <label for="carouselExampleIndicators" style="text-align: center;">Questions:</label>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" [ngClass]="activeImg == 0 ? 'active' : ''"></li>
-            <li data-target="#carouselExampleIndicators" [ngClass]="activeImg == 1 ? 'active' : ''"></li>
+            <li *ngFor = "let myQuestion of myQuestions | keyvalue; let i = index" 
+            data-target="#carouselExampleIndicators" [ngClass]="activeImg == i ? 'active' : ''">
+            </li>
         </ol>
         <div class="carousel-inner myCenter">
-            <div class="carousel-item" [ngClass]="activeImg == 0 ? 'active' : ''">
-                <span>AAAAAAAAAAAAAAA</span>
-            </div>
-            <div class="carousel-item" [ngClass]="activeImg == 1 ? 'active' : ''">
-                <span>BBBBBBB</span>
+            <div *ngFor = "let myQuestion of myQuestions | keyvalue; let i = index" class="carousel-item" 
+            [ngClass]="activeImg == i ? 'active' : ''">
+            <span>{{myQuestion.value.question}}</span>
             </div>
         </div>
         <a class="carousel-control-prev" (click)="prevSlide()" role="button" data-slide="prev">

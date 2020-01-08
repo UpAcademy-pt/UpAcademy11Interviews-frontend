@@ -5,7 +5,8 @@ import { AttributeValueApiService } from 'src/app/core/services/attribute-value-
 import { Question } from 'src/app/core/models';
 import { QuestionComponent } from '../question.component';
 import { QuestionApiService } from 'src/app/core';
-import { ReplaySubject, Subscription } from 'rxjs';
+import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
+import { InterviewModel } from 'src/app/core/models/interview-template';
 
 @Component({
   selector: 'app-generate-interview',
@@ -14,45 +15,48 @@ import { ReplaySubject, Subscription } from 'rxjs';
 })
 export class GenerateInterviewComponent implements OnInit {
 
+  interviewName: string;
+
+  interview = new Set();
 
   Roles: AttributeValue[] = [];
 
   questionIds : Set<number> = new Set<number>();
 
-  questions : Question[] = [];
+  myQuestions = []; /* array de questions da interview */
 
-  
   activeImg = 0;
   
   constructor(
-    public questionComponent: QuestionComponent,
     public bsModalRef: BsModalRef,
     public attributeValueApi: AttributeValueApiService,
-    public questionApi: QuestionApiService
+    public InterviewModelApiService: InterviewModelApiService,
+    private questionApi: QuestionApiService,
   ) { 
   }
 
   ngOnInit() {
-
-    this.attributeValueApi.getByAttribute('Role').subscribe((data: AttributeValue[]) => {
-      this.Roles = data;
-    });
-
-    this.questionIds.forEach( (id : number) => {
-      this.questionApi.get(id).subscribe( (data : Question) => {
-        this.questions.push(data);
-      });
-    })
+    let questions = [];
+    this.questionIds.forEach(questionId => questions.push(questionId));
+    console.log(questions);
+    for (let index = 0; index < questions.length; index++) {
+      this.questionApi.get(questions[index]).subscribe(data => {
+        this.myQuestions.push(data);
+        console.log(this.myQuestions);
+      } )
+      
+    }
     
   }
 
   public createInterview() {
+    
     this.bsModalRef.hide()
   }
 
   prevSlide() {
     if (this.activeImg == 0) {
-      this.activeImg = 1; //length-1
+      this.activeImg = this.myQuestions.length-1;
     }
     else {
       this.activeImg--;
@@ -60,7 +64,7 @@ export class GenerateInterviewComponent implements OnInit {
   }
 
   nextSlide() {
-    if (this.activeImg == 1) {//length-1
+    if (this.activeImg == this.myQuestions.length-1) {
       this.activeImg = 0;
     }
     else {

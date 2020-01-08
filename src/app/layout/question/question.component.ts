@@ -242,9 +242,10 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   generateInterview() {
     const initialState = {
-      questionIds : this.interviewQuestions
+      questionIds : this.interviewQuestions,
     }
     this.modalRef = this.modalService.show(GenerateInterviewComponent, {initialState});
+        
   }
 
   generatePdf() {
