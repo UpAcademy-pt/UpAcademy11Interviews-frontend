@@ -40,5 +40,4 @@ export class AttributeValueApiService {
     return this.http.delete(this.apiUrl + id, {responseType: 'text'});
   }
 
-
 }

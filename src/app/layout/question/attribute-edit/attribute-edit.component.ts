@@ -32,11 +32,11 @@ export class AttributeEditComponent implements OnInit {
       this.attributeValue.value = "";
       this.attributeValue.attribute = {};
 
-      this.attributeValues$ = this.dataService.attributeValues$;
-      this.subscriptionAttributeValues = this.attributeValues$.subscribe((data) => {
-        console.log('attributeValues$ on AttributeEditComponent', JSON.stringify(data));
-        this.attributeValues = data;
-      });
+      // this.attributeValues$ = this.dataService.attributeValues$;
+      // this.subscriptionAttributeValues = this.attributeValues$.subscribe((data) => {
+      //   console.log('attributeValues$ on AttributeEditComponent', JSON.stringify(data));
+      //   this.attributeValues = data;
+      // });
     }
 
   ngOnInit() {
@@ -48,6 +48,13 @@ export class AttributeEditComponent implements OnInit {
         console.log(attributeValues);
       });
       });
+  }
+
+  public updateAttributeValues(){
+    this.attributeValueApi.getByAttribute(this.attribute.category).subscribe((attributeValues: AttributeValue[]) => {
+      this.attributeValues = attributeValues;
+      console.log(attributeValues);
+    });
   }
 
   public edit() {
@@ -63,10 +70,9 @@ export class AttributeEditComponent implements OnInit {
 
   public createAttributeValue () {
     Object.assign(this.attributeValue.attribute, this.attribute);
-    //this.attributeValue.attribute = this.attribute;
     this.attributeValueApi.create(this.attributeValue).subscribe(
       (data : AttributeValue) => {
-        //this.dataService.updateAttributeValues(this.attribute.category);
+        this.updateAttributeValues();
         this.attributeValues.push(data);
       },
       (error) => {
@@ -79,10 +85,9 @@ export class AttributeEditComponent implements OnInit {
       (data) => {
         console.log(data);
         
-        //this.dataService.updateAttributeValues(this.attribute.category);
+        this.updateAttributeValues();
+
         let index = this.attributeValues.findIndex(attr => attr.id == id);
-        console.log(index);
-        
         this.attributeValues.splice(index, 1);
       },
       (error) => {
