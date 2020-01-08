@@ -78,21 +78,21 @@
                                                                 <span class="checkbox-custom"></span>
                                                         </label>
                                                 </ng-container>
-                                                <ng-container *ngIf="i>0">
+                                                <ng-container *ngIf="i>0" >
                                                         {{question[col]}}
                                                 </ng-container>
                                         </td>
                                         <td style="width:150px">
-                                                <button type="button" class="editButtonQuestion"
-                                                        (click)="editQuestion(question.id)">
+                                                <button type="button" class="editButtonQuestion" (click)="editQuestion(question.id)" 
+                                                data-toggle="tooltip" data-placement="bottom" title="Edit" >
 
                                                         <i class="material-icons">
-                                                                create</i>
+                                                                create</i> 
                                                         
                                                         </button>
 
                                                 <button type="button" class="deleteButtonQuestion"
-                                                        (click)="deleteQuestion(question.id)">
+                                                        (click)="deleteQuestion(question.id)" data-toggle="tooltip" data-placement="bottom" title="Delete">
 
                                                         <i class="material-icons">
                                                                 delete</i>
