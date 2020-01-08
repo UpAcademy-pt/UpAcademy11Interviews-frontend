@@ -5,6 +5,7 @@ import { AccountApiService, Account, DataService } from 'src/app/core';
 import { RegisterComponent } from 'src/app/register/register.component';
 import { ReplaySubject } from 'rxjs';
 import { AccountEditComponent } from './account-edit/account-edit.component';
+import { AccountDeleteComponent } from './account-delete/account-delete.component';
 
 @Component({
   selector: 'app-account',
@@ -41,10 +42,10 @@ export class AccountComponent implements OnInit {
   }
 
   public deleteAccount(id) {
-    this.accountApi.delete(id).subscribe( (data:any) =>{
-     /*  this.accounts$.next(data); */
-     this.accountApi.getAll();
-    });
+    const initialState = {
+      id: id,
+    };
+    this.modalRef = this.modalService.show(AccountDeleteComponent, {initialState});
   }
 
   public accountEdit(id: number) {

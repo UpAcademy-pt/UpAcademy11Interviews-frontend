@@ -3,6 +3,8 @@ import { ReplaySubject } from 'rxjs';
 /* pdf */
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { InterviewLoadComponent } from './interview-load/interview-load.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -13,7 +15,11 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class InterviewComponent implements OnInit {
 
-  constructor() { }
+  public modalRef: BsModalRef;
+
+  constructor(
+    private modalService: BsModalService
+  ) { }
 
   columns = ["Question","Expected Answer", "Evaluation"];
   
@@ -32,6 +38,11 @@ export class InterviewComponent implements OnInit {
   ngOnInit() {
   }
 
+  loadInterview() {
+    /* load interviews from API */
+    this.modalRef = this.modalService.show(InterviewLoadComponent);
+
+  }
 
   generatePdf() {
     var rows = [];

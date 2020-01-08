@@ -16,10 +16,10 @@
             </div>
         </div>
         <label for="role">Candidate Role:</label>
-        <select class="form-control" [(ngModel)]="Role.value">
-            <option value="" selected></option>
-            <option [value]="col" *ngFor="let col of Roles">
-                {{col.value}}
+        <select class="form-control" [(ngModel)]="Roles">
+            <option value="Roles" selected>Any</option>
+            <option [value]="role" *ngFor="let role of Roles">
+                {{role.value}}
             </option>
         </select>
         <label class="form-row mt-1" for="email">Candidate Email:</label>

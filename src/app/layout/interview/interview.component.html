@@ -1,9 +1,13 @@
 <section class="container">
     <div>
-        <button class="pdfButton" (click)="generatePdf()">
-            <span>Export PDF</span>
+        <button class="loadButton" (click)="loadInterview()">
+            <span>Load Interview</span>
         </button>
     </div>
+<div>
+    <span><!-- {{candidateName}} --></span>
+</div>
+
     <table id="interview">
         <tr>
             <th *ngFor="let col of columns">

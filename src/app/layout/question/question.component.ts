@@ -16,6 +16,7 @@ import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeNewComponent } from './attribute-new/attribute-new.component';
 import { GenerateInterviewComponent } from './generate-interview/generate-interview.component';
 import { id } from '@swimlane/ngx-datatable';
+import { QuestionDeleteComponent } from './question-delete/question-delete.component';
 import { AttributeEditComponent } from './attribute-edit/attribute-edit.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -198,8 +199,12 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.router.navigate(['/question', question.id]);
   }
 
-  public deleteQuestion(row: number) {
-    this.questionApi.delete(row).subscribe(data => {
+  public deleteQuestion(id: number) {
+    const initialState = {
+      id: id,
+    };
+    this.modalRef = this.modalService.show(QuestionDeleteComponent, {initialState});
+    this.modalService.onHide.subscribe((question: Question) => {
       this.dataService.updateQuestions();
     });
   }
@@ -223,7 +228,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   interviewQuestions: Set<number> = new Set<number>();
 
-  public questionCheck(id) {
+  public questionCheck(id: number) {
       
       if (this.interviewQuestions.has(id)) {
         this.interviewQuestions.delete(id);
@@ -231,7 +236,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
       else 
         this.interviewQuestions.add(id);
         console.log(this.interviewQuestions);
-        
   }
 
   generateInterview() {

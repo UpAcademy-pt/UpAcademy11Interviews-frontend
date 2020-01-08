@@ -12,7 +12,8 @@ export class GenerateInterviewComponent implements OnInit {
 
 
   Roles: AttributeValue[] = [];
-  Role = '';
+  
+  
   activeImg = 0;
   constructor(
     public bsModalRef: BsModalRef,
@@ -24,10 +25,8 @@ export class GenerateInterviewComponent implements OnInit {
     this.attributeValueApi.getByAttribute('Role').subscribe((data: AttributeValue[]) => {
       this.Roles = data;
     });
-
+        
   }
-
-
 
   public createInterview() {
     this.bsModalRef.hide()
