@@ -18,6 +18,8 @@ import { AttributeEditComponent } from './attribute-edit/attribute-edit.componen
 import { GenerateInterviewComponent } from './generate-interview/generate-interview.component';
 import { id } from '@swimlane/ngx-datatable';
 import { QuestionDeleteComponent } from './question-delete/question-delete.component';
+import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
+import { initialState } from 'ngx-bootstrap/timepicker/reducer/timepicker.reducer';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -28,11 +30,16 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class QuestionComponent implements OnInit, OnDestroy {
   public questions$: ReplaySubject<Question[]>;
 
+  public interviewQuestions$: ReplaySubject<Set<number>> = new ReplaySubject(1);
+
   public attributes$: ReplaySubject<Attribute[]>;
 
   private subscriptionQuestions: Subscription;
 
   private subscriptionAttributes: Subscription;
+
+  interviewQuestions: Set<number> = new Set<number>();
+
 
   public modalRef: BsModalRef;
   public iconNew = faPlus;
@@ -55,6 +62,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private questionApi: QuestionApiService,
     private attributeApi: AttributeApiService,
     private attributeValueApi: AttributeValueApiService,
+    private InterviewModelApiService: InterviewModelApiService,
     private router: Router,
     private modalService: BsModalService
   ) {
@@ -220,20 +228,23 @@ export class QuestionComponent implements OnInit, OnDestroy {
     });
   }
 
-  interviewQuestions: Set<number> = new Set<number>();
-
   public questionCheck(id: number) {
-      
       if (this.interviewQuestions.has(id)) {
-        this.interviewQuestions.delete(id);
+        this.interviewQuestions.delete(id);        
       }
-      else 
+      else {
         this.interviewQuestions.add(id);
-        console.log(this.interviewQuestions);
+      }
+
+      console.log(this.interviewQuestions);
+      
   }
 
   generateInterview() {
-    this.modalRef = this.modalService.show(GenerateInterviewComponent);
+    const initialState = {
+      questionIds : this.interviewQuestions
+    }
+    this.modalRef = this.modalService.show(GenerateInterviewComponent, {initialState});
   }
 
   generatePdf() {

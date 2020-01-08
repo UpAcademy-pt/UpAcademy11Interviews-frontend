@@ -43,17 +43,10 @@ export class InterviewComponent implements OnInit {
 
   deleteQuestion() {
     this.bsModalRef = this.modalService.show(InterviewDeleteComponent);
-
-    /* this.questionApi.delete(this.id).subscribe((data) => {
-      this.bsModalRef.hide()
-    },
-    (error) => {
-    }
-    ); */
   }
 
   loadInterview() {
-    /* load interviews from API */
+    
     this.bsModalRef = this.modalService.show(InterviewLoadComponent);
 
   }
