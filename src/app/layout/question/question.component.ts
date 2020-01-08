@@ -199,7 +199,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   interviewQuestions: Set<number> = new Set<number>();
 
-  public questionCheck(id) {
+  public questionCheck(id: number) {
       
       if (this.interviewQuestions.has(id)) {
         this.interviewQuestions.delete(id);
@@ -207,7 +207,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
       else 
         this.interviewQuestions.add(id);
         console.log(this.interviewQuestions);
-        
   }
 
   generateInterview() {

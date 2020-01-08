@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Interview</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <label for="form-row">Candidate Name:</label>
+    <div id="form-row" class="form-row mb-1">
+        <div class="col">
+            <input class="form-control p-1 m-1" name="firstname" value="firstname" type="text" [(ngModel)]="firstname" placeholder="First Name" />
+        </div>
+        <div class="col">
+            <input class=" form-control p-1 m-1" name="lastname" value="lastname" type="text" [(ngModel)]="lastname" placeholder="Last Name" />
+        </div>
+    </div>
+    <label class="form-row mt-1" for="email">Candidate Email:</label>
+    <input id="email" type="text" class="form-control w-100 p-1 m-1" type="email" placeholder="email@address.com">
+    <label for="role">Select Interview:</label>
+        <select class="form-control" [(ngModel)]="Interviews">
+            <option value="Interview" selected></option>
+            <option [value]="interview" *ngFor="let interview of Interviews">
+                {{interview.value}}
+            </option>
+        </select>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-info" (click)="createInterview()">Load</button>
+</div>

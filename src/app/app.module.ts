@@ -17,7 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
 
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 // AoT requires an exported function for factories
@@ -43,6 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
     AngularMaterialModule,
     FlexLayoutModule,
     MatInputModule,
+    NgbModule,
     MatFormFieldModule,
     SidebarModule.forRoot(),
     TranslateModule.forRoot({

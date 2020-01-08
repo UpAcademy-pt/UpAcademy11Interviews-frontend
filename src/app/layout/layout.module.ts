@@ -28,6 +28,10 @@ import { AttributeNewComponent } from './question/attribute-new/attribute-new.co
 import { GenerateInterviewComponent } from './question/generate-interview/generate-interview.component';
 import { QuestionDeleteComponent } from './question/question-delete/question-delete.component';
 import { AccountDeleteComponent } from './account/account-delete/account-delete.component';
+import { InterviewLoadComponent } from './interview/interview-load/interview-load.component';
+import { InterviewResultsComponent } from './interview-results/interview-results.component';
+import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +47,9 @@ import { AccountDeleteComponent } from './account/account-delete/account-delete.
     InterviewComponent,
     GenerateInterviewComponent,
     QuestionDeleteComponent,
-    AccountDeleteComponent
+    AccountDeleteComponent,
+    InterviewLoadComponent,
+    InterviewResultsComponent
   ],
   imports: [
     CommonModule,
@@ -56,11 +62,21 @@ import { AccountDeleteComponent } from './account/account-delete/account-delete.
     MatChipsModule,
     MatIconModule,
     MatFormFieldModule,
+    NgbAccordionModule,
     FontAwesomeModule,
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],
-  entryComponents: [QuestionNewComponent, QuestionEditComponent, AccountEditComponent,
-     AttributeNewComponent, GenerateInterviewComponent, QuestionDeleteComponent, AccountDeleteComponent]
+  entryComponents: [
+    QuestionNewComponent,
+    QuestionEditComponent,
+    AccountEditComponent,
+    AttributeNewComponent,
+    GenerateInterviewComponent,
+    QuestionDeleteComponent,
+    AccountDeleteComponent,
+    InterviewLoadComponent,
+    InterviewResultsComponent
+  ]
 })
 export class LayoutModule { }
