@@ -11,7 +11,7 @@ export class InterviewLoadComponent implements OnInit {
   firstname: string;
   lastname: string
   candidateName: string;
-
+/*   public bsModalRef: BsModalRef */
   constructor(
     public bsModalRef: BsModalRef
   ) { }

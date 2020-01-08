@@ -18,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 
 
 // AoT requires an exported function for factories

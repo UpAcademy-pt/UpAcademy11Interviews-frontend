@@ -5,6 +5,8 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { InterviewLoadComponent } from './interview-load/interview-load.component';
+import { QuestionApiService } from 'src/app/core';
+import { InterviewDeleteComponent } from './interview-delete/interview-delete.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -15,15 +17,16 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class InterviewComponent implements OnInit {
 
-  public modalRef: BsModalRef;
 
+  id: number;
+  public bsModalRef: BsModalRef
   constructor(
-    private modalService: BsModalService
+    private modalService: BsModalService,
   ) { }
 
-  columns = ["Question","Expected Answer", "Evaluation"];
+  columns = ["Question","Expected Answer", "Evaluation", ""];
   
-  interviewQuestions = ["", ""];
+  interviewQuestions = ["",""];
   
   evaluations = [
     "Exceeds Requirements",
@@ -38,9 +41,20 @@ export class InterviewComponent implements OnInit {
   ngOnInit() {
   }
 
+  deleteQuestion() {
+    this.bsModalRef = this.modalService.show(InterviewDeleteComponent);
+
+    /* this.questionApi.delete(this.id).subscribe((data) => {
+      this.bsModalRef.hide()
+    },
+    (error) => {
+    }
+    ); */
+  }
+
   loadInterview() {
     /* load interviews from API */
-    this.modalRef = this.modalService.show(InterviewLoadComponent);
+    this.bsModalRef = this.modalService.show(InterviewLoadComponent);
 
   }
 

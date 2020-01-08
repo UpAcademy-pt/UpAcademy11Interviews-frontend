@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { ModalModule } from 'ngx-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NguiMapModule } from '@ngui/map';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SharedModule } from './shared/shared.module';
 import { LayoutRoutingModule } from './layout-routing.module';
-
 import { LayoutComponent } from './layout.component';
 import { MainComponent } from './main/main.component';
 import { QuestionComponent } from './question/question.component';
@@ -31,7 +28,8 @@ import { QuestionDeleteComponent } from './question/question-delete/question-del
 import { AccountDeleteComponent } from './account/account-delete/account-delete.component';
 import { InterviewLoadComponent } from './interview/interview-load/interview-load.component';
 import { InterviewResultsComponent } from './interview-results/interview-results.component';
-import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { InterviewDeleteComponent } from './interview/interview-delete/interview-delete.component';
 
 
 @NgModule({
@@ -51,11 +49,11 @@ import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
     QuestionDeleteComponent,
     AccountDeleteComponent,
     InterviewLoadComponent,
-    InterviewResultsComponent
+    InterviewResultsComponent,
+    InterviewDeleteComponent
   ],
   imports: [
     CommonModule,
-    SharedModule,
     LayoutRoutingModule,
     TranslateModule,
     FormsModule,
@@ -79,7 +77,8 @@ import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
     AccountDeleteComponent,
     InterviewLoadComponent,
     AttributeEditComponent,
-    InterviewResultsComponent
+    InterviewResultsComponent,
+    InterviewDeleteComponent
   ]
 })
 export class LayoutModule { }
