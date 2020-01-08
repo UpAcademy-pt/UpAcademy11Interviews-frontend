@@ -19,6 +19,10 @@ import { InterviewModel } from '../models/interview-template';
     return this.http.get(this.apiUrl);
   }
 
+  public get(id: number) {
+    return this.http.get(this.apiUrl + id);
+  }
+
   public create(interviewModel: InterviewModel) {
     return this.http.post(this.apiUrl, interviewModel);
   }
