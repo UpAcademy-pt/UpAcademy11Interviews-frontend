@@ -48,12 +48,15 @@
                                 <!--  <button type="button" class="btn btn-primary right" (click)="updateQuestions()" translate>
                                         Update Questions
                                 </button> -->
+                               
                                 
-                                <button class="QuestButton container" (click)="openCreateModal()">Add Question
+                                <button class="QuestButton" (click)="openCreateModal()">Add Question
                                         
                                         <i class="addQuestIcon material-icons">add_circle</i>
                                 </button>
-                        <br>
+                       
+                       
+                                <br>
                         <table id="question" style="overflow-x:auto;">
                                 <tr>
                                         <th *ngFor="let col of columns">
@@ -73,10 +76,21 @@
                                                 </ng-container>
                                         </td>
                                         <td style="width:150px">
-                                                <button type="button" class="btn btn-outline-info mr-2"
-                                                        (click)="editQuestion(question.id)">Edit</button>
-                                                <button type="button" class="btn btn-outline-danger"
-                                                        (click)="deleteQuestion(question.id)">X</button>
+                                                <button type="button" class="editButtonQuestion"
+                                                        (click)="editQuestion(question.id)">
+
+                                                        <i class="material-icons">
+                                                                create</i>
+                                                        
+                                                        </button>
+
+                                                <button type="button" class="deleteButtonQuestion"
+                                                        (click)="deleteQuestion(question.id)">
+
+                                                        <i class="material-icons">
+                                                                delete</i>
+                                                
+                                                </button>
                                         </td>
                                 </tr>
                         </table>
