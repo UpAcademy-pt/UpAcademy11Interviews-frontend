@@ -32,8 +32,8 @@ export class DataService {
     this.attributes$.subscribe((a) => console.log('attributes$ on DataService', JSON.stringify(a)));
     this.updateAttributes();
 
-    //this.attributeValues$.subscribe((a) => console.log('attributeValues$ on DataService', JSON.stringify(a)));
-    //this.updateAttributeValues(this.attribute.category);
+    this.attributeValues$.subscribe((a) => console.log('attributeValues$ on DataService', JSON.stringify(a)));
+    this.updateAttributeValues();
   }
 
   public updateQuestions() {
@@ -54,8 +54,8 @@ export class DataService {
     );
   }
 
-  updateAttributeValues(category : String) {
-    this.attributeValueApi.getByAttribute(category).subscribe(
+  updateAttributeValues() {
+    this.attributeValueApi.getAll().subscribe(
       (attributeValues: AttributeValue[]) => {
         this.attributeValues = attributeValues;
         this.attributeValues$.next(attributeValues);
