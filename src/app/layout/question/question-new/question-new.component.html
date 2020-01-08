@@ -8,7 +8,18 @@
 
         <div class="row">
                 <label for="question" style="margin-bottom: 0px; margin-left: 4px;">Question</label>
-                <input id="question" class="w-100 p-1 m-1" name="question" type="text" [(ngModel)]="question.question" placeholder="Write question"/>
+                <input id="question" class="w-100 p-1 m-1" required pattern="[A-z ?]+$" #question="ngModel" name="question" type="text" [(ngModel)]="question.question" placeholder="Write question"/>
+                
+
+  <div class="text-danger" [hidden]="question.valid || question.untouched">
+    
+    <div  *ngIf="question.errors && question.errors.required">
+        Question is required <br>
+    </div>
+    <div  *ngIf="question.errors && question.errors.pattern">
+      Question is invalid <br>
+  </div>
+  </div>
         
                 <label for="answer" style="margin-bottom: 0px; margin-left: 4px;">Expected Answer</label>    
                 <input id="answer" class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer" placeholder="Write expected answer"/>
@@ -44,6 +55,5 @@
 
 </div>
 <div class="modal-footer">
-    <label for="" *ngIf="missingAttributes">Define all categories</label>
     <button type="button" class="createButton" (click)="create()">Create</button>
 </div>

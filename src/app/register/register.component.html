@@ -50,15 +50,46 @@
   </button>
 </div>
 <div class="modal-body">
-  <input class="w-100 p-1 m-1" name="name" type="name" [(ngModel)]="account.name" placeholder="Username">
-  <input class="w-100 p-1 m-1" name="email" type="email" [(ngModel)]="account.email" placeholder="Email">
-  <input class="w-100 p-1 m-1" name="password" type="password" [(ngModel)]="account.password" placeholder="Password">
+  <input class="w-100 p-1 m-1" required pattern="[A-z -]+$" #name="ngModel" name="name" type="name" [(ngModel)]="account.name" placeholder="Name">
+
+  <div class="text-danger" [hidden]="name.valid || name.untouched">
+    
+    <div  *ngIf="name.errors && name.errors.required">
+        Name is required
+    </div>
+    <div  *ngIf="name.errors && name.errors.pattern">
+      Name is invalid
+  </div>
+  </div>
+  <input class="w-100 p-1 m-1" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" name="email" email type="email" [(ngModel)]="account.email" placeholder="Email">
+  <div class="text-danger" [hidden]="email.valid || email.untouched">
+    <div  *ngIf="email.errors && email.errors.required">
+        Email is required
+    </div>
+    <div  *ngIf="email.errors && email.errors.pattern">
+        Email is invalid
+    </div>
+  </div>
+  <input class="w-100 p-1 m-1" required pattern="(.{4,}$)" #password="ngModel" name="password" type="password" [(ngModel)]="account.password" placeholder="Password">
+  <div class="text-danger" [hidden]="password.valid || password.untouched">
+
+  <div  *ngIf="password.errors && password.errors.required">
+    Password is required
+</div>
+
+
+<div  *ngIf="password.errors && password.errors.pattern">
+  Password is invalid<br>
+  Minimum 4 characters
+</div>
+</div>
   <label class="font-weight-bold text-center mt-2">Choose a role:</label>
   <select mdbInput class="form-control w-100" [(ngModel)]="account.role">
     <option [value]="roles" *ngFor="let roles of Roles">{{roles}}</option>
   </select>
 </div>
+
 <div class="text-center modal-footer">
-  <button type="button" class="registerButton " (click)="register()" (click)="bsModalRef.hide()">Create</button>
+  <button type="button" [disabled]="!email.valid || !name.valid" class="registerButton " (click)="register()" (click)="bsModalRef.hide()">Create</button>
   <!-- <button type="button" class="btn btn-outline-danger mt-2" (click)="back()">Cancel</button> -->
 </div>

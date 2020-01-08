@@ -25,6 +25,7 @@ import { QuestionEditComponent } from './question/question-edit/question-edit.co
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { InterviewComponent } from './interview/interview.component';
 import { AttributeNewComponent } from './question/attribute-new/attribute-new.component';
+import { AttributeEditComponent } from './question/attribute-edit/attribute-edit.component';
 import { GenerateInterviewComponent } from './question/generate-interview/generate-interview.component';
 import { QuestionDeleteComponent } from './question/question-delete/question-delete.component';
 import { AccountDeleteComponent } from './account/account-delete/account-delete.component';
@@ -46,6 +47,7 @@ import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
     AttributeNewComponent,
     InterviewComponent,
     GenerateInterviewComponent,
+    AttributeEditComponent,
     QuestionDeleteComponent,
     AccountDeleteComponent,
     InterviewLoadComponent,
@@ -76,6 +78,7 @@ import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
     QuestionDeleteComponent,
     AccountDeleteComponent,
     InterviewLoadComponent,
+    AttributeEditComponent,
     InterviewResultsComponent
   ]
 })
