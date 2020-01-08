@@ -5,26 +5,13 @@
     </button>
 </div>
 <div class="modal-body">
-    
-        <label for="form-row">Candidate Name:</label>
+        <label for="form-row">Interview Name:</label>
         <div id="form-row" class="form-row mb-1">
             <div class="col">
-                <input class="form-control p-1 m-1" name="firstname" type="text" placeholder="First Name" />
-            </div>
-            <div class="col">
-                <input class=" form-control p-1 m-1" name="lastname" type="text" placeholder="Last Name" />
+                <input class="form-control p-1 m-1" name="interviewName" value="interviewName" type="text"
+                 [(ngModel)]="interviewName" placeholder="example: Front-End Junior" />
             </div>
         </div>
-        <label for="role">Candidate Role:</label>
-        <select class="form-control" [(ngModel)]="Roles">
-            <option value="Roles" selected>Any</option>
-            <option [value]="role" *ngFor="let role of Roles">
-                {{role.value}}
-            </option>
-        </select>
-        <label class="form-row mt-1" for="email">Candidate Email:</label>
-        <input id="email" type="text" class="form-control w-100 p-1 m-1" type="email" placeholder="email@address.com">
-    
     <!-- Carousel -->
     <label for="carouselExampleIndicators" style="text-align: center;">Questions:</label>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
