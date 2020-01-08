@@ -1,19 +1,29 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Generate Interview</h4>
+    <h4 class="font-weight-bold modal-title pull-left">Generate Interview</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-        <label for="form-row">Interview Name:</label>
+        <label for="form-row" class="font-weight-bold">Interview Name:</label>
         <div id="form-row" class="form-row mb-1">
             <div class="col">
-                <input class="form-control p-1 m-1" name="interviewName" value="interviewName" type="text"
+                <input class="form-control p-1 m-1"  name="interviewName" value="interviewName" type="text"
                  [(ngModel)]="interviewName" placeholder="example: Front-End Junior" />
             </div>
         </div>
-    <!-- Carousel -->
-    <label for="carouselExampleIndicators" style="text-align: center;">Questions:</label>
+
+        <!-- <div class="text-danger" [hidden]="interviewName.valid || interviewName.untouched">
+      
+            <div  *ngIf="interviewName.errors && interviewName.errors.required">
+            Interview name is required
+            </div>
+            <div  *ngIf="interviewName.errors && interviewName.errors.pattern">
+            Invalid name
+          </div>
+          </div>
+     Carousel -->
+    <label for="carouselExampleIndicators" class="font-weight-bold" style="text-align: center;">Questions:</label>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" [ngClass]="activeImg == 0 ? 'active' : ''"></li>
@@ -37,6 +47,6 @@
         </a>
     </div>
     <div class="modal-footer">
-        <button type="button" class="generateIntButton " routerLink="layout/interview"
+        <button type="button"  class="generateIntButton " routerLink="layout/interview"
             (click)="createInterview()">Create Interview</button>
     </div>
