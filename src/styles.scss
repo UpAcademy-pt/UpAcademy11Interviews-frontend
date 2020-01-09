@@ -186,9 +186,54 @@ border-radius: 0;
 }
 
 
-
-
-
-
+.modal-header{
+background-image: url(https://d2zr9w65gdacs9.cloudfront.net/50158/vagas-21564757671inline.png) !important;
+//background-color: rgb(255, 255, 255);
   
+}
+
+.modal-body{
+
+  //background-image: url(https://www.criticaltechworks.com/static/images/imagem_banner_new.png);
+  //background-color: rgb(0, 0, 22);
+  background-size: 100%;
+ 
+}
+
+
+.modal-footer{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  //border-top: 1px solid #dee2e6;
+  border-bottom-right-radius: .3rem;
+  border-bottom-left-radius: .3rem;
+  background: transparent;
+ // background-image: url(https://www.criticaltechworks.com/static/images/imagem_banner_new.png);
+
+}
+
+
+.modalLogo{
+  float: left;
+  size: 10px;
+  width: 30%;
+  margin-top: 9%;
+  background-image: url(https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg);
+  background-size: 100%;
+  background: none;
+  margin-right: 1.25rem;
+}
+
+
+
+.modalLogo1{
+  float: left;
+  size: 10px;
+  width: 25%;
+  margin-top: 9%;
+  background-image: url(https://www.criticaltechworks.com/static/images/imagem_banner_new.png);
+  background-size: 100%;
+}
 
