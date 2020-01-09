@@ -187,16 +187,22 @@ border-radius: 0;
 
 
 .modal-header{
-background-image: url(https://d2zr9w65gdacs9.cloudfront.net/50158/vagas-21564757671inline.png) !important;
-//background-color: rgb(255, 255, 255);
+//background-image: url("https://d2zr9w65gdacs9.cloudfront.net/50158/vagas-21564757671inline.png") !important;
+background-color: rgb(205, 211, 211);
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
   
 }
 
 .modal-body{
 
-  //background-image: url(https://www.criticaltechworks.com/static/images/imagem_banner_new.png);
-  //background-color: rgb(0, 0, 22);
+  background-image: url("https://d2zr9w65gdacs9.cloudfront.net/50158/vagas-21564757671inline.png");
+  background-color: rgb(0, 0, 22);
   background-size: 100%;
+  background-repeat: no-repeat;
+  font: bold;
+  
+  color: white;
  
 }
 
@@ -211,7 +217,7 @@ background-image: url(https://d2zr9w65gdacs9.cloudfront.net/50158/vagas-21564757
   border-bottom-left-radius: .3rem;
   background: transparent;
  // background-image: url(https://www.criticaltechworks.com/static/images/imagem_banner_new.png);
-
+border: none;
 }
 
 
@@ -228,12 +234,4 @@ background-image: url(https://d2zr9w65gdacs9.cloudfront.net/50158/vagas-21564757
 
 
 
-.modalLogo1{
-  float: left;
-  size: 10px;
-  width: 25%;
-  margin-top: 9%;
-  background-image: url(https://www.criticaltechworks.com/static/images/imagem_banner_new.png);
-  background-size: 100%;
-}
 

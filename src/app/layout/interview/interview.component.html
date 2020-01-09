@@ -21,14 +21,14 @@
             </td>
             <td style="width:260px">
                 <select class="form-control" [(ngModel)]="evaluation">
-                    <option value="" selected>No Evaluation</option>
+                    <option value="" selected> No Evaluation </option>
                     <option [value]="col" *ngFor="let col of evaluations">
                         {{col}}
                     </option>
                 </select>
             </td>
             <td style="width:150px">
-                
+
                 <button type="button" class="deleteInterview" (click)="deleteQuestion()"
                 data-toggle="tooltip" data-placement="bottom" title="Delete">
 
