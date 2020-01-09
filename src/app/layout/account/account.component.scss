@@ -75,15 +75,15 @@ table tr:first-child th:first-child {
 .userButton{
     border-radius: 60px;
     border: 0px;
-    background-color: transparent;
+    background-color:transparent;
     color: rgb(0, 255, 251);
     font-size: 1rem;
     font-weight: bold;
-    padding: 10px;
-    padding-right: 30px;
     outline: none;
     justify-content: right;
-    padding-left: 84%;
+    padding-left: 2%;
+    padding-right:4%;
+    margin-left: 84%;
 
 } 
 
@@ -125,6 +125,103 @@ table tr:first-child th:first-child {
     .addUserIcon{
         font-size: 1rem;
         position: absolute;
-        padding-left: 8px;
-        padding-top: 4px;
+        margin-left: 4%;
+        margin-top: -20px;
     }
+
+// botões edit e delete + icons
+
+    
+    .userButtonEdit {
+        margin-left: 35%;
+        border-radius:100%;
+        border: none;
+        background-color:transparent;
+        outline: none;
+        font-style: normal;
+      }
+    
+      .userButtonEdit {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 25px; 
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        color:rgb(0, 0, 22);
+        align-content: center;
+        vertical-align: middle;
+      
+      
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+      
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+      
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+      
+      }
+      
+      .userButtonEdit:hover{  
+        color: rgb(0, 180, 177);
+      }
+      .userButtonEdit::selection{
+        background-color: transparent;
+      
+      }
+
+      
+      .userButtonDelete {
+        border-radius:100%;
+        border: none;
+        background-color:transparent;
+        outline: none;
+        font-style: normal;
+      }
+    
+      .userButtonDelete {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 25px; 
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        color:rgb(0, 0, 22);
+        align-content: center;
+        vertical-align: middle;
+      
+      
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+      
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+      
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+      
+      }
+      
+      .userButtonDelete:hover{  
+        color: rgb(219, 0, 0);
+      }
+      .userButtonDelete::selection{
+        background-color: transparent;
+      
+      }
