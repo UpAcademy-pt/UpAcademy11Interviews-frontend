@@ -7,6 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { InterviewLoadComponent } from './interview-load/interview-load.component';
 import { QuestionApiService } from 'src/app/core';
 import { InterviewDeleteComponent } from './interview-delete/interview-delete.component';
+import { InterviewSubmitComponent } from './interview-submit/interview-submit.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -49,6 +50,10 @@ export class InterviewComponent implements OnInit {
     
     this.bsModalRef = this.modalService.show(InterviewLoadComponent);
 
+  }
+
+  submitInterview() {
+    this.bsModalRef = this.modalService.show(InterviewSubmitComponent);
   }
 
   generatePdf() {

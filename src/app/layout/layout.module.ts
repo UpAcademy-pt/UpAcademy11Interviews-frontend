@@ -30,6 +30,7 @@ import { InterviewLoadComponent } from './interview/interview-load/interview-loa
 import { InterviewResultsComponent } from './interview-results/interview-results.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { InterviewDeleteComponent } from './interview/interview-delete/interview-delete.component';
+import { InterviewSubmitComponent } from './interview/interview-submit/interview-submit.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { InterviewDeleteComponent } from './interview/interview-delete/interview
     AccountDeleteComponent,
     InterviewLoadComponent,
     InterviewResultsComponent,
-    InterviewDeleteComponent
+    InterviewDeleteComponent,
+    InterviewSubmitComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +80,8 @@ import { InterviewDeleteComponent } from './interview/interview-delete/interview
     InterviewLoadComponent,
     AttributeEditComponent,
     InterviewResultsComponent,
-    InterviewDeleteComponent
+    InterviewDeleteComponent,
+    InterviewSubmitComponent
   ]
 })
 export class LayoutModule { }
