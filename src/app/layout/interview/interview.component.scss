@@ -4,6 +4,8 @@
     border-collapse: separate;
     border-spacing: 0px;
     width: 100%;
+    
+
 }
 
 /* top-left border-radius */
@@ -31,8 +33,11 @@ table tr:first-child th:first-child {
 #interview td {
     border-top: 2px solid rgb(0, 0, 0);
     padding: 8px;
-    border-collapse: collapse;
-}
+    min-width: 200px;
+    max-width: 200px;
+    word-wrap: break-word;
+    text-align: justify;
+  }
 
 #interview tr {
     background-color: white;

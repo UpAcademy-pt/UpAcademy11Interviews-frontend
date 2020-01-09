@@ -8,30 +8,35 @@
           
         
 
-                <label for="question" class="font-weight-bold text-center">Question:</label>
-                <input id="question" class="w-100 p-1 m-1 margin-left:auto" required pattern="[A-z ?]+$" #question="ngModel" name="question" type="text" [(ngModel)]="question.question" placeholder="Write question"/>
-                
+    <div class="row">
+        <label for="question" style="margin-bottom: 0px; margin-left: 4px;">Question</label>
+        <input id="question" (keyup)="onKeyUp($event)" class="w-100 p-1 m-1" required pattern="[A-z ?]+$"
+            #questionModal="ngModel" name="question" type="text" [(ngModel)]="question.question"
+            placeholder="Write question" />
 
-  <div class="text-danger" [hidden]="question.valid || question.untouched">
-    
-    <div  *ngIf="question.errors && question.errors.required" class="m-1">
-        Question is required 
+
+        <div class="text-danger" [hidden]="questionModal.valid || questionModal.untouched">
+
+            <div *ngIf="questionModal.errors && questionModal.errors.required">
+                Question is required <br>
+            </div>
+            <div *ngIf="questionModal.errors && questionModal.errors.pattern">
+                Question is invalid <br>
+            </div>
+        </div>
+
+        <label for="answer" style="margin-bottom: 0px; margin-left: 4px;">Expected Answer</label>
+        <input id="answer" class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer"
+            placeholder="Write expected answer" />
+
+        <label for="categories" style="margin-bottom: 0px; margin-left: 4px;">Categories</label>
+        <select id="categories" *ngIf="!empty" (change)="getAttributeValues()" class="form-control"
+            style="margin-left: 4px; margin-right: 4px;" [(ngModel)]="attributeOption">
+            <option value="" *ngIf="attributeOption == ''">Choose a category</option>
+            <option [value]="attributeString" *ngFor="let attributeString of attributesString">{{attributeString}}
+            </option>
+        </select>
     </div>
-    <div  *ngIf="question.errors && question.errors.pattern" class="m-1">
-      Question is invalid 
-  </div>
-  </div>
-        
-                <label for="answer" class="font-weight-bold text-center">Expected Answer:</label>    
-                <input id="answer" class="w-100 p-1" name="answer" type="text" [(ngModel)]="question.answer" placeholder="Write expected answer"/>
-        
-                <label for="categories" class="font-weight-bold text-center m-1">Categories:</label> 
-                <select id="categories" *ngIf="!empty" (change)="getAttributeValues()" class="form-control"
-                    style="margin-left: 4px; margin-right: 4px;" [(ngModel)]="attributeOption">
-                    <option value="" *ngIf="attributeOption == ''">Choose a category</option>
-                    <option [value]="attributeString" *ngFor="let attributeString of attributesString">{{attributeString}}
-                    </option>
-                </select>
 
     <div class="row" *ngIf="attributeOption != '' ">
         <select class="form-control" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;"
@@ -40,18 +45,22 @@
             <option [value]="filteredValue.id" *ngFor="let filteredValue of filteredValues">{{filteredValue.value}}
             </option>
         </select>
-        <button *ngIf="attributeValueOption != '' " (click)="addAttributeValue(attributeValueOption)"  style="margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black"> + </button>
+        <button *ngIf="attributeValueOption != '' " (click)="addAttributeValue(attributeValueOption)"
+            style="margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black">
+            + </button>
     </div>
 
 
     <div class="my-chip-list">
-        <label *ngFor="let selectedValueString of selectedValuesString" style="background-color: cadetblue; border-radius: 1rem; padding-top: 3px; padding-left: 6px; padding-right: 5px; padding-bottom: 3px; margin: 2px">
+        <label *ngFor="let selectedValueString of selectedValuesString"
+            style="background-color: cadetblue; border-radius: 1rem; padding-top: 3px; padding-left: 6px; padding-right: 5px; padding-bottom: 3px; margin: 2px">
             {{selectedValueString}}
-            <button class="myRemove"  (click)="remove(selectedValueString)" style="border-radius: 1rem; border-color: cadetblue; background-color:cadetblue; font-size: 15px;">x</button>
+            <button class="myRemove" (click)="remove(selectedValueString)"
+                style="border-radius: 1rem; border-color: cadetblue; background-color:cadetblue; font-size: 15px;">x</button>
         </label>
     </div>
 
-    <label for="" *ngIf="empty" style="font-size: 12px;">  (All categories are defined)</label>
+    <label for="" *ngIf="empty" style="font-size: 12px;"> (All categories are defined)</label>
 
 </div>
 <div class="modal-footer">
