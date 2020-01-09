@@ -15,11 +15,9 @@ import { InterviewModel } from 'src/app/core/models/interview-template';
 })
 export class GenerateInterviewComponent implements OnInit {
 
-  interviewName: string;
-
-  interview = new Set();
-
   Roles: AttributeValue[] = [];
+
+  interviewModel: InterviewModel = new InterviewModel();
 
   questionIds : Set<number> = new Set<number>();
 
@@ -28,6 +26,7 @@ export class GenerateInterviewComponent implements OnInit {
   activeImg = 0;
   
   constructor(
+    
     public bsModalRef: BsModalRef,
     public attributeValueApi: AttributeValueApiService,
     public InterviewModelApiService: InterviewModelApiService,
@@ -37,6 +36,7 @@ export class GenerateInterviewComponent implements OnInit {
 
   ngOnInit() {
     let questions = [];
+
     this.questionIds.forEach(questionId => questions.push(questionId));
     console.log(questions);
     for (let index = 0; index < questions.length; index++) {
@@ -44,12 +44,15 @@ export class GenerateInterviewComponent implements OnInit {
         this.myQuestions.push(data);
         console.log(this.myQuestions);
       } )
-      
     }
-    
   }
 
   public createInterview() {
+    this.myQuestions.forEach(question => {
+      this.interviewModel.questions.push(question)
+    });
+    this.InterviewModelApiService.create(this.interviewModel);
+    console.log(this.interviewModel);
     
     this.bsModalRef.hide()
   }
