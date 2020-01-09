@@ -65,6 +65,17 @@ export class AttributeEditComponent implements OnInit {
       );
   }
 
+  public delete() {
+    this.attributeApi.delete(this.id).subscribe(
+      (data) => {
+        this.dataService.updateAttributes();
+        this.bsModalRef.hide()
+      },
+      (error) => {
+      }
+    );
+}
+
   public createAttributeValue () {
     Object.assign(this.attributeValue.attribute, this.attribute);
     this.attributeValueApi.create(this.attributeValue).subscribe(
