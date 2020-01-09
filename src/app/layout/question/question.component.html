@@ -4,19 +4,12 @@
 
         <!-- A sidebar -->
         <ng-sidebar [(opened)]="_opened" position="left" [mode]="'push'">
-               
                 <br>
                 <h3>Categories</h3>
                 <br>
                 <div>
-
-                        <!--<label style="color: white; margin-left: 30px; margin-right: 5px; padding: 0%;"><strong></strong> </label>-->
-
-
                 <button class="addCategory container" (click)="addCategory()">Add Category 
-
                         <i class="addCategoryIcon material-icons">add_circle</i>
-
                 </button>
                                
                 </div>
@@ -34,7 +27,7 @@
                                         <option value="" selected>Any {{attribute.category}}</option>
                                         <option [value]="filteredValue" *ngFor="let filteredValue of filteredValues[i]">
                                                 {{filteredValue}}
-                                        </option>s
+                                        </option>
                                 </select>
                         </div>
                 </div>

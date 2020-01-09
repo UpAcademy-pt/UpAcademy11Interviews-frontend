@@ -5,39 +5,25 @@
     </button>
 </div>
 <div class="modal-body">
-    
-        <label for="form-row">Candidate Name:</label>
+        <label for="form-row">Interview Name:</label>
         <div id="form-row" class="form-row mb-1">
             <div class="col">
-                <input class="form-control p-1 m-1" name="firstname" type="text" placeholder="First Name" />
-            </div>
-            <div class="col">
-                <input class=" form-control p-1 m-1" name="lastname" type="text" placeholder="Last Name" />
+                <input class="form-control p-1 m-1" name="interviewModel.title" value="interviewModel.title" type="text"
+                 [(ngModel)]="interviewModel.title" placeholder="example: Front-End Junior" />
             </div>
         </div>
-        <label for="role">Candidate Role:</label>
-        <select class="form-control" [(ngModel)]="Roles">
-            <option value="Roles" selected>Any</option>
-            <option [value]="role" *ngFor="let role of Roles">
-                {{role.value}}
-            </option>
-        </select>
-        <label class="form-row mt-1" for="email">Candidate Email:</label>
-        <input id="email" type="text" class="form-control w-100 p-1 m-1" type="email" placeholder="email@address.com">
-    
     <!-- Carousel -->
     <label for="carouselExampleIndicators" style="text-align: center;">Questions:</label>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" [ngClass]="activeImg == 0 ? 'active' : ''"></li>
-            <li data-target="#carouselExampleIndicators" [ngClass]="activeImg == 1 ? 'active' : ''"></li>
+            <li *ngFor = "let myQuestion of myQuestions | keyvalue; let i = index" 
+            data-target="#carouselExampleIndicators" [ngClass]="activeImg == i ? 'active' : ''">
+            </li>
         </ol>
         <div class="carousel-inner myCenter">
-            <div class="carousel-item" [ngClass]="activeImg == 0 ? 'active' : ''">
-                <span>AAAAAAAAAAAAAAA</span>
-            </div>
-            <div class="carousel-item" [ngClass]="activeImg == 1 ? 'active' : ''">
-                <span>BBBBBBB</span>
+            <div *ngFor = "let myQuestion of myQuestions | keyvalue; let i = index" class="carousel-item" 
+            [ngClass]="activeImg == i ? 'active' : ''">
+            <span>{{myQuestion.value.question}}</span>
             </div>
         </div>
         <a class="carousel-control-prev" (click)="prevSlide()" role="button" data-slide="prev">

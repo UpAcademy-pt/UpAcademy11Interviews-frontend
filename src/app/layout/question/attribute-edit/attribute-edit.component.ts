@@ -2,9 +2,10 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeApiService } from 'src/app/core/services/attribute-service';
-import { DataService } from 'src/app/core';
+import { DataService, Question, QuestionApiService } from 'src/app/core';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeValueApiService } from 'src/app/core/services/attribute-value-service';
+import { ReplaySubject, Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,15 +18,22 @@ export class AttributeEditComponent implements OnInit {
   attribute: Attribute = new Attribute();
   attributeValue : AttributeValue = new AttributeValue();
   attributeValues : AttributeValue[] = [];
+  attributeValues$ : ReplaySubject<AttributeValue[]>;
+
+  questions : Question[]= [];
 
   id: number;
+
 
   constructor(
     public dataService: DataService,
     public attributeApi: AttributeApiService,
     public attributeValueApi: AttributeValueApiService,
-    public bsModalRef: BsModalRef) { 
+    public questionApi: QuestionApiService,
+    public bsModalRef: BsModalRef
+    ) { 
       this.attributeValue.value = "";
+      this.attributeValue.attribute = {};
     }
 
   ngOnInit() {
@@ -39,6 +47,13 @@ export class AttributeEditComponent implements OnInit {
       });
   }
 
+  public updateAttributeValues(){
+    this.attributeValueApi.getByAttribute(this.attribute.category).subscribe((attributeValues: AttributeValue[]) => {
+      this.attributeValues = attributeValues;
+      console.log(attributeValues);
+    });
+  }
+
   public edit() {
       this.attributeApi.update(this.id, this.attribute).subscribe(
         (data) => {
@@ -49,4 +64,30 @@ export class AttributeEditComponent implements OnInit {
         }
       );
   }
-}
+
+  public createAttributeValue () {
+    Object.assign(this.attributeValue.attribute, this.attribute);
+    this.attributeValueApi.create(this.attributeValue).subscribe(
+      (data : AttributeValue) => {
+        this.updateAttributeValues();
+        this.attributeValues.push(data);
+      },
+      (error) => {
+      }
+    );
+  }
+
+  public deleteAttributeValue(id : number) {
+    this.attributeValueApi.delete(id).subscribe(
+      (data) => {
+
+        this.updateAttributeValues();
+        let index = this.attributeValues.findIndex(attr => attr.id == id);
+        this.attributeValues.splice(index, 1);
+        
+      },
+      (error) => {
+        console.log(error);
+      });
+  }
+} 

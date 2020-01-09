@@ -4,9 +4,10 @@
             <span>Load Interview</span>
         </button>
     </div>
-<div>
-    <span><!-- {{candidateName}} --></span>
-</div>
+    <div>
+        <span>
+            <!-- {{candidateName}} --></span>
+    </div>
 
     <table id="interview">
         <tr>
@@ -25,6 +26,9 @@
                         {{col}}
                     </option>
                 </select>
+            </td>
+            <td style="width:150px">
+                <button type="button" class="btn btn-outline-danger" (click)="deleteQuestion()">X</button>
             </td>
         </tr>
     </table>

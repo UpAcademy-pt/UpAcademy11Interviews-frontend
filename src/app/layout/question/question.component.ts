@@ -14,10 +14,12 @@ import { AttributeValueApiService } from 'src/app/core/services/attribute-value-
 import { Attribute } from 'src/app/core/models/attribute';
 import { AttributeValue } from 'src/app/core/models/attribute-value';
 import { AttributeNewComponent } from './attribute-new/attribute-new.component';
+import { AttributeEditComponent } from './attribute-edit/attribute-edit.component';
 import { GenerateInterviewComponent } from './generate-interview/generate-interview.component';
 import { id } from '@swimlane/ngx-datatable';
 import { QuestionDeleteComponent } from './question-delete/question-delete.component';
-import { AttributeEditComponent } from './attribute-edit/attribute-edit.component';
+import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
+import { initialState } from 'ngx-bootstrap/timepicker/reducer/timepicker.reducer';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -28,11 +30,16 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class QuestionComponent implements OnInit, OnDestroy {
   public questions$: ReplaySubject<Question[]>;
 
+  public interviewQuestions$: ReplaySubject<Set<number>> = new ReplaySubject(1);
+
   public attributes$: ReplaySubject<Attribute[]>;
 
   private subscriptionQuestions: Subscription;
 
   private subscriptionAttributes: Subscription;
+
+  interviewQuestions: Set<number> = new Set<number>();
+
 
   public modalRef: BsModalRef;
   public iconNew = faPlus;
@@ -55,6 +62,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private questionApi: QuestionApiService,
     private attributeApi: AttributeApiService,
     private attributeValueApi: AttributeValueApiService,
+    private InterviewModelApiService: InterviewModelApiService,
     private router: Router,
     private modalService: BsModalService
   ) {
@@ -96,18 +104,15 @@ export class QuestionComponent implements OnInit, OnDestroy {
             this.attributes.forEach((attribute: Attribute) => {
               this.valueOption[attribute.category] = '';
               let printValues = [];
-              this.attributeValues.forEach(element => {
-                console.log(element);
-
+              this.attributeValues.forEach(element => {              
                 if (element.attribute['id'] == attribute.id) {
                   printValues.push(element.value);
                 }
               });
-
               this.filteredValues.push(printValues);
-
             });
-
+            console.log(this.filteredValues);
+            
           },
           (error) => console.log(error)
         )
@@ -120,9 +125,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
   public filterQuestions() {
     let count;
     this.displayedQuestions = [];
-    console.log(this.questions);
-    console.log(this.attributes);
-    console.log(this.valueOption);
     this.questions.forEach(question => {
       count = 0
       this.attributes.forEach(attributeValue => {
@@ -226,20 +228,24 @@ export class QuestionComponent implements OnInit, OnDestroy {
     });
   }
 
-  interviewQuestions: Set<number> = new Set<number>();
-
   public questionCheck(id: number) {
-      
       if (this.interviewQuestions.has(id)) {
-        this.interviewQuestions.delete(id);
+        this.interviewQuestions.delete(id);        
       }
-      else 
+      else {
         this.interviewQuestions.add(id);
-        console.log(this.interviewQuestions);
+      }
+
+      console.log(this.interviewQuestions);
+      
   }
 
   generateInterview() {
-    this.modalRef = this.modalService.show(GenerateInterviewComponent);
+    const initialState = {
+      questionIds : this.interviewQuestions,
+    }
+    this.modalRef = this.modalService.show(GenerateInterviewComponent, {initialState});
+        
   }
 
   generatePdf() {
