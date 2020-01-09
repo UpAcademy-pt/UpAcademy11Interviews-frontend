@@ -188,9 +188,11 @@ border-radius: 0;
 
 .modal-header{
 //background-image: url("https://d2zr9w65gdacs9.cloudfront.net/50158/vagas-21564757671inline.png") !important;
-background-color: rgb(205, 211, 211);
+background-color: rgba(205, 211, 211, 0.418);
+
 font-family: Arial, Helvetica, sans-serif;
-font-weight: bold;
+text-decoration-color: rgb(0, 255, 251);
+padding: 2%;
   
 }
 
@@ -219,6 +221,15 @@ font-weight: bold;
  // background-image: url(https://www.criticaltechworks.com/static/images/imagem_banner_new.png);
 border: none;
 }
+
+
+.modal-title{
+  color: rgb(0, 0, 0);
+  
+  
+}
+
+
 
 
 .modalLogo{
