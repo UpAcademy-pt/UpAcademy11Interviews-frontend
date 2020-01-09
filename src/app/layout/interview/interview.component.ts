@@ -17,7 +17,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class InterviewComponent implements OnInit {
 
-
+  
   id: number;
   public bsModalRef: BsModalRef
   constructor(
@@ -26,7 +26,7 @@ export class InterviewComponent implements OnInit {
 
   columns = ["Question","Expected Answer", "Evaluation", ""];
   
-  interviewQuestions = ["",""];
+  interviewQuestions = ["Java code provides for class methods with both public and private access specifiers. What is the difference between these two modifiers?","A public access specifier directs that the method be accessible both inside and outside of the class. This is true as long as the class, itself, is declared as public, or the calling class is within the same package. If the class does not specify a modifier then it is assumed to have default (package) access, and the declarations for its methods do not override this."];
   
   evaluations = [
     "Exceeds Requirements",
@@ -43,17 +43,10 @@ export class InterviewComponent implements OnInit {
 
   deleteQuestion() {
     this.bsModalRef = this.modalService.show(InterviewDeleteComponent);
-
-    /* this.questionApi.delete(this.id).subscribe((data) => {
-      this.bsModalRef.hide()
-    },
-    (error) => {
-    }
-    ); */
   }
 
   loadInterview() {
-    /* load interviews from API */
+    
     this.bsModalRef = this.modalService.show(InterviewLoadComponent);
 
   }
@@ -63,11 +56,11 @@ export class InterviewComponent implements OnInit {
     rows.push([{ text: 'Category', style: 'tableHeader', alignment: 'center' }, { text: 'Question', style: 'tableHeader', alignment: 'center' }, { text: 'Expected Answer', style: 'tableHeader', alignment: 'center' }]);
 
     for (var i = 0; i < this.interviewQuestions.length; i++) {
-      /* let str = "";
-      this.interviewQuestions[i].attributes.forEach(attr => {
-        str += attr.value + " ";
-      }) */
-      rows.push([/* str, */ this.interviewQuestions[i], this.interviewQuestions[i]]);
+      let str = "";
+      this.interviewQuestions.forEach(attr => {
+        str += attr + " ";
+      })
+      rows.push([str,  this.interviewQuestions[i], this.interviewQuestions[i]]);
     }
 
     const documentDefinition = {

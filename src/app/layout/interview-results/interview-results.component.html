@@ -3,7 +3,14 @@
         class="text-white" translate>Interview Results
     </h2>
     <ngb-accordion [closeOthers]="true">
-        <ngb-panel id="static-1" title="Simple">
+        <ngb-panel id="static-1" title="Candidate Name: João Silvestre, email: joaomsilvestre3@gmail.com">
+          <ng-template ngbPanelContent>
+            Question: Java code provides for class methods with both public and private access specifiers. What is the difference between these two modifiers?
+
+            Answer: A public access specifier directs that the method be accessible both inside and outside of the class. This is true as long as the class, itself, is declared as public, or the calling class is within the same package. If the class does not specify a modifier then it is assumed to have default (package) access, and the declarations for its methods do not override this.
+          </ng-template>
+        </ngb-panel>
+        <!-- <ngb-panel id="static-2" title="Hard">
           <ng-template ngbPanelContent>
             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
             aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
@@ -12,16 +19,6 @@
             occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
             labore sustainable VHS.
           </ng-template>
-        </ngb-panel>
-        <ngb-panel id="static-2" title="Hard">
-          <ng-template ngbPanelContent>
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-            aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-            occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-            labore sustainable VHS.
-          </ng-template>
-        </ngb-panel>
+        </ngb-panel> -->
     </ngb-accordion>
 </section>

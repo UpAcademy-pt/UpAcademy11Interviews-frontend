@@ -17,7 +17,7 @@
         </tr>
         <tr *ngFor="let interview of interviewQuestions">
             <td *ngFor="let col of interviewQuestions">
-                {{interview[col]}}
+                {{col}}
             </td>
             <td style="width:260px">
                 <select class="form-control" [(ngModel)]="evaluation">

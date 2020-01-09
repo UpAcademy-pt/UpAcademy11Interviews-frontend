@@ -5,36 +5,36 @@
     </button>
 </div>
 <div class="modal-body">
-        <label for="form-row" class="font-weight-bold">Interview Name:</label>
-        <div id="form-row" class="form-row mb-1">
-            <div class="col">
-                <input class="form-control p-1 m-1"  name="interviewName" value="interviewName" type="text"
-                 [(ngModel)]="interviewName" placeholder="example: Front-End Junior" />
-            </div>
+    <label for="form-row" class="font-weight-bold">Interview Name:</label>
+    <div id="form-row" class="form-row mb-1">
+        <div class="col">
+            <input class="form-control p-1 m-1" required pattern="[A-z ?]+$" #interviewModel.title="ngModel"
+                name="interviewModel.title" value="interviewModel.title" type="text" [(ngModel)]="interviewModel.title"
+                placeholder="example: Front-End Junior" />
         </div>
+    </div>
 
-        <!-- <div class="text-danger" [hidden]="interviewName.valid || interviewName.untouched">
-      
-            <div  *ngIf="interviewName.errors && interviewName.errors.required">
+    <div class="text-danger" [hidden]="interviewModel.title.valid || interviewModel.title.untouched">
+
+        <div *ngIf="interviewModel.title.errors && interviewModel.title.errors.required">
             Interview name is required
-            </div>
-            <div  *ngIf="interviewName.errors && interviewName.errors.pattern">
+        </div>
+        <div *ngIf="interviewModel.title.errors && interviewModel.title.errors.pattern">
             Invalid name
-          </div>
-          </div>
-     Carousel -->
+        </div>
+    </div>
+
     <label for="carouselExampleIndicators" class="font-weight-bold" style="text-align: center;">Questions:</label>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" [ngClass]="activeImg == 0 ? 'active' : ''"></li>
-            <li data-target="#carouselExampleIndicators" [ngClass]="activeImg == 1 ? 'active' : ''"></li>
+            <li *ngFor="let myQuestion of myQuestions | keyvalue; let i = index"
+                data-target="#carouselExampleIndicators" [ngClass]="activeImg == i ? 'active' : ''">
+            </li>
         </ol>
         <div class="carousel-inner myCenter">
-            <div class="carousel-item" [ngClass]="activeImg == 0 ? 'active' : ''">
-                <span>AAAAAAAAAAAAAAA</span>
-            </div>
-            <div class="carousel-item" [ngClass]="activeImg == 1 ? 'active' : ''">
-                <span>BBBBBBB</span>
+            <div *ngFor="let myQuestion of myQuestions | keyvalue; let i = index" class="carousel-item"
+                [ngClass]="activeImg == i ? 'active' : ''">
+                <span>{{myQuestion.value.question}}</span>
             </div>
         </div>
         <a class="carousel-control-prev" (click)="prevSlide()" role="button" data-slide="prev">
@@ -47,6 +47,6 @@
         </a>
     </div>
     <div class="modal-footer">
-        <button type="button"  class="generateIntButton " routerLink="layout/interview"
+        <button type="button" class="generateIntButton " routerLink="layout/interview"
             (click)="createInterview()">Create Interview</button>
     </div>

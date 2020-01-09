@@ -4,12 +4,12 @@ import { Interview } from '../models/interview';
 
 
 @Injectable({
-    providedIn: 'root'
-  })
-  
-  export class InterviewApiService {
+  providedIn: 'root'
+})
 
-    private apiUrl = 'http://localhost:8080/projectInterview/api/interview/';
+export class InterviewApiService {
+
+  private apiUrl = 'http://localhost:8080/projectInterview/api/interview/';
 
   constructor(
     private http: HttpClient
@@ -28,8 +28,8 @@ import { Interview } from '../models/interview';
   }
 
   public delete(id: number) {
-    return this.http.delete(this.apiUrl + id, {responseType: 'text'});
+    return this.http.delete(this.apiUrl + id, { responseType: 'text' });
   }
 
 
-  }
+}
