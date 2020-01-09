@@ -8,18 +8,18 @@
     <label for="form-row" class="font-weight-bold">Interview Name:</label>
     <div id="form-row" class="form-row mb-1">
         <div class="col">
-            <input class="form-control p-1 m-1" required pattern="[A-z ?]+$" #interviewModel.title="ngModel"
+            <input class="form-control p-1 m-1" required pattern="[A-z ?]+$" #interviewModel="ngModel"
                 name="interviewModel.title" value="interviewModel.title" type="text" [(ngModel)]="interviewModel.title"
                 placeholder="example: Front-End Junior" />
         </div>
     </div>
 
-    <div class="text-danger" [hidden]="interviewModel.title.valid || interviewModel.title.untouched">
+    <div class="text-danger" [hidden]="interviewModel.valid || interviewModel.untouched">
 
-        <div *ngIf="interviewModel.title.errors && interviewModel.title.errors.required">
+        <div *ngIf="interviewModel.errors && interviewModel.errors.required">
             Interview name is required
         </div>
-        <div *ngIf="interviewModel.title.errors && interviewModel.title.errors.pattern">
+        <div *ngIf="interviewModel.errors && interviewModel.errors.pattern">
             Invalid name
         </div>
     </div>
@@ -47,6 +47,6 @@
         </a>
     </div>
     <div class="modal-footer">
-        <button type="button" class="generateIntButton " routerLink="layout/interview"
+        <button type="button" [disabled]="!interviewModel.valid" class="generateIntButton " routerLink="layout/interview"
             (click)="createInterview()">Create Interview-Template</button>
     </div>

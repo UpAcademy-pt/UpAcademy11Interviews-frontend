@@ -8,8 +8,7 @@
           
         
 
-    <div class="row">
-        <label for="question" style="margin-bottom: 0px; margin-left: 4px;">Question</label>
+        <label for="question" class="font-weight-bold" style="margin-bottom: 0px; margin-left: 4px;">Question:</label>
         <input id="question" (keyup)="onKeyUp($event)" class="w-100 p-1 m-1" required pattern="[A-z ?]+$"
             #questionModal="ngModel" name="question" type="text" [(ngModel)]="question.question"
             placeholder="Write question" />
@@ -25,18 +24,17 @@
             </div>
         </div>
 
-        <label for="answer" style="margin-bottom: 0px; margin-left: 4px;">Expected Answer</label>
+        <label for="answer" class="font-weight-bold" style="margin-bottom: 0px; margin-left: 4px;">Expected Answer:</label>
         <input id="answer" class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer"
             placeholder="Write expected answer" />
 
-        <label for="categories" style="margin-bottom: 0px; margin-left: 4px;">Categories</label>
+        <label for="categories" class="font-weight-bold" style="margin-bottom: 0px; margin-left: 4px;">Categories:</label>
         <select id="categories" *ngIf="!empty" (change)="getAttributeValues()" class="form-control"
             style="margin-left: 4px; margin-right: 4px;" [(ngModel)]="attributeOption">
             <option value="" *ngIf="attributeOption == ''">Choose a category</option>
             <option [value]="attributeString" *ngFor="let attributeString of attributesString">{{attributeString}}
             </option>
         </select>
-    </div>
 
     <div class="row" *ngIf="attributeOption != '' ">
         <select class="form-control" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;"
@@ -64,5 +62,5 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" [disabled]="!question.valid" class="createButton" (click)="create()">Create</button>
+    <button type="button" [disabled]="!questionModal.valid" class="createButton" (click)="create()">Create</button>
 </div>

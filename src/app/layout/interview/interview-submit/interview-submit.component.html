@@ -1,22 +1,50 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Submit Interview</h4>
+    <h4 class="font-weight-bold modal-title pull-left">Submit Interview</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <label for="form-row">Candidate Name:</label>
+    <label for="form-row" class="font-weight-bold">Candidate Name:</label>
     <div id="form-row" class="form-row mb-1">
         <div class="col">
-            <input class="form-control p-1 m-1" name="firstname" value="firstname" type="text" [(ngModel)]="firstname" placeholder="First Name" />
+            <input class="form-control p-1 m-1" required pattern="[A-z -]+$" #nameFirst="ngModel" name="firstname" value="firstname" type="text" [(ngModel)]="firstname" placeholder="First Name" />
+            <div class="text-danger" [hidden]="nameFirst.valid || nameFirst.untouched">
+    
+                <div  *ngIf="nameFirst.errors && nameFirst.errors.required">
+                    First name is required
+                </div>
+                <div  *ngIf="nameFirst.errors && nameFirst.errors.pattern">
+                  First name is invalid
+              </div>
+              </div>
+        
         </div>
         <div class="col">
-            <input class=" form-control p-1 m-1" name="lastname" value="lastname" type="text" [(ngModel)]="lastname" placeholder="Last Name" />
+            <input class=" form-control p-1 m-1" required pattern="[A-z -]+$" #nameLast="ngModel" name="lastname" value="lastname" type="text" [(ngModel)]="lastname" placeholder="Last Name" />
+            <div class="text-danger" [hidden]="nameLast.valid || nameLast.untouched">
+    
+                <div  *ngIf="nameLast.errors && nameLast.errors.required">
+                    Last name is required
+                </div>
+                <div  *ngIf="nameLast.errors && nameLast.errors.pattern">
+                  Last name is invalid
+              </div>
+              </div>
+        
         </div>
     </div>
-    <label class="form-row mt-1" for="email">Candidate Email:</label>
-    <input id="email" type="text" class="form-control w-100 p-1 m-1" type="email" placeholder="email@address.com">
+    <label class="form-row mt-1 font-weight-bold" for="email">Candidate Email:</label>
+    <input id="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  type="text" class="form-control w-100 p-1 m-1" type="email" placeholder="email@address.com">
+    <!-- <div class="text-danger" [hidden]="email.valid || email.untouched">
+        <div  *ngIf="email.errors && email.errors.required">
+            Email is required
+        </div>
+        <div  *ngIf="email.errors && email.errors.pattern">
+            Email is invalid
+        </div>
+      </div> -->
 </div>
 <div class="modal-footer">
-    <button type="button" class="loadIntButton" (click)="submitInterview()">Submit</button>
+    <button type="button" [disabled]="!nameFirst.valid || !nameLast.valid" class="loadIntButton" (click)="submitInterview()">Submit</button>
 </div>
