@@ -27,7 +27,7 @@ export class InterviewComponent implements OnInit {
 
   columns = ["Question","Expected Answer", "Evaluation", ""];
   
-  interviewQuestions = ["Java code provides for class methods with both public and private access specifiers. What is the difference between these two modifiers?","A public access specifier directs that the method be accessible both inside and outside of the class. This is true as long as the class, itself, is declared as public, or the calling class is within the same package. If the class does not specify a modifier then it is assumed to have default (package) access, and the declarations for its methods do not override this."];
+  interviewQuestions = ["",""];
   
   evaluations = [
     "Exceeds Requirements",
@@ -47,7 +47,6 @@ export class InterviewComponent implements OnInit {
   }
 
   loadInterview() {
-    
     this.bsModalRef = this.modalService.show(InterviewLoadComponent);
 
   }

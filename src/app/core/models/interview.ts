@@ -1,9 +1,10 @@
 import { Question } from '.';
 
 export class Interview {
+    id?: number;
     title : string;
     candidate : string;
     user : Account;
-    questions : Question[];
+    questions : Question[]=[]
     evaluations : String[];
 }
