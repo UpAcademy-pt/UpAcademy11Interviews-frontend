@@ -3,6 +3,10 @@ import { ReplaySubject } from 'rxjs';
 /* pdf */
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { InterviewLoadComponent } from './interview-load/interview-load.component';
+import { QuestionApiService } from 'src/app/core';
+import { InterviewDeleteComponent } from './interview-delete/interview-delete.component';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -13,11 +17,16 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class InterviewComponent implements OnInit {
 
-  constructor() { }
-
-  columns = ["Question","Expected Answer", "Evaluation"];
   
-  interviewQuestions = ["", ""];
+  id: number;
+  public bsModalRef: BsModalRef
+  constructor(
+    private modalService: BsModalService,
+  ) { }
+
+  columns = ["Question","Expected Answer", "Evaluation", ""];
+  
+  interviewQuestions = ["Java code provides for class methods with both public and private access specifiers. What is the difference between these two modifiers?","A public access specifier directs that the method be accessible both inside and outside of the class. This is true as long as the class, itself, is declared as public, or the calling class is within the same package. If the class does not specify a modifier then it is assumed to have default (package) access, and the declarations for its methods do not override this."];
   
   evaluations = [
     "Exceeds Requirements",
@@ -32,17 +41,26 @@ export class InterviewComponent implements OnInit {
   ngOnInit() {
   }
 
+  deleteQuestion() {
+    this.bsModalRef = this.modalService.show(InterviewDeleteComponent);
+  }
+
+  loadInterview() {
+    
+    this.bsModalRef = this.modalService.show(InterviewLoadComponent);
+
+  }
 
   generatePdf() {
     var rows = [];
     rows.push([{ text: 'Category', style: 'tableHeader', alignment: 'center' }, { text: 'Question', style: 'tableHeader', alignment: 'center' }, { text: 'Expected Answer', style: 'tableHeader', alignment: 'center' }]);
 
     for (var i = 0; i < this.interviewQuestions.length; i++) {
-      /* let str = "";
-      this.interviewQuestions[i].attributes.forEach(attr => {
-        str += attr.value + " ";
-      }) */
-      rows.push([/* str, */ this.interviewQuestions[i], this.interviewQuestions[i]]);
+      let str = "";
+      this.interviewQuestions.forEach(attr => {
+        str += attr + " ";
+      })
+      rows.push([str,  this.interviewQuestions[i], this.interviewQuestions[i]]);
     }
 
     const documentDefinition = {

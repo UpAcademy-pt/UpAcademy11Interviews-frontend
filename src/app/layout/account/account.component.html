@@ -6,7 +6,7 @@
                 </button> -->
         </h2>
 <div>
-        <button class="userButton container" (click)="openCreateModal()">Add New User
+        <button class="userButton" (click)="openCreateModal()">Add New User
                 <i class="addUserIcon material-icons">add_circle</i>
         </button>
 </div>
@@ -27,8 +27,21 @@
                                 {{account[col]}}
                         </td>
                         <td style="width:150px">
-                                <button type="button" class="btn btn-outline-info mr-2" (click)="accountEdit(account.id)">Edit</button>
-                                <button type="button" class="btn btn-outline-danger" (click)="deleteAccount(account.id)">X</button>
+                                <button type="button" class="userButtonEdit" (click)="accountEdit(account.id)" 
+                                data-toggle="tooltip" data-placement="bottom" title="Edit">
+
+                                        <i class="material-icons">
+                                                create</i> 
+                                </button>
+
+                                <button type="button" class="userButtonDelete" (click)="deleteAccount(account.id)" 
+                                data-toggle="tooltip" data-placement="bottom" title="Delete">
+
+                                        <i class="material-icons">
+                                                delete</i> 
+
+
+                                </button>
                         </td>
                 </tr>
         </table>

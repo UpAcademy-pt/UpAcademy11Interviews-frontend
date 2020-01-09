@@ -7,6 +7,7 @@ import { QuestionComponent } from './question/question.component';
 import { AccountComponent } from './account/account.component';
 import { QuestionDetailComponent } from './question/question-detail/question-detail.component';
 import { InterviewComponent } from './interview/interview.component';
+import { InterviewResultsComponent } from './interview-results/interview-results.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,9 @@ const routes: Routes = [
       },
       {
         path: 'interview', component: InterviewComponent
+      },
+      {
+        path: 'interview-results', component: InterviewResultsComponent
       },
     ]
   }

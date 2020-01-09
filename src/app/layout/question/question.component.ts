@@ -17,6 +17,9 @@ import { AttributeNewComponent } from './attribute-new/attribute-new.component';
 import { AttributeEditComponent } from './attribute-edit/attribute-edit.component';
 import { GenerateInterviewComponent } from './generate-interview/generate-interview.component';
 import { id } from '@swimlane/ngx-datatable';
+import { QuestionDeleteComponent } from './question-delete/question-delete.component';
+import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
+import { initialState } from 'ngx-bootstrap/timepicker/reducer/timepicker.reducer';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -27,11 +30,16 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class QuestionComponent implements OnInit, OnDestroy {
   public questions$: ReplaySubject<Question[]>;
 
+  public interviewQuestions$: ReplaySubject<Set<number>> = new ReplaySubject(1);
+
   public attributes$: ReplaySubject<Attribute[]>;
 
   private subscriptionQuestions: Subscription;
 
   private subscriptionAttributes: Subscription;
+
+  interviewQuestions: Set<number> = new Set<number>();
+
 
   public modalRef: BsModalRef;
   public iconNew = faPlus;
@@ -54,6 +62,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private questionApi: QuestionApiService,
     private attributeApi: AttributeApiService,
     private attributeValueApi: AttributeValueApiService,
+    private InterviewModelApiService: InterviewModelApiService,
     private router: Router,
     private modalService: BsModalService
   ) {
@@ -192,8 +201,12 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.router.navigate(['/question', question.id]);
   }
 
-  public deleteQuestion(row: number) {
-    this.questionApi.delete(row).subscribe(data => {
+  public deleteQuestion(id: number) {
+    const initialState = {
+      id: id,
+    };
+    this.modalRef = this.modalService.show(QuestionDeleteComponent, {initialState});
+    this.modalService.onHide.subscribe((question: Question) => {
       this.dataService.updateQuestions();
     });
   }
@@ -215,21 +228,24 @@ export class QuestionComponent implements OnInit, OnDestroy {
     });
   }
 
-  interviewQuestions: Set<number> = new Set<number>();
-
-  public questionCheck(id) {
-      
+  public questionCheck(id: number) {
       if (this.interviewQuestions.has(id)) {
-        this.interviewQuestions.delete(id);
+        this.interviewQuestions.delete(id);        
       }
-      else 
+      else {
         this.interviewQuestions.add(id);
-        console.log(this.interviewQuestions);
-        
+      }
+
+      console.log(this.interviewQuestions);
+      
   }
 
   generateInterview() {
-    this.modalRef = this.modalService.show(GenerateInterviewComponent);
+    const initialState = {
+      questionIds : this.interviewQuestions,
+    }
+    this.modalRef = this.modalService.show(GenerateInterviewComponent, {initialState});
+        
   }
 
   generatePdf() {

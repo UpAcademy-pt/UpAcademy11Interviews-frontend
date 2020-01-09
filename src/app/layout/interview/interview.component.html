@@ -1,9 +1,14 @@
 <section class="container">
     <div>
-        <button class="pdfButton" (click)="generatePdf()">
-            <span>Export PDF</span>
+        <button class="loadButton" (click)="loadInterview()">
+            <span>Load Interview</span>
         </button>
     </div>
+    <div>
+        <span>
+            <!-- {{candidateName}} --></span>
+    </div>
+
     <table id="interview">
         <tr>
             <th *ngFor="let col of columns">
@@ -12,7 +17,7 @@
         </tr>
         <tr *ngFor="let interview of interviewQuestions">
             <td *ngFor="let col of interviewQuestions">
-                {{interview[col]}}
+                {{col}}
             </td>
             <td style="width:260px">
                 <select class="form-control" [(ngModel)]="evaluation">
@@ -21,6 +26,9 @@
                         {{col}}
                     </option>
                 </select>
+            </td>
+            <td style="width:150px">
+                <button type="button" class="btn btn-outline-danger" (click)="deleteQuestion()">X</button>
             </td>
         </tr>
     </table>
