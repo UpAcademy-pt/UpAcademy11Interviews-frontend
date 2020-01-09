@@ -1,7 +1,10 @@
 <section class="container">
     <div>
         <button class="loadButton" (click)="loadInterview()">
-            <span>Load Interview</span>
+            <span>Load Interview-Template</span>
+        </button>
+        <button class="loadButton" style="float: right;" (click)="submitInterview()">
+            <span>Submit Interview</span>
         </button>
     </div>
     <div>
@@ -28,7 +31,14 @@
                 </select>
             </td>
             <td style="width:150px">
-                <button type="button" class="btn btn-outline-danger" (click)="deleteQuestion()">X</button>
+                <button type="button" class="deleteInterview" (click)="deleteQuestion()"
+                data-toggle="tooltip" data-placement="bottom" title="Delete">
+
+                    <i class="material-icons">
+                            delete</i> 
+                            
+
+                </button>
             </td>
         </tr>
     </table>

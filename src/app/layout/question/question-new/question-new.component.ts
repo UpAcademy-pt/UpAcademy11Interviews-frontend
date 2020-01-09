@@ -77,6 +77,11 @@ export class QuestionNewComponent {
       );
   }
 
+  onKeyUp(event){
+    console.log(event.target.value);
+    
+  }
+
   ngOnInit() {
     this.attributeApi.getAll().subscribe(
       (response: Attribute[]) => {

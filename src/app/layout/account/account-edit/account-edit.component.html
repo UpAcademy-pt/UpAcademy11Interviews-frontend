@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Edit account</h4>
+    <h4 class="font-weight-bold modal-title pull-left">Edit account</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -50,7 +50,7 @@
     </select>
   </div>
   <div class="text-center modal-footer">
-    <button type="button" class="btn btn-outline-info mt-2" (click)="editAccount()" (click)="bsModalRef.hide()" >Edit</button>
+    <button type="button" [disabled]="!name.valid || !email.valid" class="btn btn-outline-info mt-2" (click)="editAccount()" (click)="bsModalRef.hide()" >Edit</button>
     <!-- <button type="button" class="btn btn-outline-danger mt-2" (click)="back()">Cancel</button> -->
   </div>
   

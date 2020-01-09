@@ -4,6 +4,8 @@
     border-collapse: separate;
     border-spacing: 0px;
     width: 100%;
+    
+
 }
 
 /* top-left border-radius */
@@ -31,8 +33,11 @@ table tr:first-child th:first-child {
 #interview td {
     border-top: 2px solid rgb(0, 0, 0);
     padding: 8px;
-    border-collapse: collapse;
-}
+    min-width: 200px;
+    max-width: 200px;
+    word-wrap: break-word;
+    text-align: justify;
+  }
 
 #interview tr {
     background-color: white;
@@ -100,4 +105,55 @@ table tr:first-child th:first-child {
 .loadButton:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+
+// botão delete 
+
+
+.deleteInterview {
+  border-radius:100%;
+  border: none;
+  background-color:transparent;
+  outline: none;
+  font-style: normal;
+
+}
+
+.deleteInterview {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 25px; 
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  color:rgb(0, 0, 22);
+  align-content: center;
+  vertical-align: middle;
+
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+}
+
+.deleteInterview:hover{  
+  color: rgb(219, 0, 0);
+}
+.deleteInterview::selection{
+  background-color: transparent;
+
 }

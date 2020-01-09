@@ -81,7 +81,7 @@
     transition: 0.5s;    
 }
   
-.editQuestionButton:hover {
+.editQuestionButton:hover:enabled {
     background-color: rgb(0, 0, 120);
     color: rgb(0, 255, 251);
 }
