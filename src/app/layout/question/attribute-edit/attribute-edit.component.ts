@@ -24,6 +24,9 @@ export class AttributeEditComponent implements OnInit {
 
   id: number;
 
+  isInvalid = false;
+  errorMsg: "";
+
 
   constructor(
     public dataService: DataService,
@@ -55,23 +58,31 @@ export class AttributeEditComponent implements OnInit {
   }
 
   public edit() {
+    if (this.attribute.category == '') {
+      this.isInvalid = true;
+    } else {
       this.attributeApi.update(this.id, this.attribute).subscribe(
         (data) => {
           this.dataService.updateAttributes();
-          this.bsModalRef.hide()
+          this.bsModalRef.hide();
         },
         (error) => {
         }
       );
+    }
   }
 
   public delete() {
     this.attributeApi.delete(this.id).subscribe(
       (data) => {
         this.dataService.updateAttributes();
-        this.bsModalRef.hide()
+        this.bsModalRef.hide();
       },
       (error) => {
+        console.log(error);
+        if(error.status == 403) {
+          this.errorMsg = error.error;
+        }
       }
     );
 }
@@ -91,14 +102,15 @@ export class AttributeEditComponent implements OnInit {
   public deleteAttributeValue(id : number) {
     this.attributeValueApi.delete(id).subscribe(
       (data) => {
-
         this.updateAttributeValues();
         let index = this.attributeValues.findIndex(attr => attr.id == id);
-        this.attributeValues.splice(index, 1);
-        
+        this.attributeValues.splice(index, 1);  
       },
       (error) => {
         console.log(error);
+        if(error.status == 403) {
+          this.errorMsg = error.error;
+        }
       });
   }
 } 

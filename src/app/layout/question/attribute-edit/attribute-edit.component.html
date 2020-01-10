@@ -7,17 +7,15 @@
 <div class="modal-body">
 
     <label for="attribute" class="font-weight-bold" style="margin-bottom: 0px; margin-left: 4px;">Category:</label>
-    <input id="attribute" required pattern="[A-z -]+$" #attribute="ngModel" class="w-100 p-1 m-1" name="attribute" type="text" [(ngModel)]="attribute.category" placeholder="Write Category">
+    <input id="attribute" required #attributeEdit="ngModel" class="w-100 p-1 m-1" name="attribute" type="text" [(ngModel)]="attribute.category" placeholder="Write Category">
 
-    <div class="text-danger" [hidden]="attribute.valid || attribute.untouched">
+    <div class="text-danger" [hidden]="attributeEdit.valid || isInvalid == false">
       
-        <div  *ngIf="attribute.errors && attribute.errors.required">
-        Category is required
-        </div>
-        <div  *ngIf="attribute.errors && attribute.errors.pattern">
-        Category is invalid
-      </div>
-      </div>
+            <div  *ngIf="(attributeEdit.errors && attributeEdit.errors.required) || isInvalid">
+            Category is required
+            </div>
+    
+          </div>
 
     <div>
     <label for="type" class="font-weight-bold">Types:</label>
@@ -35,7 +33,9 @@
         </label>
     </div>
 
+    <p style="color: brown; font-size: 15px;">{{errorMsg}}</p>
+
 <div class="modal-footer">
-    <button type="button" class="editCategoryButton" (click)="delete()">Remove</button>
-    <button type="button" [disabled]="!attribute.valid" class="editCategoryButton" (click)="edit()">Edit</button>
+    <button type="button" class="editCategoryButton" (click)="edit()">Edit</button>
+    <button type="button" class="deleteCategoryButton" (click)="delete()">Remove</button> 
 </div>

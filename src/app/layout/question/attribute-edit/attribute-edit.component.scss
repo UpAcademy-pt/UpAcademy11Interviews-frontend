@@ -44,3 +44,50 @@
     opacity: 1;
     right: 0;
 }
+
+.deleteCategoryButton {
+    border-radius: 60px;
+    border: 0px;
+    background-color: rgb(2, 238, 234);
+    color: rgb(0, 0, 120);
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    outline: none;  
+}
+
+.deleteCategoryButton::selection{
+    background-color: transparent;
+}
+
+.deleteCategoryButton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;    
+}
+  
+.deleteCategoryButton:hover:enabled {
+    background-color: rgb(226, 8, 8);
+    color: rgb(0, 255, 251);
+}
+
+.deleteCategoryButton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.deleteCategoryButton:hover span {
+    padding-right: 25px;
+}
+
+.deleteCategoryButton:hover span:after {
+    opacity: 1;
+    right: 0;
+}

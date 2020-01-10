@@ -12,7 +12,8 @@ import { DataService } from 'src/app/core';
 export class AttributeNewComponent implements OnInit {
   public event: EventEmitter<any> = new EventEmitter();
   attribute: Attribute = new Attribute();
-  ;
+  
+  isInvalid = false;
 
   constructor(
     public dataService: DataService,
@@ -26,13 +27,17 @@ export class AttributeNewComponent implements OnInit {
   }
 
   public create() {
+    if (this.attribute.category == '') {
+      this.isInvalid = true;
+    } else {
       this.attributeApi.create(this.attribute).subscribe(
         (data) => {
           this.dataService.updateAttributes();
-          this.bsModalRef.hide()
+          this.bsModalRef.hide();
         },
         (error) => {
         }
       );
+    }
   }
 }

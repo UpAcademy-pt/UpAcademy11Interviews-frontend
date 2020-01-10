@@ -7,18 +7,17 @@
 <div class="modal-body">
 
         <label for="question" class="font-weight-bold text-center">Question:</label>
-        <input id="question" class="w-100 p-1 m-1" required pattern="[A-z ?]+$" #question="ngModel" name="question" type="text" [(ngModel)]="question.question" placeholder="Write question"/>
+        <input id="question" class="w-100 p-1 m-1" required #questionEdit="ngModel" name="question" type="text" [(ngModel)]="question.question" placeholder="Write question"/>
                 
 
-        <div class="text-danger" [hidden]="question.valid || question.untouched">
-          
-          <div  *ngIf="question.errors && question.errors.required" class="m-1">
-              Question is required
-          </div>
-          <div  *ngIf="question.errors && question.errors.pattern" class="m-1">
-            Question is invalid 
-        </div>
-        </div>
+        <div class="text-danger" [hidden]="questionEdit.valid || isInvalid == false">
+      
+                <div  *ngIf="(questionEdit.errors && questionEdit.errors.required) || isInvalid">
+                    Question is required 
+                </div>
+        
+              </div>
+
         <label for="answer" class="font-weight-bold text-center">Expected Answer:</label>    
         <input id="answer" class="w-100 p-1" name="answer" type="text" [(ngModel)]="question.answer" placeholder="Expected Answer"/>
 
@@ -57,5 +56,5 @@
 </div>
 
 <div class="modal-footer">
-    <button type="button" [disabled]="!question.valid" class="editQuestionButton" (click)="editQuestion()">Edit</button>
+    <button type="button" class="editQuestionButton" (click)="editQuestion()">Edit</button>
 </div>
