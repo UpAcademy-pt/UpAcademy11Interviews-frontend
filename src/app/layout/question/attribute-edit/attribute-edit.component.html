@@ -44,9 +44,12 @@
 
 
     <button type="button" class="editCategoryButton" (click)="edit()">Edit</button>
-<<<<<<< HEAD
-    <button type="button" class="deleteCategoryButton" (click)="delete()">Remove</button> 
-=======
+    <button type="button" class="deleteCategoryButton" (click)="toDelete = true">Remove</button>
+    <br>
+   
 </div>
->>>>>>> origin/ivomesquita
+
+<div class="row ml-5 mr-2">
+    <span *ngIf="toDelete" style="font-size: 15px;">Are you sure you want to delete this category? All classes in this category will also be removed.</span>
+    <button type="button" class="deleteCategoryButton" *ngIf="toDelete" (click)="delete()">Yes</button> 
 </div>

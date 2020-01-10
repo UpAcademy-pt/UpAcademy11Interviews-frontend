@@ -5,28 +5,12 @@
     </button>
 </div>
 <div class="modal-body">
-<<<<<<< HEAD
-    <label for="form-row" class="font-weight-bold">Interview Name:</label>
-    <div id="form-row" class="form-row mb-1">
-        <div class="col">
-            <input class="form-control p-1 m-1" required pattern="[A-z ?]+$" #interviewModel.title="ngModel"
-                name="interviewModel.title" value="interviewModel.title" type="text" [(ngModel)]="interviewModel.title"
-                placeholder="example: Front-End Junior" />
-        </div>
-    </div>
-
-    <div class="text-danger" [hidden]="interviewModel.title.valid || interviewModel.title.untouched">
-
-        <div *ngIf="interviewModel.title.errors && interviewModel.title.errors.required">
-            Interview name is required
-=======
         <label for="form-row">Interview Name:</label>
         <div id="form-row" class="form-row mb-1">
             <div class="col">
                 <input class="form-control p-1 m-1" name="interview.title" value="interview.title" type="text"
                  [(ngModel)]="interview.title" placeholder="example: Front-End Junior" />
             </div>
->>>>>>> origin/jsilvestre
         </div>
         <div *ngIf="interviewModel.title.errors && interviewModel.title.errors.pattern">
             Invalid name
@@ -63,11 +47,5 @@
 
 
         <button type="button" class="generateIntButton " routerLink="layout/interview"
-<<<<<<< HEAD
             (click)="createInterview()">Create Interview-Template</button>
     </div>
-=======
-            (click)="createInterview()">Create Interview</button>
-    </div>
-</div>
->>>>>>> origin/ivomesquita

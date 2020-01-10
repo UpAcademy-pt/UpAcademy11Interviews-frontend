@@ -27,6 +27,7 @@ export class AttributeEditComponent implements OnInit {
   isInvalid = false;
   errorMsg: "";
 
+  toDelete = false;
 
   constructor(
     public dataService: DataService,
@@ -82,6 +83,7 @@ export class AttributeEditComponent implements OnInit {
         console.log(error);
         if(error.status == 403) {
           this.errorMsg = error.error;
+          this.toDelete = false;
         }
       }
     );
