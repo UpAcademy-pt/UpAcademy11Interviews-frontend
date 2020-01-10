@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
+import { InterviewApiService } from 'src/app/core/services/interview-service';
 import { Interview } from 'src/app/core/models/interview';
 
 
@@ -11,33 +11,31 @@ import { Interview } from 'src/app/core/models/interview';
 })
 export class InterviewLoadComponent implements OnInit {
 
-  firstname: string;
-  lastname: string
-  candidateName: string;
-  
-  Interviews = [];
+  interview = []
+  interviewTitles = []
 
 
 /*   public bsModalRef: BsModalRef */
   constructor(
-    public InterviewModelApiService: InterviewModelApiService,
+    public interviewApi: InterviewApiService,
     public bsModalRef: BsModalRef
   ) { }
 
-  ngOnInit() {
-    this.InterviewModelApiService.getAll().subscribe(
-      (response: Interview[]) => {
-        this.Interviews = response;
-      })
+  ngOnInit()  {
+    this.interviewApi.getAll().subscribe(data =>{
+      this.interview.push(data);
+      console.log(this.interview);
+      
+    })
   }
+    
+
+    
+  
 
  
 
   createInterview() {
-    const candidateName = this.firstname + " " + this.lastname;
-    console.log(candidateName);
-    
-    
     this.bsModalRef.hide()  
   }
 }

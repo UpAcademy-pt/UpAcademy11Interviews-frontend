@@ -18,8 +18,8 @@ import { AttributeEditComponent } from './attribute-edit/attribute-edit.componen
 import { GenerateInterviewComponent } from './generate-interview/generate-interview.component';
 import { id } from '@swimlane/ngx-datatable';
 import { QuestionDeleteComponent } from './question-delete/question-delete.component';
-import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
 import { initialState } from 'ngx-bootstrap/timepicker/reducer/timepicker.reducer';
+import { InterviewApiService } from 'src/app/core/services/interview-service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -62,7 +62,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private questionApi: QuestionApiService,
     private attributeApi: AttributeApiService,
     private attributeValueApi: AttributeValueApiService,
-    private InterviewModelApiService: InterviewModelApiService,
+    private interviewApi: InterviewApiService,
     private router: Router,
     private modalService: BsModalService
   ) {
@@ -245,7 +245,9 @@ export class QuestionComponent implements OnInit, OnDestroy {
       questionIds : this.interviewQuestions,
     }
     this.modalRef = this.modalService.show(GenerateInterviewComponent, {initialState});
-        
+    this.modalService.onHide.subscribe(() => {
+      this.interviewApi.getAll();
+  });
   }
 
   generatePdf() {
