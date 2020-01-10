@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { InterviewApiService } from 'src/app/core/services/interview-service';
 import { Interview } from 'src/app/core/models/interview';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -11,10 +12,10 @@ import { Interview } from 'src/app/core/models/interview';
 })
 export class InterviewLoadComponent implements OnInit {
 
-  interview = []
-  interviewTitles = []
-
-
+  interviews = []
+  interviewTitle = []
+  selectedTemplate = '';
+  @Output() templateSelect = new EventEmitter<string>();
 /*   public bsModalRef: BsModalRef */
   constructor(
     public interviewApi: InterviewApiService,
@@ -22,20 +23,14 @@ export class InterviewLoadComponent implements OnInit {
   ) { }
 
   ngOnInit()  {
-    this.interviewApi.getAll().subscribe(data =>{
-      this.interview.push(data);
-      console.log(this.interview);
-      
-    })
+    this.interviewApi.getAll().subscribe((data:Interview[]) =>{
+      this.interviews = data;
+      console.log(this.interviews);
+    });
   }
-    
-
-    
-  
-
- 
-
+   
   createInterview() {
+    this.templateSelect.emit(this.selectedTemplate);
     this.bsModalRef.hide()  
   }
 }

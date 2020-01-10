@@ -5,4 +5,5 @@ export class Question {
     question : string;
     answer : string;
     attributes : AttributeValue[];
+    evaluation?: number
 }
