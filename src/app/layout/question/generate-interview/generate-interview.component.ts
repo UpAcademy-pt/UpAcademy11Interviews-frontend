@@ -5,7 +5,8 @@ import { AttributeValueApiService } from 'src/app/core/services/attribute-value-
 import { QuestionApiService, AccountApiService } from 'src/app/core';
 import { InterviewApiService } from 'src/app/core/services/interview-service';
 import { Interview } from 'src/app/core/models/interview';
-
+import { Account } from '../../../core/models/account';
+import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
 @Component({
   selector: 'app-generate-interview',
   templateUrl: './generate-interview.component.html',
@@ -18,6 +19,7 @@ export class GenerateInterviewComponent implements OnInit {
   interview: Interview = new Interview();
   candidate = '';
   evaluations = []
+  finalEvaluation = 0;
   user: Account
 
   questionIds : Set<number> = new Set<number>();
@@ -30,7 +32,7 @@ export class GenerateInterviewComponent implements OnInit {
     
     public bsModalRef: BsModalRef,
     public attributeValueApi: AttributeValueApiService,
-    public InterviewApi: InterviewApiService,
+    public InterviewApi: InterviewModelApiService,
     public accountApi: AccountApiService,
     private questionApi: QuestionApiService,
   ) { 
@@ -39,6 +41,7 @@ export class GenerateInterviewComponent implements OnInit {
   ngOnInit() {
     this.interview.candidate = this.candidate
     this.interview.evaluations = this.evaluations
+    this.interview.finalEvaluation = this.finalEvaluation
     this.accountApi.get(this.accountApi.getCurrentId()).subscribe((user:Account) => {
       this.user = user;
       this.interview.user = user;

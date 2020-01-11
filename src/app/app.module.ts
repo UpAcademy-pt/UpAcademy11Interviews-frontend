@@ -17,7 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SidebarModule } from 'ng-sidebar/lib/sidebar.module';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbProgressbarModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 
 
@@ -45,6 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
     FlexLayoutModule,
     MatInputModule,
     NgbModule,
+    NgbProgressbarModule,
     MatFormFieldModule,
     SidebarModule.forRoot(),
     TranslateModule.forRoot({

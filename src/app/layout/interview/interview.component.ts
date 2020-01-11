@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, Input } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 /* pdf */
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -10,6 +10,9 @@ import { InterviewDeleteComponent } from './interview-delete/interview-delete.co
 import { InterviewSubmitComponent } from './interview-submit/interview-submit.component';
 import { InterviewApiService } from 'src/app/core/services/interview-service';
 import { Interview } from 'src/app/core/models/interview';
+import { Identifiers } from '@angular/compiler';
+import { Router } from '@angular/router';
+import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -19,11 +22,16 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   encapsulation: ViewEncapsulation.None
 })
 export class InterviewComponent implements OnInit {
-
+  interview: Interview;
+  finalEvaluation: number;
   id: number;
+  selectedTemplate;
+  @Output() templateSelect = new EventEmitter<string>();
+  
   public bsModalRef: BsModalRef
   constructor(
     private interviewApi: InterviewApiService,
+    private interviewModelApi: InterviewModelApiService,
     private modalService: BsModalService,
   ) { }
 
@@ -45,11 +53,12 @@ export class InterviewComponent implements OnInit {
   },
   {
     qual: "Doesn't meet Requirements",
-    quant: -1
+    quant: 0
   }
   ]
  
   ngOnInit() {
+   
   }
 
   deleteQuestion() {
@@ -58,9 +67,12 @@ export class InterviewComponent implements OnInit {
 
   loadInterview() {
     this.bsModalRef = this.modalService.show(InterviewLoadComponent);
-    this.bsModalRef.content.templateSelect.subscribe(templateId => {
-      console.log('data', templateId);
-      this.interviewApi.get(templateId).subscribe((data: Interview) =>{
+    this.bsModalRef.content.templateSelect.subscribe(template => {
+      console.log('data', template);
+
+      this.selectedTemplate = template;
+
+      this.interviewModelApi.get(template.id).subscribe((data: Interview) =>{
         data.questions.map(question => question.evaluation = 0);
         this.interviewQuestions = data.questions;
         console.log(this.interviewQuestions);
@@ -69,16 +81,23 @@ export class InterviewComponent implements OnInit {
   }
 
   submitInterview() {
-    let arr = [];
-    let mean = 0;
+    let arrEvaluations = [];
     for (let i = 0; i < this.interviewQuestions.length; i++) {
-      arr.push(this.interviewQuestions[i].evaluation)
-      console.log(arr);
-      
+      arrEvaluations.push(this.interviewQuestions[i].evaluation)
+      console.log(arrEvaluations);
     }
-    
-    this.bsModalRef = this.modalService.show(InterviewSubmitComponent);
-
+    var sum = 0;
+    for( var i = 0; i < arrEvaluations.length; i++ ){
+      sum += parseInt( arrEvaluations[i], 10 );
+    }
+        
+    this.finalEvaluation = sum / arrEvaluations.length;
+    console.log(this.finalEvaluation);  
+    this.selectedTemplate.finalEvaluation = this.finalEvaluation;
+    const initialState = {
+      selectedTemplate: this.selectedTemplate
+    };
+    this.bsModalRef = this.modalService.show(InterviewSubmitComponent, { initialState });
   }
 
    generatePdf() {

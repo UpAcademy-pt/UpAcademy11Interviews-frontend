@@ -14,9 +14,9 @@
             <input class=" form-control p-1 m-1" name="lastname" value="lastname" type="text" [(ngModel)]="lastname" placeholder="Last Name" />
         </div>
     </div>
-    <label class="form-row mt-1" for="email">Candidate Email:</label>
-    <input id="email" type="text" class="form-control w-100 p-1 m-1" type="email" placeholder="email@address.com">
+    <label for="form-row">Email:</label>
+    <input class=" form-control p-1 m-1" name="email" value="email" type="text" [(ngModel)]="email" placeholder="example: email@adress.com" />
 </div>
 <div class="modal-footer">
-    <button type="button" class="loadIntButton" (click)="submitInterview()">Submit</button>
+    <button type="button" class="loadIntButton" routerLink="layout/interview-results" (click)="submitInterview()">Submit</button>
 </div>

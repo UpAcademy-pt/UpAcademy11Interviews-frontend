@@ -30,6 +30,11 @@ export class AccountApiService {
     });
   }
 
+  public getCurrentAccount():Account{
+    return this.currentAccount;
+  }
+
+
   public setCurrentAccount(account:Account){
     this.currentAccount = account;
   }
