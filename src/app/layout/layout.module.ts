@@ -28,7 +28,7 @@ import { QuestionDeleteComponent } from './question/question-delete/question-del
 import { AccountDeleteComponent } from './account/account-delete/account-delete.component';
 import { InterviewLoadComponent } from './interview/interview-load/interview-load.component';
 import { InterviewResultsComponent } from './interview-results/interview-results.component';
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { InterviewDeleteComponent } from './interview/interview-delete/interview-delete.component';
 import { InterviewSubmitComponent } from './interview/interview-submit/interview-submit.component';
 
@@ -66,6 +66,7 @@ import { InterviewSubmitComponent } from './interview/interview-submit/interview
     MatFormFieldModule,
     NgbAccordionModule,
     FontAwesomeModule,
+    NgbProgressbarModule,
     ModalModule.forRoot(),
     NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBDW7tXXUvwCFeGZl3FRqUzTKAlUH8OF3Q' })
   ],

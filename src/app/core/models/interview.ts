@@ -7,4 +7,5 @@ export class Interview {
     user : Account;
     questions : Question[]=[]
     evaluations : String[];
+    finalEvaluation: number
 }

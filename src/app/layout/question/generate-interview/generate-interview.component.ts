@@ -18,6 +18,7 @@ export class GenerateInterviewComponent implements OnInit {
   interview: Interview = new Interview();
   candidate = '';
   evaluations = []
+  finalEvaluation = 0;
   user: Account
 
   questionIds : Set<number> = new Set<number>();
@@ -39,6 +40,7 @@ export class GenerateInterviewComponent implements OnInit {
   ngOnInit() {
     this.interview.candidate = this.candidate
     this.interview.evaluations = this.evaluations
+    this.interview.finalEvaluation = this.finalEvaluation
     this.accountApi.get(this.accountApi.getCurrentId()).subscribe((user:Account) => {
       this.user = user;
       this.interview.user = user;

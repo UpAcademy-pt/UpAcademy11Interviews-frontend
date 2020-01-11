@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, Input } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 /* pdf */
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -10,6 +10,8 @@ import { InterviewDeleteComponent } from './interview-delete/interview-delete.co
 import { InterviewSubmitComponent } from './interview-submit/interview-submit.component';
 import { InterviewApiService } from 'src/app/core/services/interview-service';
 import { Interview } from 'src/app/core/models/interview';
+import { Identifiers } from '@angular/compiler';
+import { Router } from '@angular/router';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -19,8 +21,12 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   encapsulation: ViewEncapsulation.None
 })
 export class InterviewComponent implements OnInit {
-
+  interview: Interview;
+  finalEvaluation: number;
   id: number;
+  selectedTemplate: number;
+  @Output() templateSelect = new EventEmitter<string>();
+  
   public bsModalRef: BsModalRef
   constructor(
     private interviewApi: InterviewApiService,
@@ -50,7 +56,9 @@ export class InterviewComponent implements OnInit {
   ]
  
   ngOnInit() {
+   
   }
+
 
   deleteQuestion() {
     this.bsModalRef = this.modalService.show(InterviewDeleteComponent);
@@ -60,6 +68,9 @@ export class InterviewComponent implements OnInit {
     this.bsModalRef = this.modalService.show(InterviewLoadComponent);
     this.bsModalRef.content.templateSelect.subscribe(templateId => {
       console.log('data', templateId);
+
+      this.selectedTemplate = templateId;
+
       this.interviewApi.get(templateId).subscribe((data: Interview) =>{
         data.questions.map(question => question.evaluation = 0);
         this.interviewQuestions = data.questions;
@@ -69,16 +80,26 @@ export class InterviewComponent implements OnInit {
   }
 
   submitInterview() {
-    let arr = [];
-    let mean = 0;
+    let arrEvaluations = [];
     for (let i = 0; i < this.interviewQuestions.length; i++) {
-      arr.push(this.interviewQuestions[i].evaluation)
-      console.log(arr);
-      
+      arrEvaluations.push(this.interviewQuestions[i].evaluation)
+      console.log(arrEvaluations);
     }
-    
-    this.bsModalRef = this.modalService.show(InterviewSubmitComponent);
-
+    var sum = 0;
+    for( var i = 0; i < arrEvaluations.length; i++ ){
+      sum += parseInt( arrEvaluations[i], 10 );
+    }
+        
+    this.finalEvaluation = sum / arrEvaluations.length;
+    console.log(this.finalEvaluation);  
+    this.interviewApi.get(this.selectedTemplate).subscribe((data:Interview) => {
+      data.finalEvaluation = this.finalEvaluation;
+      console.log(data);
+    })
+    const initialState = {
+      selectedTemplate: this.selectedTemplate
+    };
+    this.bsModalRef = this.modalService.show(InterviewSubmitComponent, { initialState });
   }
 
    generatePdf() {

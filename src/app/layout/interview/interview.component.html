@@ -6,7 +6,7 @@
         <button class="loadButton" style="float: right;" (click)="submitInterview()">
             <span>Submit Interview</span>
         </button>
-        <button class="loadButton"  (click)="generatePdf()">
+        <button class="loadButton" (click)="generatePdf()">
             <span>Export PDF</span>
         </button>
     </div>
@@ -14,7 +14,7 @@
         <span>
             <!-- {{candidateName}} --></span>
     </div>
-
+    
     <table id="interview">
         <tr>
             <th *ngFor="let col of columns">
@@ -34,11 +34,11 @@
                 </select>
             </td>
             <td style="width:150px">
-                <button type="button" class="deleteInterview" (click)="deleteQuestion()"
-                data-toggle="tooltip" data-placement="bottom" title="Delete">
+                <button type="button" class="deleteInterview" (click)="deleteQuestion()" data-toggle="tooltip"
+                    data-placement="bottom" title="Delete">
 
                     <i class="material-icons">
-                            delete</i> 
+                        delete</i>
                 </button>
             </td>
         </tr>
