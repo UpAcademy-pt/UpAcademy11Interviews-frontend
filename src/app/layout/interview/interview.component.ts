@@ -12,6 +12,7 @@ import { InterviewApiService } from 'src/app/core/services/interview-service';
 import { Interview } from 'src/app/core/models/interview';
 import { Identifiers } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -24,12 +25,13 @@ export class InterviewComponent implements OnInit {
   interview: Interview;
   finalEvaluation: number;
   id: number;
-  selectedTemplate: number;
+  selectedTemplate;
   @Output() templateSelect = new EventEmitter<string>();
   
   public bsModalRef: BsModalRef
   constructor(
     private interviewApi: InterviewApiService,
+    private interviewModelApi: InterviewModelApiService,
     private modalService: BsModalService,
   ) { }
 
@@ -51,7 +53,7 @@ export class InterviewComponent implements OnInit {
   },
   {
     qual: "Doesn't meet Requirements",
-    quant: -1
+    quant: 0
   }
   ]
  
@@ -59,19 +61,18 @@ export class InterviewComponent implements OnInit {
    
   }
 
-
   deleteQuestion() {
     this.bsModalRef = this.modalService.show(InterviewDeleteComponent);
   }
 
   loadInterview() {
     this.bsModalRef = this.modalService.show(InterviewLoadComponent);
-    this.bsModalRef.content.templateSelect.subscribe(templateId => {
-      console.log('data', templateId);
+    this.bsModalRef.content.templateSelect.subscribe(template => {
+      console.log('data', template);
 
-      this.selectedTemplate = templateId;
+      this.selectedTemplate = template;
 
-      this.interviewApi.get(templateId).subscribe((data: Interview) =>{
+      this.interviewModelApi.get(template.id).subscribe((data: Interview) =>{
         data.questions.map(question => question.evaluation = 0);
         this.interviewQuestions = data.questions;
         console.log(this.interviewQuestions);
@@ -92,10 +93,7 @@ export class InterviewComponent implements OnInit {
         
     this.finalEvaluation = sum / arrEvaluations.length;
     console.log(this.finalEvaluation);  
-    this.interviewApi.get(this.selectedTemplate).subscribe((data:Interview) => {
-      data.finalEvaluation = this.finalEvaluation;
-      console.log(data);
-    })
+    this.selectedTemplate.finalEvaluation = this.finalEvaluation;
     const initialState = {
       selectedTemplate: this.selectedTemplate
     };

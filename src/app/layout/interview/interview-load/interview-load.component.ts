@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { InterviewApiService } from 'src/app/core/services/interview-service';
 import { Interview } from 'src/app/core/models/interview';
 import { Title } from '@angular/platform-browser';
+import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
 
 
 @Component({
@@ -14,11 +15,11 @@ export class InterviewLoadComponent implements OnInit {
 
   interviews = []
   interviewTitle = []
-  selectedTemplate = '';
-  @Output() templateSelect = new EventEmitter<string>();
+  selectedTemplate;
+  @Output() templateSelect = new EventEmitter<Object>();
 /*   public bsModalRef: BsModalRef */
   constructor(
-    public interviewApi: InterviewApiService,
+    public interviewApi: InterviewModelApiService,
     public bsModalRef: BsModalRef
   ) { }
 
@@ -30,7 +31,8 @@ export class InterviewLoadComponent implements OnInit {
   }
    
   createInterview() {
-    this.templateSelect.emit(this.selectedTemplate);
+    let template = this.interviews.find( interview => interview.id == this.selectedTemplate); 
+    this.templateSelect.emit(template);
     this.bsModalRef.hide()  
   }
 }

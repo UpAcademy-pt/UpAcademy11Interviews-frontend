@@ -1,3 +1,8 @@
+h2{
+  padding-top: 3%;
+  color:white;
+}
+
 #interview {
    
     font-family: "Trebuchet MS",Arial, Helvetica, sans-serif;
@@ -8,6 +13,11 @@
 
   /* progressBar */
   
+  #progressBar {
+    width: 80%;
+    float: right;  
+    padding-right: 20%;
+    }
   
 
 /* top-left border-radius */
@@ -31,12 +41,11 @@ table tr:first-child th:first-child {
   }
 
 
-
 #interview td {
     border-top: 2px solid rgb(0, 0, 0);
-    padding: 8px;
-    min-width: 200px;
-    max-width: 200px;
+    padding: 12px;
+    min-width: 80px;
+    max-width: 300px;
     word-wrap: break-word;
     text-align: justify;
   }

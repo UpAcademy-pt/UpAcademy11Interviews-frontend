@@ -1,4 +1,5 @@
 <section class="container">
+    <h2 class="text-white" translate>Templates</h2>
     <div>
         <button class="loadButton" (click)="loadInterview()">
             <span>Load Interview-Template</span>
@@ -10,22 +11,26 @@
             <span>Export PDF</span>
         </button>
     </div>
-    <div>
-        <span>
-            <!-- {{candidateName}} --></span>
+    <div class="row text-center text-white">
+        <div *ngIf="selectedTemplate" class="col">
+            <h2>{{selectedTemplate.title}}</h2>
+            <p id="progressBar">
+                <ngb-progressbar type="info" [value]="50">Copying file <b>2 of 4</b>...</ngb-progressbar>
+            </p>
+        </div>
     </div>
-    
-    <table id="interview">
+
+    <table *ngIf="interviewQuestions.length>0" id="interview">
         <tr>
             <th *ngFor="let col of columns">
                 {{col}}
             </th>
         </tr>
-        <tr *ngFor="let question of interviewQuestions">
+        <tr style="width:500px" *ngFor="let question of interviewQuestions">
             <td *ngFor="let col of index">
                 {{question[col]}}
             </td>
-            <td style="width:260px">
+            <td>
                 <select class="form-control" [(ngModel)]="question.evaluation">
                     <option value="0" selected>No Evaluation</option>
                     <option [value]="col.quant" *ngFor="let col of evaluations">
@@ -33,7 +38,7 @@
                     </option>
                 </select>
             </td>
-            <td style="width:150px">
+            <td style="width: 40px;">
                 <button type="button" class="deleteInterview" (click)="deleteQuestion()" data-toggle="tooltip"
                     data-placement="bottom" title="Delete">
 

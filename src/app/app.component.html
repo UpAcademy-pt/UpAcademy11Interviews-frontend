@@ -11,11 +11,11 @@ rel="stylesheet">
     <div *ngIf="accountApi.isAuthenticated()" class="">
 
       
-      <div *ngIf="accountApi.isAdmin()" class="btn">
+      <div  class="btn">
         <button class="qaButton" routerLink="layout/question">Questions</button>
         <button class="qaButton" routerLink="layout/interview">Interview</button>
         <button class="qaButton" routerLink="layout/interview-results">Results</button>
-        <button class="qaButton" routerLink="layout/account">Users</button>
+        <button *ngIf="accountApi.isAdmin()" class="qaButton" routerLink="layout/account">Users</button>
       </div>
 
       <span class="fontsize navbar-text  text-white">
