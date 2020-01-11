@@ -80,7 +80,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   }
 
-  columns = ["Add to Interview", "Question", "Expected Answer", ""];
+  columns = ["Add to Interview", "Question", "Expected Answer", "Options"];
   indexTable = ["attributes", "question", "answer"];
 
 

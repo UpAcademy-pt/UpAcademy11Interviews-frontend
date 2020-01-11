@@ -19,10 +19,18 @@
 
     <div>
     <label for="type" class="font-weight-bold">Types:</label>
-    <input id="type" name="value" type="text" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;" [(ngModel)]="attributeValue.value" placeholder="Write Type">
+    <input id="type" required  #attributeAdd="ngModel" name="value" type="text" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;" [(ngModel)]="attributeValue.value" placeholder="Write Type">
     <button  (click)= "createAttributeValue()" style="margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black">
     + </button>
     </div>
+
+    <div class="text-danger" [hidden]="attributeAdd.valid || isInvalid == false">
+      
+        <div  *ngIf="(attributeAdd.errors && attributeAdd.errors.required) || isInvalid">
+        Class is required
+        </div>
+
+      </div>
     
     <div class="my-chip-list">
         <label *ngFor="let attributeValue of attributeValues"

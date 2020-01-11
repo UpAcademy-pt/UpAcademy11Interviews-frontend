@@ -6,15 +6,6 @@
 </div>
 <div class="modal-body">
     <label for="role">Select Interview-Template:</label>
-<<<<<<< HEAD
-        <select class="form-control" [(ngModel)]="Interviews">
-            <option value="Interview" selected></option>
-            <option [value]="interview" *ngFor="let interview of Interviews">
-                {{interview.value}}
-            </option>
-        </select>
-
-=======
     <select class="form-control" [(ngModel)]="selectedTemplate">
         <option value="" hidden selected>Choose One</option>
         <option [value]="interview.id" *ngFor="let interview of interviews; let i = index">
@@ -22,7 +13,6 @@
         </option>
     </select>
 </div>
->>>>>>> origin/jsilvestre
 <div class="modal-footer">
 
     <div>
@@ -30,5 +20,4 @@
     </div>
 
     <button type="button" class="loadIntButton" (click)="createInterview()">Load</button>
-</div>
 </div>

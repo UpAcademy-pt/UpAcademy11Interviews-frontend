@@ -90,6 +90,9 @@ export class AttributeEditComponent implements OnInit {
 }
 
   public createAttributeValue () {
+    if (this.attributeValue.value == '') {
+      this.isInvalid = true;
+    }else{
     Object.assign(this.attributeValue.attribute, this.attribute);
     this.attributeValueApi.create(this.attributeValue).subscribe(
       (data : AttributeValue) => {
@@ -99,6 +102,7 @@ export class AttributeEditComponent implements OnInit {
       (error) => {
       }
     );
+    }
   }
 
   public deleteAttributeValue(id : number) {

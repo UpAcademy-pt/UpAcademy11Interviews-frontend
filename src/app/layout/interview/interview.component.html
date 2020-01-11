@@ -26,17 +26,10 @@
                 {{question[col]}}
             </td>
             <td style="width:260px">
-<<<<<<< HEAD
-                <select class="form-control" [(ngModel)]="evaluation">
-                    <option value="" selected> No Evaluation </option>
-                    <option [value]="col" *ngFor="let col of evaluations">
-                        {{col}}
-=======
                 <select class="form-control" [(ngModel)]="question.evaluation">
                     <option value="0" selected>No Evaluation</option>
                     <option [value]="col.quant" *ngFor="let col of evaluations">
                         {{col.qual}}
->>>>>>> origin/jsilvestre
                     </option>
                 </select>
             </td>
