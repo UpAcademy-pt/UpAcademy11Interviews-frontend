@@ -8,7 +8,7 @@
                 <h3>Categories</h3>
                 <br>
                 <div>
-                <button class="addCategory container" (click)="addCategory()">Add Category 
+                <button class="addCategory container" (click)="addCategory()" *ngIf="currentAccount.role != 'User'">Add Category 
                         <i class="addCategoryIcon material-icons">add_circle</i>
                 </button>
                                
@@ -17,7 +17,7 @@
                         <div *ngFor="let attribute of attributes; let i = index">
                                 <label class="font-weight-bold text-center mt-3 mb-0">{{attribute.category}}</label>
                                
-                                <button class= editPencilButton (click)="editCategory(attribute.id)"> 
+                                <button *ngIf="currentAccount.role != 'User'" class= editPencilButton (click)="editCategory(attribute.id)"> 
 
                                         <i class="editPencilIcon material-icons">create</i>
                                 </button>
@@ -50,8 +50,8 @@
                                 </button> -->
                                
                                 
-                                <button class="QuestButton" (click)="openCreateModal()">Add Question
-                                        
+                                <button class="QuestButton" *ngIf="currentAccount.role != 'User'" (click)="openCreateModal()">
+                                        Add Question
                                         <i class="addQuestIcon material-icons">add_circle</i>
                                 </button>
                        
@@ -75,7 +75,7 @@
                                                         {{question[col]}}
                                                 </ng-container>
                                         </td>
-                                        <td style="width:150px">
+                                        <td style="width:150px" *ngIf="currentAccount.role != 'User'">
                                                 <button type="button" class="editButtonQuestion" (click)="editQuestion(question.id)" 
                                                 data-toggle="tooltip" data-placement="bottom" title="Edit" >
 

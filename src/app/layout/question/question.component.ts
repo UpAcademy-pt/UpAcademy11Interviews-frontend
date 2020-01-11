@@ -20,6 +20,7 @@ import { id } from '@swimlane/ngx-datatable';
 import { QuestionDeleteComponent } from './question-delete/question-delete.component';
 import { initialState } from 'ngx-bootstrap/timepicker/reducer/timepicker.reducer';
 import { InterviewApiService } from 'src/app/core/services/interview-service';
+import { Account} from '../../core/models/account';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -56,9 +57,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   filter: Set<String> = new Set<String>();
   valueOption = {};
+  currentAccount: Account = new Account();
 
   constructor(
     private dataService: DataService,
+    private accountApi : AccountApiService,
     private questionApi: QuestionApiService,
     private attributeApi: AttributeApiService,
     private attributeValueApi: AttributeValueApiService,
@@ -85,6 +88,14 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+
+    this.currentAccount.role = this.accountApi.getCurrentRole();
+    console.log(this.currentAccount.role);
+    console.log(this.currentAccount.role != 'User');
+
+    if (this.currentAccount.role == 'User') {
+      this.columns = ["Add to Interview", "Question", "Expected Answer"];
+    }
 
     this.questionApi.getAll().subscribe(
       (response: Question[]) => {

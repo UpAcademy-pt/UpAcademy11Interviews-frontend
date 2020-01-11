@@ -7,15 +7,11 @@
 <div class="modal-body">
 
     <label for="attribute" class="font-weight-bold" style="margin-bottom: 0px; margin-left: 4px;">Category:</label>
-    <input id="attribute" required #attributeEdit="ngModel" class="w-100 p-1 m-1" name="attribute" type="text" [(ngModel)]="attribute.category" placeholder="Write Category">
+    <input id="attribute" #attributeEdit="ngModel" class="w-100 p-1 m-1" name="attribute" type="text" [(ngModel)]="attribute.category" placeholder="Write Category">
 
-    <div class="text-danger" [hidden]="attributeEdit.valid || isInvalid == false">
-      
-            <div  *ngIf="(attributeEdit.errors && attributeEdit.errors.required) || isInvalid">
+            <div class="text-danger" *ngIf="categoryIsInvalid">
             Category is required
             </div>
-    
-          </div>
 
     <div>
     <label for="type" class="font-weight-bold">Types:</label>
@@ -24,13 +20,9 @@
     + </button>
     </div>
 
-    <div class="text-danger" [hidden]="attributeAdd.valid || isInvalid == false">
-      
-        <div  *ngIf="(attributeAdd.errors && attributeAdd.errors.required) || isInvalid">
+        <div class="text-danger" *ngIf="classIsInvalid">
         Class is required
         </div>
-
-      </div>
     
     <div class="my-chip-list">
         <label *ngFor="let attributeValue of attributeValues"

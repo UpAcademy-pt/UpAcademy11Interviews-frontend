@@ -43,7 +43,7 @@ export class AccountApiService {
   }
 
   public getCurrentName(): string {
-    return this.currentAccount.name;
+    return this.currentAccount.firstName;
   }
 
   public getCurrentRole(): string {

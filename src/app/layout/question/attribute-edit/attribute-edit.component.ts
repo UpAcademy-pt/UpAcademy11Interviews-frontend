@@ -24,7 +24,8 @@ export class AttributeEditComponent implements OnInit {
 
   id: number;
 
-  isInvalid = false;
+  categoryIsInvalid = false;
+  classIsInvalid = false;
   errorMsg: "";
 
   toDelete = false;
@@ -60,7 +61,7 @@ export class AttributeEditComponent implements OnInit {
 
   public edit() {
     if (this.attribute.category == '') {
-      this.isInvalid = true;
+      this.categoryIsInvalid = true;
     } else {
       this.attributeApi.update(this.id, this.attribute).subscribe(
         (data) => {
@@ -91,7 +92,7 @@ export class AttributeEditComponent implements OnInit {
 
   public createAttributeValue () {
     if (this.attributeValue.value == '') {
-      this.isInvalid = true;
+      this.classIsInvalid = true;
     }else{
     Object.assign(this.attributeValue.attribute, this.attribute);
     this.attributeValueApi.create(this.attributeValue).subscribe(

@@ -5,34 +5,44 @@
     </button>
   </div>
   <div class="modal-body">
-    <label class="font-weight-bold text-center mt-2">Edit Name:</label>
-    <input class="w-100 p-1 m-1" required pattern="[A-z -]+$" #name="ngModel" name="name" type="name" [(ngModel)]="account.name" placeholder="Name">
-
-    <div class="text-danger" [hidden]="name.valid || name.untouched">
-      
-      <div  *ngIf="name.errors && name.errors.required">
-          Name is required
+   
+  <div id="form-row" class="form-row mb-1">
+    <div class="col">
+      <input class="form-control p-1 m-1" required #firstName="ngModel" name="firstname"
+        value="account.firstName" type="text" [(ngModel)]="account.firstName"/>
+      <div class="text-danger" [hidden]="firstName.valid || isInvalid == false">
+        <div *ngIf="(firstName.errors && firstName.errors.required) || isInvalid">
+          First Name is required
+        </div>
       </div>
-      <div  *ngIf="name.errors && name.errors.pattern">
-        Name is invalid
     </div>
+    <div class="col">
+      <input class=" form-control p-1 m-1" required #lastName="ngModel" name="lastname"
+        value="account.lastName" type="text" [(ngModel)]="account.lastName"/>
+      <div class="text-danger" [hidden]="lastName.valid || isInvalid == false">
+        <div *ngIf="(lastName.errors && lastName.errors.required) || isInvalid">
+          Last Name is required
+        </div>
+      </div>
     </div>
+  </div>
     <label class="font-weight-bold text-center mt-2">Edit Email:</label>
     <input class="w-100 p-1 m-1" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" name="email" email type="email" [(ngModel)]="account.email" placeholder="Email">
-  <div class="text-danger" [hidden]="email.valid || email.untouched">
-    <div  *ngIf="email.errors && email.errors.required">
+    <div class="text-danger" [hidden]="email.valid || email.untouched || isInvalid == false">
+      <div *ngIf="(email.errors && email.errors.required) || isInvalid">
         Email is required
-    </div>
-    <div  *ngIf="email.errors && email.errors.pattern">
+      </div>
+      <div *ngIf="(email.errors && email.errors.pattern)">
         Email is invalid
+      </div>
     </div>
   </div>
     <label class="font-weight-bold text-center mt-2">Password:</label>
     <input [disabled]="!editPassword" required pattern="(.{4,}$)" #password="ngModel" class="w-90 p-1 m-1" name="password" type="password" [(ngModel)]="account.hashcode" placeholder="Password" >
     <!-- <i class="fa fa-edit"></i> -->
-    <div class="text-danger" [hidden]="password.valid || password.untouched">
+    <div class="text-danger" [hidden]="password.valid || password.untouched || isInvalid == false">
 
-      <div  *ngIf="password.errors && password.errors.required">
+      <div  *ngIf="(password.errors && password.errors.required) || isInvalid">
         Password is required
     </div>
     
@@ -56,8 +66,7 @@
       <img src="https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg" class="modalLogo rounded float-left">
   </div>
 
-    <button type="button" class="editAccountButton" (click)="editAccount()" (click)="bsModalRef.hide()" >Edit</button>
-    <!-- <button type="button" class="btn btn-outline-danger mt-2" (click)="back()">Cancel</button> -->
+    <button type="button" class="editAccountButton" disabled="email.errors && email.errors.pattern" (click)="editAccount()">
+      Edit</button>
   </div>
-</div>
   

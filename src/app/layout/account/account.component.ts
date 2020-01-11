@@ -22,8 +22,8 @@ export class AccountComponent implements OnInit {
     private accountApi: AccountApiService,
     private modalService: BsModalService
     ) { }
-  columns = ["User Id","Name", "Email", "Role","" ];
-  index = ["id","name", "email", "role"];
+  headers = ["User Id", "Name", "Email", "Role", "Options"];
+  columns = ["id","" , "email", "role"];
   accounts = [];
   accounts$ =new ReplaySubject<Account[]>();
 

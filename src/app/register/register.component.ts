@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   public account: Account = new Account();
   public msg: string;
   error = false;
+  isInvalid = false;
 
   constructor(
     private location: Location,
@@ -37,17 +38,18 @@ export class RegisterComponent implements OnInit {
   } */
 
   public register() {
-    
+    if (this.account.firstName == '' || this.account.lastName == '' || this.account.email == '' || this.account.password == '') {
+      this.isInvalid = true;
+    }else{
     this.accountApi.create(this.account).subscribe(
       (account: any) => {
+        this.bsModalRef.hide()
       },
       (error) => {
         console.log(error);
         this.msg = 'Invalid fields.';
         this.error = true;
-      }
-    );
-    
-    /* this.location.back(); */
+      });
   }
+}
 }
