@@ -6,6 +6,9 @@
         <button class="loadButton" style="float: right;" (click)="submitInterview()">
             <span>Submit Interview</span>
         </button>
+        <button class="loadButton"  (click)="generatePdf()">
+            <span>Export PDF</span>
+        </button>
     </div>
     <div>
         <span>
@@ -18,15 +21,22 @@
                 {{col}}
             </th>
         </tr>
-        <tr *ngFor="let interview of interviewQuestions">
-            <td *ngFor="let col of interviewQuestions">
-                {{col}}
+        <tr *ngFor="let question of interviewQuestions">
+            <td *ngFor="let col of index">
+                {{question[col]}}
             </td>
             <td style="width:260px">
+<<<<<<< HEAD
                 <select class="form-control" [(ngModel)]="evaluation">
                     <option value="" selected> No Evaluation </option>
                     <option [value]="col" *ngFor="let col of evaluations">
                         {{col}}
+=======
+                <select class="form-control" [(ngModel)]="question.evaluation">
+                    <option value="0" selected>No Evaluation</option>
+                    <option [value]="col.quant" *ngFor="let col of evaluations">
+                        {{col.qual}}
+>>>>>>> origin/jsilvestre
                     </option>
                 </select>
             </td>
@@ -37,8 +47,6 @@
 
                     <i class="material-icons">
                             delete</i> 
-                            
-
                 </button>
             </td>
         </tr>
