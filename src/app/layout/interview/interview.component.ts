@@ -13,6 +13,7 @@ import { Interview } from 'src/app/core/models/interview';
 import { Identifiers } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
+import { InterviewModel } from 'src/app/core/models/interview-template';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -22,10 +23,17 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   encapsulation: ViewEncapsulation.None
 })
 export class InterviewComponent implements OnInit {
-  interview: Interview;
+  interview: Interview = new Interview();
   finalEvaluation: number;
   id: number;
   selectedTemplate;
+
+  //valor de 0 a 100
+  progressValue = 0;
+
+  //valor mostrado na barra de progresso
+  progressCount = 0;
+
   @Output() templateSelect = new EventEmitter<string>();
   
   public bsModalRef: BsModalRef
@@ -35,7 +43,7 @@ export class InterviewComponent implements OnInit {
   ) { }
 
   columns = ["Question", "Expected Answer", "Evaluation"];
-  interviewQuestions = [];
+
   index = ["question", "answer"];
   evaluations = [
    {
@@ -66,49 +74,66 @@ export class InterviewComponent implements OnInit {
 
   loadInterview() {
     this.bsModalRef = this.modalService.show(InterviewLoadComponent);
-    this.bsModalRef.content.templateSelect.subscribe(template => {
+    this.bsModalRef.content.templateSelect.subscribe((template : any) => {
+
       console.log('data', template);
 
       this.selectedTemplate = template;
 
-      this.interviewModelApi.get(template.id).subscribe((data: Interview) =>{
+      this.interviewModelApi.get(template.id).subscribe((data: InterviewModel) =>{
         data.questions.map(question => question.evaluation = 0);
-        this.interviewQuestions = data.questions;
-        console.log(this.interviewQuestions);
-        })
+        this.interview.questions = data.questions;
+        console.log(this.interview.questions);
+        });
+
     });
   }
 
   submitInterview() {
     let arrEvaluations = [];
-    for (let i = 0; i < this.interviewQuestions.length; i++) {
-      arrEvaluations.push(this.interviewQuestions[i].evaluation)
-      console.log(arrEvaluations);
-    }
+
+    this.interview.questions.forEach(question => {
+      console.log(question);
+      
+      arrEvaluations.push(question.evaluation);
+    });
+
     var sum = 0;
-    for( var i = 0; i < arrEvaluations.length; i++ ){
-      sum += parseInt( arrEvaluations[i], 10 );
-    }
-        
+    arrEvaluations.forEach(evaluation => {
+      sum += parseInt( evaluation, 10 );
+    });
     this.finalEvaluation = sum / arrEvaluations.length;
-    console.log(this.finalEvaluation);  
+
     this.selectedTemplate.finalEvaluation = this.finalEvaluation;
+
     const initialState = {
       selectedTemplate: this.selectedTemplate
     };
     this.bsModalRef = this.modalService.show(InterviewSubmitComponent, { initialState });
   }
 
+  progressBarUpdate() {
+    let count = 0;
+    this.interview.questions.forEach(question => {
+      if (question.evaluation == 0) {
+        count ++
+      }
+    });
+      this.progressCount = this.interview.questions.length - count;
+      this.progressValue = ((this.progressCount * 100) / this.interview.questions.length);  
+ }
+
+
    generatePdf() {
     var rows = [];
     rows.push([{ text: 'Question', style: 'tableHeader', alignment: 'center' }, { text: 'Expected Answer', style: 'tableHeader', alignment: 'center' }, { text: 'Evaluation', style: 'tableHeader', alignment: 'center' }]);
 
-    for (var i = 0; i < this.interviewQuestions.length; i++) {
+    for (var i = 0; i < this.interview.questions.length; i++) {
       let str = "";
-      this.interviewQuestions.forEach(attr => {
+      this.interview.questions.forEach(attr => {
         str += attr + " ";
       })
-      rows.push([this.interviewQuestions[i].question, this.interviewQuestions[i].answer, ""]);
+      rows.push([this.interview.questions[i].question, this.interview.questions[i].answer, ""]);
     }
 
     const documentDefinition = {

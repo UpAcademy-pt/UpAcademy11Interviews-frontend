@@ -44,7 +44,7 @@ export class AccountEditComponent implements OnInit {
         userToEdit.password = this.account.hashcode;
         this.accountApi.updatePassword(this.id, userToEdit).subscribe(
           (account: any) => {
-            this.bsModalRef.hide()
+            this.bsModalRef.hide();
           },
           (error) => {
             console.log(error);
@@ -56,6 +56,7 @@ export class AccountEditComponent implements OnInit {
       else {
         this.accountApi.update(this.id, this.account).subscribe(
           (account: any) => {
+            this.bsModalRef.hide();
           },
           (error) => {
             console.log(error);

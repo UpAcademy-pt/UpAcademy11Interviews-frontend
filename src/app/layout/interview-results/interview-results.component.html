@@ -1,8 +1,8 @@
 <section class="container">
   <h2 class="text-white" translate>Results</h2>
-  <input *ngIf="displayInterview.length>0" (keyup)="updateFilter($event)" [(ngModel)]="value" placeholder="Search" id="filter" class="rounded mb-2">
+  <input  (keyup)="updateFilter($event)" [(ngModel)]="value" placeholder="Search" id="filter" class="rounded mb-2">
 
-  <table *ngIf="displayInterview.length>0" id="interviewResult">
+  <table  id="interviewResult">
     <tr>
       <th *ngFor="let col of columns">
         {{col}}
