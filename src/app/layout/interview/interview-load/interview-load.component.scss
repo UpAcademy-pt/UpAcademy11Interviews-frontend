@@ -4,6 +4,11 @@
     overflow: auto;
   }
 
+  .modalTemplate {
+    max-height:280px; 
+    overflow-y: auto;
+  }
+
 #questionTable {
     background-image: url(https://www.criticaltechworks.com/static/images/imagem_banner_new.png);
     background-size: 100%;
