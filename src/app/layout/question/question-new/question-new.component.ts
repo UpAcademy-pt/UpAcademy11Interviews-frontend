@@ -41,6 +41,8 @@ export class QuestionNewComponent {
 
   questionComponent : QuestionComponent;
 
+  isInvalid = false;
+
 
   constructor(
     public attributeApi: AttributeApiService,
@@ -59,6 +61,9 @@ export class QuestionNewComponent {
   }
 
   public create() {
+    if (this.question.question == '') {
+      this.isInvalid = true;
+    } else {
       this.selectedValuesString.forEach(element => {
         let index= this.attributeValues.findIndex((attr: any) => attr.value == element);
         this.selectedValues.push(this.attributeValues[index]);
@@ -75,11 +80,7 @@ export class QuestionNewComponent {
         (error) => {
         }
       );
-  }
-
-  onKeyUp(event){
-    console.log(event.target.value);
-    
+    }
   }
 
   ngOnInit() {

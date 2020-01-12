@@ -24,6 +24,11 @@ export class AttributeEditComponent implements OnInit {
 
   id: number;
 
+  categoryIsInvalid = false;
+  classIsInvalid = false;
+  errorMsg: "";
+
+  toDelete = false;
 
   constructor(
     public dataService: DataService,
@@ -55,17 +60,40 @@ export class AttributeEditComponent implements OnInit {
   }
 
   public edit() {
+    if (this.attribute.category == '') {
+      this.categoryIsInvalid = true;
+    } else {
       this.attributeApi.update(this.id, this.attribute).subscribe(
         (data) => {
           this.dataService.updateAttributes();
-          this.bsModalRef.hide()
+          this.bsModalRef.hide();
         },
         (error) => {
         }
       );
+    }
   }
 
+  public delete() {
+    this.attributeApi.delete(this.id).subscribe(
+      (data) => {
+        this.dataService.updateAttributes();
+        this.bsModalRef.hide();
+      },
+      (error) => {
+        console.log(error);
+        if(error.status == 403) {
+          this.errorMsg = error.error;
+          this.toDelete = false;
+        }
+      }
+    );
+}
+
   public createAttributeValue () {
+    if (this.attributeValue.value == '') {
+      this.classIsInvalid = true;
+    }else{
     Object.assign(this.attributeValue.attribute, this.attribute);
     this.attributeValueApi.create(this.attributeValue).subscribe(
       (data : AttributeValue) => {
@@ -75,19 +103,21 @@ export class AttributeEditComponent implements OnInit {
       (error) => {
       }
     );
+    }
   }
 
   public deleteAttributeValue(id : number) {
     this.attributeValueApi.delete(id).subscribe(
       (data) => {
-
         this.updateAttributeValues();
         let index = this.attributeValues.findIndex(attr => attr.id == id);
-        this.attributeValues.splice(index, 1);
-        
+        this.attributeValues.splice(index, 1);  
       },
       (error) => {
         console.log(error);
+        if(error.status == 403) {
+          this.errorMsg = error.error;
+        }
       });
   }
 } 

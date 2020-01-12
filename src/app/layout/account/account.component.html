@@ -17,13 +17,14 @@
 
         <table id="account">
                 <tr>
-                        <th *ngFor="let col of columns">
+                        <th *ngFor="let col of headers">
                                 {{col}}
                         </th>
                 </tr>
                 <tr *ngFor="let account of accounts$ | async">
-                        <td *ngFor="let col of index">
-                                {{account[col]}}
+                        <td *ngFor="let col of columns; let i = index">
+                                <span *ngIf="i != 1">{{account[col]}}</span>
+                                <span *ngIf="i == 1">{{account.firstName}} {{account.lastName}}</span>
                         </td>
                         <td style="width:150px">
                                 <button type="button" class="userButtonEdit" (click)="accountEdit(account.id)" 

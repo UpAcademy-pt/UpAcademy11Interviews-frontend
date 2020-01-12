@@ -1,105 +1,71 @@
-<!-- card -->
-
-<!-- <div class="login-wrapper">
-  <mat-card class="box">
-    <mat-card-header>
-      <mat-card-title class="card-title mb-2">
-        Create a new account
-      </mat-card-title>
-    </mat-card-header>
-
-    <form class="example-form">
-
-      <mat-card-content>
-        <mat-form-field class="example-full-width">
-          <input mdbInput class="form-control w-100 mt-4" name="name" type="name" [(ngModel)]="account.name" placeholder="Username">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input mdbInput class="form-control w-100 mt-2" name="email" type="email" [(ngModel)]="account.email" placeholder="Email">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input mdbInput class="form-control w-100 mt-2" name="password" type="password" [(ngModel)]="account.password" placeholder="Password">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <label class="font-weight-bold text-center mt-2">Choose a role:</label>
-          <select mdbInput class="form-control w-100">
-            <option [value]="roles" *ngFor="let roles of Roles">{{roles}}
-            </option>
-          </select>
-        </mat-form-field>
-
-      </mat-card-content>
-
-      <button type="button" class="btn btn-outline-info w-50 mt-2" (click)="register()">Create</button>
-      <button type="button" class="btn btn-outline-danger w-50 mt-2" (click)="back()">Cancel</button>
-
-    </form>
-  </mat-card>
-</div>
-<router-outlet></router-outlet>
- -->
-
-<!-- modal -->
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Create new account</h4>
+  <h4 class="font-weight-bold modal-title pull-left">Create new account</h4>
   <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-      <span aria-hidden="true">&times;</span>
+    <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <input class="w-100 p-1 m-1" required pattern="[A-z -]+$" #name="ngModel" name="name" type="name" [(ngModel)]="account.name" placeholder="Name">
 
-  <div class="text-danger" [hidden]="name.valid || name.untouched">
-    
-    <div  *ngIf="name.errors && name.errors.required">
-        Name is required
+  <div id="form-row" class="form-row mb-1">
+    <div class="col">
+      <input class="form-control p-1 m-1" required #firstName="ngModel" name="firstname"
+        value="account.firstName" type="text" [(ngModel)]="account.firstName" placeholder="First Name" />
+      <div class="text-danger" [hidden]="firstName.untouched || isInvalid == false">
+        <div class="text-danger" *ngIf="(firstName.errors && firstName.errors.required) || isInvalid">
+          First Name is required
+        </div>
+      </div>
     </div>
-    <div  *ngIf="name.errors && name.errors.pattern">
-      Name is invalid
-  </div>
-  </div>
-  <input class="w-100 p-1 m-1" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" name="email" email type="email" [(ngModel)]="account.email" placeholder="Email">
-  <div class="text-danger" [hidden]="email.valid || email.untouched">
-    <div  *ngIf="email.errors && email.errors.required">
-        Email is required
-    </div>
-    <div  *ngIf="email.errors && email.errors.pattern">
-        Email is invalid
+    <div class="col">
+      <input class=" form-control p-1 m-1" required #lastName="ngModel" name="lastname"
+        value="account.lastName" type="text" [(ngModel)]="account.lastName" placeholder="Last Name" />
+      <div class="text-danger" [hidden]="lastName.untouched || isInvalid == false">
+        <div *ngIf="(lastName.errors && lastName.errors.required) || isInvalid">
+          Last Name is required
+        </div>
+      </div>
     </div>
   </div>
-  <input class="w-100 p-1 m-1" required pattern="(.{4,}$)" #password="ngModel" name="password" type="password" [(ngModel)]="account.password" placeholder="Password">
+
+
+  <input class="w-100 p-1 m-1" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel"
+    name="email" email type="email" [(ngModel)]="account.email" placeholder="Email">
+  <div class="text-danger" [hidden]="email.valid || email.untouched || isInvalid == false">
+    <div *ngIf="(email.errors && email.errors.required) || isInvalid">
+      Email is required
+    </div>
+    <div *ngIf="(email.errors && email.errors.pattern) || isInvalid">
+      Email is invalid
+    </div>
+  </div>
+  <input class="w-100 p-1 m-1" required pattern="(.{4,}$)" #password="ngModel" name="password" type="password"
+    [(ngModel)]="account.password" placeholder="Password">
   <div class="text-danger" [hidden]="password.valid || password.untouched">
-
-  <div  *ngIf="password.errors && password.errors.required">
-    Password is required
-</div>
-
-
-<div  *ngIf="password.errors && password.errors.pattern">
-  Password is invalid<br>
-  Minimum 4 characters
-</div>
-</div>
+    <div *ngIf="(password.errors && password.errors.required) || isInvalid">
+      Password is required
+    </div>
+    <div *ngIf="(password.errors && password.errors.pattern) || isInvalid">
+      Password is invalid, 4 or more characters are required.
+    </div>
+  </div>
   <label class="font-weight-bold text-center mt-2">Choose a role:</label>
   <select mdbInput class="form-control w-100" [(ngModel)]="account.role">
     <option [value]="roles" *ngFor="let roles of Roles">{{roles}}</option>
   </select>
 
 
-<div class="text-center modal-footer">
+  <div class="text-center modal-footer">
 
 
-  <div>
-    <img src="https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg" 
-    class="modalLogo rounded float-left">
-</div>
+    <div>
+      <img
+        src="https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg"
+        class="modalLogo rounded float-left">
+    </div>
 
 
-  <button type="button" [disabled]="!email.valid || !name.valid" class="registerButton" 
-  (click)="register()" (click)="bsModalRef.hide()">Create</button>
-  <!-- <button type="button" class="btn btn-outline-danger mt-2" (click)="back()">Cancel</button> -->
-</div>
+    <button type="button" class="registerButton" (click)="register()"
+    >Create</button>
+    <!-- <button type="button" class="btn btn-outline-danger mt-2" (click)="back()">Cancel</button> -->
+  </div>
 </div>

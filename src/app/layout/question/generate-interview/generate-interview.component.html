@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Generate Interview-Template</h4>
+    <h4 class="font-weight-bold modal-title pull-left">Generate Interview-Template</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -29,14 +29,14 @@
     <!-- <label for="carouselExampleIndicators" style="text-align: center;">Questions:</label>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li *ngFor = "let myQuestion of myQuestions | keyvalue; let i = index" 
-            data-target="#carouselExampleIndicators" [ngClass]="activeImg == i ? 'active' : ''">
+            <li *ngFor="let myQuestion of myQuestions | keyvalue; let i = index"
+                data-target="#carouselExampleIndicators" [ngClass]="activeImg == i ? 'active' : ''">
             </li>
         </ol>
         <div class="carousel-inner myCenter">
-            <div *ngFor = "let myQuestion of myQuestions | keyvalue; let i = index" class="carousel-item" 
-            [ngClass]="activeImg == i ? 'active' : ''">
-            <span>{{myQuestion.value.question}}</span>
+            <div *ngFor="let myQuestion of myQuestions | keyvalue; let i = index" class="carousel-item"
+                [ngClass]="activeImg == i ? 'active' : ''">
+                <span>{{myQuestion.value.question}}</span>
             </div>
         </div>
         <a class="carousel-control-prev" (click)="prevSlide()" role="button" data-slide="prev">

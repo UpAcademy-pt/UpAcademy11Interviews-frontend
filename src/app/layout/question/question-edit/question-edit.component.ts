@@ -35,6 +35,8 @@ export class QuestionEditComponent {
   empty = false;
   questionComponent: QuestionComponent;
 
+  isInvalid = false;
+
   constructor(
     public attributeApi: AttributeApiService,
     private questionApi: QuestionApiService,
@@ -44,6 +46,9 @@ export class QuestionEditComponent {
   }
 
   public editQuestion() {
+    if (this.question.question == '') {
+      this.isInvalid = true;
+    } else {
       this.selectedValuesString.forEach(element => {
         let index = this.attributeValues.findIndex((attr: any) => attr.value == element);
         this.selectedValues.push(this.attributeValues[index]);
@@ -56,6 +61,7 @@ export class QuestionEditComponent {
         (error) => {
         }
       );
+    }
   }
 
 

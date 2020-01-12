@@ -1,36 +1,33 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Edit Question</h4>
+    <h4 class="font-weight-bold modal-title pull-left">Edit Question</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
 
-    <div class="row">
-        <label for="question" style="margin-bottom: 0px; margin-left: 4px;">Question</label>
-        <input id="question" class="w-100 p-1 m-1" required pattern="[A-z ?]+$" #question="ngModel" name="question" type="text" [(ngModel)]="question.question" placeholder="Write question"/>
+        <label for="question" class="font-weight-bold text-center">Question:</label>
+        <input id="question" class="w-100 p-1 m-1" required #questionEdit="ngModel" name="question" type="text" [(ngModel)]="question.question" placeholder="Write question"/>
                 
 
-        <div class="text-danger" [hidden]="question.valid || question.untouched">
-          
-          <div  *ngIf="question.errors && question.errors.required">
-              Question is required <br>
-          </div>
-          <div  *ngIf="question.errors && question.errors.pattern">
-            Question is invalid <br>
-        </div>
-        </div>
-        <label for="answer" style="margin-bottom: 0px; margin-left: 4px;">Expected Answer</label>    
-        <input id="answer" class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer" placeholder="Expected Answer"/>
+        <div class="text-danger" [hidden]="questionEdit.valid || isInvalid == false">
+      
+                <div  *ngIf="(questionEdit.errors && questionEdit.errors.required) || isInvalid">
+                    Question is required 
+                </div>
+        
+              </div>
 
-        <label for="categories" style="margin-bottom: 0px; margin-left: 4px;">Categories</label> 
+        <label for="answer" class="font-weight-bold text-center">Expected Answer:</label>    
+        <input id="answer" class="w-100 p-1" name="answer" type="text" [(ngModel)]="question.answer" placeholder="Expected Answer"/>
+
+        <label for="categories" class="font-weight-bold text-center">Categories:</label> 
         <select id="categories" *ngIf="!empty" (change)="getAttributeValues()" class="form-control"
             style="margin-left: 4px; margin-right: 4px;" [(ngModel)]="attributeOption">
             <option value="" *ngIf="attributeOption == ''">Choose a category</option>
             <option [value]="attributeString" *ngFor="let attributeString of attributesString">{{attributeString}}
             </option>
         </select>
-    </div>
 
     <div class="row" *ngIf="attributeOption != '' ">
         <select class="form-control" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;"

@@ -1,14 +1,21 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">New Category</h4>
+    <h4 class="font-weight-bold modal-title pull-left">New Category</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
 
-    <label for="attribute" style="margin-bottom: 0px; margin-left: 4px;">Category</label>
-    <input id="attribute" class="w-100 p-1 m-1" name="attribute" type="text" [(ngModel)]="attribute.category">
+    <label for="attribute" class="font-weight-bold" style="margin-bottom: 0px; margin-left: 4px;">Category</label>
+    <input id="attribute" required #attributeNew="ngModel" class="w-100 p-1 m-1" name="attribute" type="text" [(ngModel)]="attribute.category">
 
+    <div class="text-danger" [hidden]="attributeNew.valid || isInvalid == false">
+      
+        <div  *ngIf="(attributeNew.errors && attributeNew.errors.required) || isInvalid">
+        Category is required
+        </div>
+
+      </div>
 <div class="modal-footer">
 
 
