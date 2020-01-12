@@ -30,30 +30,29 @@ export class InterviewComponent implements OnInit {
   
   public bsModalRef: BsModalRef
   constructor(
-    private interviewApi: InterviewApiService,
     private interviewModelApi: InterviewModelApiService,
     private modalService: BsModalService,
   ) { }
 
-  columns = ["Question", "Expected Answer", "Evaluation", ""];
+  columns = ["Question", "Expected Answer", "Evaluation"];
   interviewQuestions = [];
   index = ["question", "answer"];
   evaluations = [
    {
      qual: 'Exceeds Requirements',
-     quant: 3
+     quant: 4
    },
    {
     qual: 'Meets Requirements',
-    quant: 2
+    quant: 3
   },
   {
     qual: 'Needs Training',
-    quant: 1
+    quant: 2
   },
   {
     qual: "Doesn't meet Requirements",
-    quant: 0
+    quant: 1
   }
   ]
  

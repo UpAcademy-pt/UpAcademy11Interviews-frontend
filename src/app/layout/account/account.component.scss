@@ -16,6 +16,7 @@ h2{
 }
 
 #account {
+    margin-top: 20px;
     font-family: "Trebuchet MS",Arial, Helvetica, sans-serif;
     border-collapse: separate;
     border-spacing: 0px;
@@ -42,7 +43,10 @@ table tr:first-child th:first-child {
     border-bottom-right-radius: 20px;
   }
 
-
+  #filter {
+    text-align: left;
+    width: 100%;
+  }
 
 #account td {
     border-top: 2px solid rgb(0, 0, 0);

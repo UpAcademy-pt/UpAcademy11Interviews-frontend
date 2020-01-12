@@ -1,4 +1,38 @@
 
+.table-container {
+    max-height: 200px;
+    overflow: auto;
+  }
+
+#questionTable {
+    background-image: url(https://www.criticaltechworks.com/static/images/imagem_banner_new.png);
+    background-size: 100%;
+    font-family: "Trebuchet MS",Arial, Helvetica, sans-serif;
+    border-collapse: separate;
+    border-spacing: 0px;
+    width: 100%;
+    min-height: 10px;
+    max-height: 10px;
+    overflow: auto !important;
+  }
+
+  #questionTable td {
+    border-top: 2px solid rgb(0, 0, 0);
+    min-width: 80px;
+    max-width: 300px;
+    word-wrap: break-word;
+    text-align: justify;
+  }
+
+#questionTable tr {
+    border-top: 2px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#questionTable tr:hover{
+    background-color: rgba(2, 238, 234, 0.144);
+} 
 
 .loadIntButton{
     border-radius: 100px;
