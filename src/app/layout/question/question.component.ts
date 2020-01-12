@@ -239,6 +239,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
       console.log(this.interviewQuestions);
       
   }
+  
 
   generateInterview() {
     const initialState = {

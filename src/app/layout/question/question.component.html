@@ -1,81 +1,68 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <ng-sidebar-container style="height: 100vh;">
-
-        <!-- A sidebar -->
-        <ng-sidebar [(opened)]="_opened" position="left" [mode]="'push'">
-                <br>
-                <h3>Categories</h3>
+<!-- A sidebar -->
+<ng-sidebar [(opened)]="_opened" position="left" [mode]="'push'">
+        <br>
+        <h3>Categories</h3>
+        <br>
+        <div>
+        <button class="addCategory container" (click)="addCategory()">Add Category
+                <i class="addCategoryIcon material-icons">add_circle</i>
+        </button>
+        </div>
+         <div class="selectors container" style="padding-top: 0px; width: 250px;">
+                <div *ngFor="let attribute of attributes; let i = index">
+                <label class="font-weight-bold text-center mt-3 mb-0">{{attribute.category}}</label>
+                <button class=editPencilButton (click)="editCategory(attribute.id)">
+                        <i class="editPencilIcon material-icons">create</i>
+                        </button>
+                        <select class="form-control w-100" [(ngModel)]="valueOption[attribute.category]"
+                                (change)="filterQuestions()">
+                                <option value="" selected>Any {{attribute.category}}</option>
+                                <option [value]="filteredValue" *ngFor="let filteredValue of filteredValues[i]">
+                                        {{filteredValue}}
+                                </option>
+                        </select>
+                </div>
+        </div>
+</ng-sidebar>
+<!-- Page content -->
+<div ng-sidebar-content>
+        <section class="container">
+                <h2 class="text-white" translate>Questions</h2>
                 <br>
                 <div>
-                        <button class="addCategory container" (click)="addCategory()">Add Category
-                                <i class="addCategoryIcon material-icons">add_circle</i>
+                        <button class="pdfButton" (click)="generateInterview()">
+                                <span>Generate Interview-Template</span>
                         </button>
-
-                </div>
-                <div class="selectors container" style="padding-top: 0px; width: 250px;">
-                        <div *ngFor="let attribute of attributes; let i = index">
-                                <label class="font-weight-bold text-center mt-3 mb-0">{{attribute.category}}</label>
-
-                                <button class=editPencilButton (click)="editCategory(attribute.id)">
-
-                                        <i class="editPencilIcon material-icons">create</i>
-                                </button>
-
-                                <select class="form-control w-100" [(ngModel)]="valueOption[attribute.category]"
-                                        (change)="filterQuestions()">
-                                        <option value="" selected>Any {{attribute.category}}</option>
-                                        <option [value]="filteredValue" *ngFor="let filteredValue of filteredValues[i]">
-                                                {{filteredValue}}
-                                        </option>
-                                </select>
-                        </div>
-                </div>
-        </ng-sidebar>
-
-        <!-- Page content -->
-        <div ng-sidebar-content>
-                <section class="container">
-                        <h2 class="text-white" translate>Questions</h2>
-
-
-                        <br>
-                        <div>
-                                <button class="pdfButton" (click)="generateInterview()">
-                                        <span>Generate Interview-Template</span>
-                                </button>
-                        </div>
-                        <!--  <button type="button" class="btn btn-primary right" (click)="updateQuestions()" translate>
-                                        Update Questions
-                                </button> -->
-
-
-                        <button class="QuestButton" (click)="openCreateModal()">Add Question
-
-                                <i class="addQuestIcon material-icons">add_circle</i>
-                        </button>
-
-
-                        <br>
-                        <table id="question" style="overflow-x:auto;">
-                                <tr>
-                                        <th *ngFor="let col of columns">
-                                                {{col}}
-                                        </th>
-                                </tr>
-                                <tr *ngFor="let question of displayedQuestions">
-                                        <td *ngFor="let col of indexTable; let i = index">
-                                                <ng-container *ngIf="i==0">
-                                                        <label class="checkbox-label">
-                                                                <input type="checkbox"
-                                                                        (click)="questionCheck(question.id)" />
-                                                                <span class="checkbox-custom"></span>
-                                                        </label>
-                                                </ng-container>
-                                                <ng-container *ngIf="i>0">
-                                                        {{question[col]}}
-                                                </ng-container>
-                                        </td>
+               </div>
+        <!--  <button type="button" class="btn btn-primary right" (click)="updateQuestions()" translate>
+                 Update Questions
+        </button> -->
+                <button class="QuestButton" (click)="openCreateModal()">Add Question
+                       <i class="addQuestIcon material-icons">add_circle</i>
+                </button>
+                <br>
+                <table id="question" style="overflow-x:auto;">
+                        <tr>
+                                <th *ngFor="let col of columns">
+                                        {{col}}
+                                </th>
+                        </tr>
+                        <tr *ngFor="let question of displayedQuestions">
+                                <td *ngFor="let col of indexTable; let i = index">
+                                <ng-container *ngIf="i==0">
+                                        <label class="checkbox-label">
+                                        <input type="checkbox"
+                                        (click)="questionCheck(question.id)" />
+                                                <span class="checkbox-custom"></span>
+                                        </label>
+                                </ng-container>
+                                <ng-container *ngIf="i>0">
+                                        {{question[col]}}
+                                </ng-container>
+                        </td>
                                         <td style="width:150px">
                                                 <button type="button" class="editButtonQuestion"
                                                         (click)="editQuestion(question.id)" data-toggle="tooltip"

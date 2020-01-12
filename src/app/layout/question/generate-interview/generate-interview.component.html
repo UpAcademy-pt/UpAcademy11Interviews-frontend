@@ -5,15 +5,28 @@
     </button>
 </div>
 <div class="modal-body">
-        <label for="form-row">Interview Name:</label>
-        <div id="form-row" class="form-row mb-1">
-            <div class="col">
-                <input class="form-control p-1 m-1" name="interview.title" value="interview.title" type="text"
-                 [(ngModel)]="interview.title" placeholder="example: Front-End Junior" />
-            </div>
+    <label for="form-row">Interview Name:</label>
+    <div id="form-row" class="form-row mb-1">
+        <div class="col">
+            <input class="form-control p-1 m-1" name="interview.title" value="interview.title" type="text"
+                [(ngModel)]="interview.title" placeholder="example: Front-End Junior" />
         </div>
+    </div>
+    <label for="table">Selected Questions:</label>
+    <div id="table" class="table-container">
+        <table id="questionTable" >
+            <tr *ngFor="let myQuestion of myQuestions | keyvalue; let i = index">
+                <td >
+                    <span>
+                        {{myQuestion.value.question}}
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
     <!-- Carousel -->
-    <label for="carouselExampleIndicators" style="text-align: center;">Questions:</label>
+    <!-- <label for="carouselExampleIndicators" style="text-align: center;">Questions:</label>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li *ngFor = "let myQuestion of myQuestions | keyvalue; let i = index" 
@@ -34,11 +47,12 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
+    </div> -->
     <div class="modal-footer">
 
         <div>
-            <img src="https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg" class="modalLogo rounded float-left">
+            <img src="https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg"
+                class="modalLogo rounded float-left">
         </div>
 
 
