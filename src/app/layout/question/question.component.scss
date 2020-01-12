@@ -9,6 +9,26 @@ h2{
     color:white;
 }
 
+/* Read More */
+
+.show-less {
+    height: 60px;
+    overflow: hidden;
+    padding: 1rem;
+}
+.readButton{
+    float: right;
+    border: 0px;
+    background-color:transparent;
+    color: rgb(0, 0, 120);
+    font-size: 12px;
+    font-weight: bold;
+    outline: none;
+    padding-left: 0%;
+} 
+
+
+/* question table */
 
 #question {
     font-family: Arial, Helvetica, sans-serif;

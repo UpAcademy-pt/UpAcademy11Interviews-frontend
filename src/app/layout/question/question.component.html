@@ -44,7 +44,7 @@
                        <i class="addQuestIcon material-icons">add_circle</i>
                 </button>
                 <br>
-                <table id="question" style="overflow-x:auto;">
+                <table id="question">
                         <tr>
                                 <th *ngFor="let col of columns">
                                         {{col}}
@@ -60,31 +60,29 @@
                                         </label>
                                 </ng-container>
                                 <ng-container *ngIf="i>0">
-                                        {{question[col]}}
+                                        <div [ngClass]="{'show-less': showShortDesciption}">
+                                                {{question[col]}}
+                                        </div>
+                                        <button type="button" class="readButton" (click)="alterDescriptionText(this.question)">
+                                                {{showShortDesciption ? 'read more...': 'read less...' }}
+                                        </button>
                                 </ng-container>
                         </td>
-                                        <td style="width:150px">
-                                                <button type="button" class="editButtonQuestion"
-                                                        (click)="editQuestion(question.id)" data-toggle="tooltip"
-                                                        data-placement="bottom" title="Edit">
-
-                                                        <i class="material-icons">
-                                                                create</i>
-
-                                                </button>
-
-                                                <button type="button" class="deleteButtonQuestion"
-                                                        (click)="deleteQuestion(question.id)" data-toggle="tooltip"
-                                                        data-placement="bottom" title="Delete">
-
-                                                        <i class="material-icons">
-                                                                delete</i>
-
-                                                </button>
-                                        </td>
-                                </tr>
-                        </table>
-                </section>
+                                <td style="width:150px">
+                                        <button type="button" class="editButtonQuestion"
+                                                (click)="editQuestion(question.id)" data-toggle="tooltip"
+                                                data-placement="bottom" title="Edit">
+                                                <i class="material-icons">create</i>
+                                        </button>
+                                        <button type="button" class="deleteButtonQuestion"
+                                                (click)="deleteQuestion(question.id)" data-toggle="tooltip"
+                                                data-placement="bottom" title="Delete">
+                                                <i class="material-icons">delete</i>
+                                        </button>
+                                </td>
+                        </tr>
+                </table>
+        </section>
         </div>
 </ng-sidebar-container>
 <!-- content -->

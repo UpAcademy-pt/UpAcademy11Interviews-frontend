@@ -56,6 +56,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   filter: Set<String> = new Set<String>();
   valueOption = {};
+  
 
   constructor(
     private dataService: DataService,
@@ -121,6 +122,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     )
   }
 
+  
 
   public filterQuestions() {
     let count;
@@ -178,7 +180,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
     });
     this.dataService.updateAttributes();
   }
-
 
   private _toggleSidebar() {
     this._opened = !this._opened;
@@ -249,6 +250,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.modalService.onHide.subscribe(() => {
       this.interviewApi.getAll();
   });
+  }
+
+  showShortDesciption = true
+  alterDescriptionText(id:number) {
+    this.showShortDesciption = !this.showShortDesciption
   }
 
   generatePdf() {
