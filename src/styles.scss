@@ -202,7 +202,8 @@ padding: 2%;
 
   background-image: url("https://d2zr9w65gdacs9.cloudfront.net/50158/vagas-21564757671inline.png");
   background-color: rgb(0, 0, 22);
-  background-size: 100%;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   font: bold;
   color: white;
@@ -231,7 +232,7 @@ padding: 2%;
 .modalLogo{
   float: left;
   size: 10px;
-  width: 30%;
+  width: 45%;
   margin-top: 9%;
   background-image: url(https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg);
   background-size: 100%;
