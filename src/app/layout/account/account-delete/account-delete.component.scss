@@ -67,15 +67,15 @@
         display: inline-block;
         position: relative;
         transition: 0.5s;    
-        transform: rotateY(360deg);
-        transition: width 2s, height 2s, transform 2s;
+        //transform: rotateY(360deg);
+        //transition: width 2s, height 2s, transform 2s;
     }
       
     .questionButtonNo:hover {
         background-color: rgb(74, 42, 219);
         color: rgb(0, 255, 251);
-        transform: rotateY(360deg);
-        transition: width 2s, height 2s, transform 2s;
+        //transform: rotateY(360deg);
+        //transition: width 2s, height 2s, transform 2s;
         
         
     }
@@ -86,14 +86,14 @@
         top: 0;
         right: -20px;
         transition: 0.5s;
-        transform: rotateY(360deg);
-        transition: width 2s, height 2s, transform 2s;
+        //transform: rotateY(360deg);
+        //transition: width 2s, height 2s, transform 2s;
     }
     
     .questionButtonNo:hover span {
         padding-right: 25px;
-        transform: rotateY(360deg);
-        transition: width 2s, height 2s, transform 2s;
+        //transform: rotateY(360deg);
+        //transition: width 2s, height 2s, transform 2s;
     }
     
     .questionButtonNo:hover span:after {
