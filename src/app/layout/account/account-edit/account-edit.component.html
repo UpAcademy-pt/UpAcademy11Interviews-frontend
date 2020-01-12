@@ -28,7 +28,7 @@
   </div>
     <label class="font-weight-bold text-center mt-2">Edit Email:</label>
     <input class="w-100 p-1 m-1" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" name="email" email type="email" [(ngModel)]="account.email" placeholder="Email">
-    <div class="text-danger" [hidden]="email.valid || email.untouched || isInvalid == false">
+    <div class="text-danger" [hidden]="email.valid || isInvalid == false">
       <div *ngIf="(email.errors && email.errors.required) || isInvalid">
         Email is required
       </div>
@@ -66,7 +66,7 @@
       <img src="https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg" class="modalLogo rounded float-left">
   </div>
 
-    <button type="button" class="editAccountButton" disabled="email.errors && email.errors.pattern" (click)="editAccount()">
+    <button type="button" class="editAccountButton" (click)="editAccount()">
       Edit</button>
   </div>
   

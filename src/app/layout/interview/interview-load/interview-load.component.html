@@ -6,22 +6,16 @@
 </div>
 <div class="modal-body">
     <label for="templates">Interview Templates:</label>
-    <ngb-accordion id="templates" [closeOthers]="true" *ngFor="let interview of interviews; let i = index">
+    <ngb-accordion id="templates"  [closeOthers]="true" *ngFor="let interviewModel of interviewModels">
         <ngb-panel>
             <ng-template ngbPanelTitle>
-                {{interview.title}}
+                {{interviewModel.title}}
               </ng-template>
           <ng-template ngbPanelContent>
             <div id="table" class="table-container">
                 <table id="questionTable" >
-                    <tr *ngFor = "let questions of interviewQuestions[i]">
-                        <td *ngFor = "let obj of questions | keyvalue">
-                            <div>
-                                <span>
-                                    {{obj.value}}
-                                </span>
-                            </div>
-                        </td>
+                    <tr *ngFor = "let question of interviewModel.questions">
+                            <td>{{question.question}}</td>
                     </tr>
                 </table>
             </div>
@@ -29,10 +23,10 @@
         </ngb-panel>
       </ngb-accordion>
     <label style="margin-top: 2%;" for="role">Select Interview-Template:</label>
-    <select id="role" class="form-control" [(ngModel)]="selectedTemplate">
+    <select id="role" class="form-control" [(ngModel)]="selectedTemplateId">
         <option value="" hidden selected>Choose One</option>
-        <option [value]="interview.id" *ngFor="let interview of interviews; let i = index">
-            {{interview.title}}
+        <option [value]="interviewModel.id" *ngFor="let interviewModel of interviewModels; let i = index">
+            {{interviewModel.title}}
         </option>
     </select>
 </div>

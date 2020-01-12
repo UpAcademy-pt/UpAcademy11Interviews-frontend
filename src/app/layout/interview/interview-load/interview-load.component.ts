@@ -3,7 +3,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { InterviewApiService } from 'src/app/core/services/interview-service';
 import { Interview } from 'src/app/core/models/interview';
 import { InterviewModelApiService } from 'src/app/core/services/interview-template-service';
-import { Question, QuestionApiService } from 'src/app/core';
+import { Question } from 'src/app/core';
+import { InterviewModel } from 'src/app/core/models/interview-template';
 
 
 @Component({
@@ -13,36 +14,29 @@ import { Question, QuestionApiService } from 'src/app/core';
 })
 export class InterviewLoadComponent implements OnInit {
 
-  
-  interviews = [];
-  interviewTitle = [];
-  selectedTemplate;
-  interviewQuestions = [];
-
+  interview: Interview = new Interview();
+  interviews: Interview[] = [];
+  interviewModels : InterviewModel[] = [];
+  selectedTemplateId : Number;
 
   @Output() templateSelect = new EventEmitter<Object>();
-/*   public bsModalRef: BsModalRef */
+
   constructor(
-    public interviewApi: InterviewModelApiService,
-    private questionApi: QuestionApiService,
+    public interviewModelApi: InterviewModelApiService,
     public bsModalRef: BsModalRef
   ) { }
 
-  ngOnInit()  {
-    this.interviewApi.getAll().subscribe((data:Interview[]) =>{
-      this.interviews = data;
-      console.log(this.interviews);
-      
-      for (let i = 0; i < this.interviews.length; i++) {
-        this.interviewQuestions.push(data[i].questions);
-      }
-      console.log(this.interviewQuestions);
+  ngOnInit() {
+    this.interviewModelApi.getAll().subscribe((data: InterviewModel[]) => {
+      this.interviewModels = data;
+      console.log(this.interviewModels);
     });
   }
-   
+
   createInterview() {
-    let template = this.interviews.find( interview => interview.id == this.selectedTemplate); 
+    let template = this.interviewModels.find(interviewModel => interviewModel.id == this.selectedTemplateId);
+    console.log(template);
     this.templateSelect.emit(template);
-    this.bsModalRef.hide()  
+    this.bsModalRef.hide();
   }
 }
