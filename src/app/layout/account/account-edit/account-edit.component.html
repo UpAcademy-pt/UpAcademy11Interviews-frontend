@@ -4,6 +4,8 @@
         <span aria-hidden="true">&times;</span>
     </button>
   </div>
+
+
   <div class="modal-body">
    
   <div id="form-row" class="form-row mb-1">
@@ -36,7 +38,7 @@
         Email is invalid
       </div>
     </div>
-  </div>
+  
     <label class="font-weight-bold text-center mt-2">Password:</label>
     <input [disabled]="!editPassword" required pattern="(.{4,}$)" #password="ngModel" class="w-90 p-1 m-1" name="password" type="password" [(ngModel)]="account.hashcode" placeholder="Password" >
     <!-- <i class="fa fa-edit"></i> -->
@@ -70,4 +72,7 @@
     <button type="button" class="editAccountButton" (click)="editAccount()">
       Edit</button>
   </div>
+
+</div>
+
   
