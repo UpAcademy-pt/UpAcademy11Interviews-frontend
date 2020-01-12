@@ -12,27 +12,29 @@
     <div>
     <label for="type">Types</label>
     <input id="type" name="value" type="text" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;" [(ngModel)]="attributeValue.value">
-    <button  (click)= "createAttributeValue()" style="margin-top: 3px; margin-bottom: 4px; background-color: cadetblue; border-radius: .25rem; color: black">
+    <button  (click)= "createAttributeValue()" style="margin-top: 3px; margin-bottom: 4px; background-color:rgb(0, 221, 217); border-radius: .25rem; color:rgb(0, 0, 120)">
     + </button>
     </div>
     
     <div class="my-chip-list">
         <label *ngFor="let attributeValue of attributeValues"
-            style="background-color: cadetblue; border-radius: 1rem; padding-top: 3px; padding-left: 6px; padding-right: 5px; padding-bottom: 3px; margin: 2px">
+            style="background-color: rgb(0, 221, 217); border-radius: 1rem; padding-top: 3px; padding-left: 6px; padding-right: 5px; padding-bottom: 3px; margin: 2px">
             {{attributeValue.value}}
             <button class="myRemove" (click)="deleteAttributeValue(attributeValue.id)"
-                style="border-radius: 1rem; border-color: cadetblue; background-color:cadetblue; font-size: 15px;">x</button>
+                style="border-radius: 1rem; border-color: rgb(0, 221, 217); background-color:rgb(0, 221, 217); font-size: 15px;">x</button>
         </label>
-    
-
-<div class="modal-footer">
-
-
-    <div>
-        <img src="https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg" class="modalLogo rounded float-left">
     </div>
 
 
+    
+<div class="modal-footer">
+
+   
+        <img src="https://www.criticaltechworks.com/img/KNUxPXeDj-logo_CRITICALTECHWORKS_LOGO+signature_LOGO+signature.svg" class="modalLogo rounded float-left">
+   
+
+
     <button type="button" class="editCategoryButton" (click)="edit()">Edit</button>
+
 </div>
 </div>
