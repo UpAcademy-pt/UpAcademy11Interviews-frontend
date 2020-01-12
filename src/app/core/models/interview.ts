@@ -7,6 +7,6 @@ export class Interview {
     candidate : string;
     user : Account;
     questions : Question[]=[]
-    evaluations? : String[];
+    evaluations? : number[];
     finalEvaluation: number;
 }

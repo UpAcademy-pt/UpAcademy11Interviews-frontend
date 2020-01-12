@@ -1,27 +1,23 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">New Question</h4>
+    <h4 class="modal-title pull-left font-weight-bold text-center">New Question</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-
-    <div class="row">
+          
         <label for="question" style="margin-bottom: 0px; margin-left: 4px;">Question</label>
-        <input id="question" (keyup)="onKeyUp($event)" class="w-100 p-1 m-1" required pattern="[A-z ?]+$"
+        <input id="question" class="w-100 p-1 m-1" required
             #questionModal="ngModel" name="question" type="text" [(ngModel)]="question.question"
             placeholder="Write question" />
 
-
-        <div class="text-danger" [hidden]="questionModal.valid || questionModal.untouched">
-
-            <div *ngIf="questionModal.errors && questionModal.errors.required">
-                Question is required <br>
-            </div>
-            <div *ngIf="questionModal.errors && questionModal.errors.pattern">
-                Question is invalid <br>
-            </div>
-        </div>
+        <div class="text-danger" [hidden]="questionModal.valid || isInvalid == false">
+      
+                <div  *ngIf="(questionModal.errors && questionModal.errors.required) || isInvalid">
+                    Question is required 
+                </div>
+        
+              </div>
 
         <label for="answer" style="margin-bottom: 0px; margin-left: 4px;">Expected Answer</label>
         <input id="answer" class="w-100 p-1 m-1" name="answer" type="text" [(ngModel)]="question.answer"
@@ -34,7 +30,6 @@
             <option [value]="attributeString" *ngFor="let attributeString of attributesString">{{attributeString}}
             </option>
         </select>
-    </div>
 
     <div class="row" *ngIf="attributeOption != '' ">
         <select class="form-control" style="width: 93%; margin-left: 4px; margin-top: 3px; margin-bottom: 4px;"

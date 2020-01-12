@@ -33,7 +33,7 @@ export class AttributeApiService {
   }
 
   public delete(id: number) {
-    return this.http.delete(this.apiUrl + id);
+    return this.http.delete(this.apiUrl + id, {responseType: 'text'});
   }
 
 

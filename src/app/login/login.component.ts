@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private _snackBar: MatSnackBar
     ) {
     // Fill email and password
-   this.account.email = 'admin@ctq.com';
+   this.account.email = 'rui@ctw.com';
    this.account.password= '1234'; 
   }
 

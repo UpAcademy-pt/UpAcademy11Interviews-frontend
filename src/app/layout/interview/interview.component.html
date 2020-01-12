@@ -15,23 +15,24 @@
         <div *ngIf="selectedTemplate" class="col">
             <h2>{{selectedTemplate.title}}</h2>
             <p id="progressBar">
-                <ngb-progressbar type="info" [value]="50">Copying file <b>2 of 4</b>...</ngb-progressbar>
+                <ngb-progressbar type="info" [value]="progressValue">
+                    Copying file <b>{{progressCount}} of {{interview.questions.length}}</b>...</ngb-progressbar>
             </p>
         </div>
     </div>
 
-    <table *ngIf="interviewQuestions.length>0" id="interview">
+    <table *ngIf="interview.questions.length>0" id="interview">
         <tr>
             <th *ngFor="let col of columns">
                 {{col}}
             </th>
         </tr>
-        <tr style="width:500px" *ngFor="let question of interviewQuestions">
+        <tr style="width:500px" *ngFor="let question of interview.questions">
             <td *ngFor="let col of index">
                 {{question[col]}}
             </td>
             <td>
-                <select class="form-control" [(ngModel)]="question.evaluation">
+                <select class="form-control" [(ngModel)]="question.evaluation" (change)="progressBarUpdate()">
                     <option value="0" selected>No Evaluation</option>
                     <option [value]="col.quant" *ngFor="let col of evaluations">
                         {{col.qual}}
