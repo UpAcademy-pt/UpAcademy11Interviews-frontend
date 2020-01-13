@@ -5,12 +5,8 @@
     </button>
 </div>
 <div class="modal-body">
-<<<<<<< HEAD
-    <ngb-accordion  [closeOthers]="true" *ngFor="let interviewModel of interviewModels">
-=======
     <label for="templates">Interview Templates:</label>
-    <ngb-accordion id="templates" [closeOthers]="true" *ngFor="let interview of interviews; let i = index">
->>>>>>> origin/jsilvestre
+    <ngb-accordion id="templates" [closeOthers]="true" *ngFor="let interviewModel of interviewModels">>
         <ngb-panel>
             <ng-template ngbPanelTitle>
                 {{interviewModel.title}}
@@ -25,15 +21,9 @@
             </div>
           </ng-template>
         </ngb-panel>
-<<<<<<< HEAD
-      </ngb-accordion >
-    <label for="role">Select Interview-Template:</label>
-    <select class="form-control" [(ngModel)]="selectedTemplateId">
-=======
       </ngb-accordion>
     <label style="margin-top: 2%;" for="role">Select Interview-Template:</label>
-    <select id="role" class="form-control" [(ngModel)]="selectedTemplate">
->>>>>>> origin/jsilvestre
+    <select id="role" class="form-control" [(ngModel)]="selectedTemplateId">
         <option value="" hidden selected>Choose One</option>
         <option [value]="interviewModel.id" *ngFor="let interviewModel of interviewModels; let i = index">
             {{interviewModel.title}}

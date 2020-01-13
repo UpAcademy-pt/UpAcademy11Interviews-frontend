@@ -57,11 +57,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   filter: Set<String> = new Set<String>();
   valueOption = {};
-<<<<<<< HEAD
   currentAccount: Account = new Account();
-=======
-  
->>>>>>> origin/jsilvestre
 
   constructor(
     private dataService: DataService,
