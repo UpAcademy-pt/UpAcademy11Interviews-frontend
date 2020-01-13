@@ -6,22 +6,24 @@
 </div>
 <div class="modal-body">
     <label for="templates">Interview Templates:</label>
-    <ngb-accordion id="templates" [closeOthers]="true" *ngFor="let interviewModel of interviewModels">>
-        <ngb-panel>
-            <ng-template ngbPanelTitle>
-                {{interviewModel.title}}
-              </ng-template>
-          <ng-template ngbPanelContent>
-            <div id="table" class="table-container">
-                <table id="questionTable" >
-                    <tr *ngFor = "let question of interviewModel.questions">
-                            <td>{{question.question}}</td>
-                    </tr>
-                </table>
-            </div>
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>
+    <div class="modalTemplate">
+        <ngb-accordion id="templates" [closeOthers]="true" *ngFor="let interviewModel of interviewModels">
+            <ngb-panel>
+                <ng-template ngbPanelTitle>
+                    {{interviewModel.title}}
+                </ng-template>
+                <ng-template ngbPanelContent>
+                    <div id="table" class="table-container">
+                        <table id="questionTable">
+                            <tr *ngFor="let question of interviewModel.questions">
+                                <td>{{question.question}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+    </div>
     <label style="margin-top: 2%;" for="role">Select Interview-Template:</label>
     <select id="role" class="form-control" [(ngModel)]="selectedTemplateId">
         <option value="" hidden selected>Choose One</option>
@@ -29,7 +31,7 @@
             {{interviewModel.title}}
         </option>
     </select>
-</div>
+
 <div class="modal-footer">
 
     <div>
