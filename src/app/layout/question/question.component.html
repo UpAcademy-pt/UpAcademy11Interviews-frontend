@@ -11,6 +11,7 @@
                 <button class="addCategory container" (click)="addCategory()" *ngIf="currentAccount.role != 'User'">Add Category 
                         <i class="addCategoryIcon material-icons">add_circle</i>
                 </button>
+<<<<<<< HEAD
                                
                 </div>
                 <div class="selectors container" style="padding-top: 0px; width: 250px;">
@@ -97,6 +98,48 @@
                                 </tr>
                         </table>
                 </section>
+=======
+                <br>
+                <table id="question">
+                        <tr>
+                                <th *ngFor="let col of columns">
+                                        {{col}}
+                                </th>
+                        </tr>
+                        <tr *ngFor="let question of displayedQuestions">
+                                <td *ngFor="let col of indexTable; let i = index">
+                                <ng-container *ngIf="i==0">
+                                        <label class="checkbox-label">
+                                        <input type="checkbox"
+                                        (click)="questionCheck(question.id)" />
+                                                <span class="checkbox-custom"></span>
+                                        </label>
+                                </ng-container>
+                                <ng-container *ngIf="i>0">
+                                        <div [ngClass]="{'show-less': showShortDesciption}">
+                                                {{question[col]}}
+                                        </div>
+                                        <button type="button" class="readButton" (click)="alterDescriptionText(this.question)">
+                                                {{showShortDesciption ? 'read more...': 'read less...' }}
+                                        </button>
+                                </ng-container>
+                        </td>
+                                <td style="width:150px">
+                                        <button type="button" class="editButtonQuestion"
+                                                (click)="editQuestion(question.id)" data-toggle="tooltip"
+                                                data-placement="bottom" title="Edit">
+                                                <i class="material-icons">create</i>
+                                        </button>
+                                        <button type="button" class="deleteButtonQuestion"
+                                                (click)="deleteQuestion(question.id)" data-toggle="tooltip"
+                                                data-placement="bottom" title="Delete">
+                                                <i class="material-icons">delete</i>
+                                        </button>
+                                </td>
+                        </tr>
+                </table>
+        </section>
+>>>>>>> origin/jsilvestre
         </div>
 </ng-sidebar-container>
 <!-- content -->

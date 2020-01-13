@@ -144,7 +144,7 @@ export class InterviewComponent implements OnInit {
           width: 200
         },
         { text: 'Interview', margin: [0, 50, 0, 30], style: 'header' },
-        // { text: this.interviewQuestions, margin: [0, 10, 0, 30], style: 'header' }, 
+        { text: this.selectedTemplate.title, margin: [0, 10, 0, 30], style: 'header' }, 
         {
           style: 'table',
           table: {
